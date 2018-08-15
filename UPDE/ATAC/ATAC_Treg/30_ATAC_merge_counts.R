@@ -1,6 +1,6 @@
 # Author: Vicnent Gardeux
 # Adapted by: Joern Pezoldt
-# 12.07.2018
+# 12.08.2018
 # Function:
 # 1) Merges tables of count per peak from homer ATAC-seq pipeline, by id
 
@@ -9,13 +9,13 @@
 require(data.table)
 
 # Input required: Set path to directory with the homer .txt files (output of annotatedpeak.pl)
-setwd("/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_FSC_all")
+setwd("/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_denovo_Treg")
 # Input required: Set name of experiment
-name = "ATAC_FSC_all"
+name = "ATAC_DeNovoTreg_all"
 
 #Set directory
 # Input required: Set path to peak count tables
-path <- paste(getwd(),"/homer/Overlap_Group_Merged/Run_4_in_all",sep="")
+path <- paste(getwd(),"/homer/Overlap_Group_Merged/Run_1_in_all",sep="")
 
 #Merge tables over id column
 merge_counts <- function(path) {

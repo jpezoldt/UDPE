@@ -34,6 +34,6 @@ echo $name
 mkdir -p $resultdir/${sample};
 
 #Find Motifs
-findMotifs.pl $motifdir/${name} mouse $resultdir/${sample}; -bg $backgrounddir -start -5000 -end 100 -len 8,10,12
+findMotifs.pl $motifdir/${name} mouse $resultdir/${sample} -bg $backgrounddir -start -5000 -end 100 -len 8,10,12
 
 

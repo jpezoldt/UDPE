@@ -1,6 +1,6 @@
-# Author: Joern Pezoldt
-# Advice: Maria Litovchenko, Vincent Gardeaux
-# 12.08.2018
+# Author: Vincent Gardeux
+# Adapted by: Joern Pezoldt
+# 12.07.2018
 # Function:
 # 1) 
 # 

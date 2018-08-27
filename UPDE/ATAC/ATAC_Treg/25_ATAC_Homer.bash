@@ -1,12 +1,12 @@
 #!/bin/bash
 
 #BSUB -L /bin/bash
-#BSUB -e /scratch/el/monthly/bdeplanc/pezoldt/Analysis/ATAC_FSC_all/ATAC_FSC_all.err
-#BSUB -o /scratch/el/monthly/bdeplanc/pezoldt/Analysis/ATAC_FSC_all/ATAC_FSC_all.out
-#BSUB -J ATAC_pilot[1-12]
+#BSUB -e /scratch/el/monthly/bdeplanc/pezoldt/Analysis/ATAC_FSC_all/Treg_all.err
+#BSUB -o /scratch/el/monthly/bdeplanc/pezoldt/Analysis/ATAC_FSC_all/Treg_all.out
+#BSUB -J ATAC_pilot[1-16]
 #BSUB -M 40000000
 #BSUB -R rusage[mem=40000]
-#BSUB -n 12
+#BSUB -n 16
 #BSUB -u joern.pezoldt@epfl.ch
 
 # Author: Vincent Gardeaux
@@ -29,19 +29,11 @@
 
 
 module use /software/module/;
-module add UHTS/Quality_control/fastqc/0.11.2;
-module add Development/java;
-module add UHTS/Aligner/STAR/2.5.3a;
-module add UHTS/Analysis/samtools/1.3;
-module add UHTS/Analysis/HTSeq/0.6.1;
-module add UHTS/Analysis/macs/2.1.1.20160309;
-module add UHTS/Analysis/deepTools;
-module add UHTS/Analysis/BEDTools/2.26.0;
 module add UHTS/Analysis/homer/4.9;
 
 rootdir=/scratch/el/monthly/bdeplanc/pezoldt;
-fastqdir=$rootdir/Data/ATAC_FSC_all/Trimmed;
-resultdir=$rootdir/Analysis/ATAC_FSC_all;
+fastqdir=$rootdir/Data/ATAC_denovo_Treg/Trimmed;
+resultdir=$rootdir/Analysis/ATAC_denovo_Treg;
 genomedir=$rootdir/Data/Genome_mouse/GRCm38.87;
 indexdir=$rootdir/Data/Genome_mouse/GRCm38.87/STARIndex;
 blacklist=$genomedir/mm10.blacklist_kundaje_20180718_final.bed;
@@ -59,4 +51,4 @@ echo $sample
 
 #Count peaks
 #makeTagDirectory $resultdir/aligned/$sample/tags $resultdir/aligned/${sample}/${sample}.nodup.bam
-annotatePeaks.pl $resultdir/peaks/broad/Overlap_Merged/Run_4_in_all/ATAC_FSC_all_broad_merged_peaks.bed mm10 -size given -noadj -organism mouse -d $resultdir/aligned/$sample/tags > $resultdir/homer/Overlap_Group_Merged/Run_4_in_all/${sample}.txt
+annotatePeaks.pl $resultdir/peaks/broad/Overlap_Merged/Run_1_in_all/ATAC_DeNovoTreg_broad_merged_peaks.bed mm10 -size given -noadj -organism mouse -d $resultdir/aligned/$sample/tags > $resultdir/homer/Overlap_Group_Merged/Run_1_in_all/${sample}.txt

@@ -1,0 +1,1 @@
+Rscript --vanilla /home/pezoldt/NAS2/pezoldt/Scripts/scRNAseq/scenic/20180813_scenic_mLN.R 1>out 2>err &

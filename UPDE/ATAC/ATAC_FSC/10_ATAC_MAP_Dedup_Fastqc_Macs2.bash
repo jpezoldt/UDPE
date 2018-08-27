@@ -100,4 +100,5 @@ macs2 callpeak -t $resultdir/aligned/${sample}/${sample}.nodup.bam -f BAM --nola
 macs2 callpeak -t $resultdir/aligned/${sample}/${sample}.nodup.bam -f BAM -n ${sample}_ext73 --outdir $resultdir/peaks/ext73/${sample} --extsize 73 -g mm -q 0.05 
 macs2 callpeak -t $resultdir/aligned/${sample}/${sample}.nodup.bam -f BAM -n ${sample}_ext150 --outdir $resultdir/peaks/ext150/${sample} --extsize 150 -g mm -q 0.05 
 
+#Take .xls macs2 output and process with 15_...
 

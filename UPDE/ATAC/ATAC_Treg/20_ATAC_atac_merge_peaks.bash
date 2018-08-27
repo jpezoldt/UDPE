@@ -20,27 +20,28 @@ module add UHTS/Analysis/BEDTools/2.26.0;
 module add UHTS/Analysis/deepTools;
 
 rootdir=/scratch/el/monthly/bdeplanc/pezoldt;
-resultdir=$rootdir/Analysis/ATAC_FSC_all/peaks;
+resultdir=$rootdir/Analysis/ATAC_denovo_Treg/peaks;
 genomedir=$rootdir/Genome_mouse/GRCm38.87;
 
 method='broad'
-experiment='ATAC_FSC_all'
+experiment='ATAC_denovo_Treg'
 methodwet='ATAC'
+analysis='Run_1_min2tracks'
 
 
 #provide names
-names=`ls /scratch/el/monthly/bdeplanc/pezoldt/Analysis/$experiment/aligned/*/*.nodup.bam | cut -d '.' -f1 | cut -d '/' -f10`
-echo $names
+#names=`ls /scratch/el/monthly/bdeplanc/pezoldt/Analysis/$experiment/aligned/*/*.nodup.bam | cut -d '.' -f1 | cut -d '/' -f10`
+#echo $names
 
 #Provide MACS2 peak annotation files (.bed) per sample
 #concatenate files and sort file according to chrom and then start
 #cat $resultdir/$method/$methodwet*/*_peaks.bed | sort -k 1,1 -k2,2n > $resultdir/$method/ATAC_FSC_all_${method}_concat_peaks.bed
 #Provide MACS2 peaks present in all replicates
-cat $resultdir/$method/Overlap_Merged/Run_4_min2tracks/*.bed | sort -k 1,1 -k2,2n > $resultdir/$method/Overlap_Merged/Run_4_min2tracks/ATAC_FSC_all_${method}_concat_peaks.bed
+cat $resultdir/$method/Overlap_Merged/$analysis/*.bed | sort -k 1,1 -k2,2n > $resultdir/$method/Overlap_Merged/$analysis/ATAC_DeNovoTreg_${method}_concat_peaks.bed
 
 #merge all genomic regions if overlap at lest 1bp
 #bedtools merge -i $resultdir/$method/ATAC_FSC_all_${method}_concat_peaks.bed > $resultdir/$method/ATAC_FSC_all_${method}_merged_peaks.bed
-bedtools merge -i $resultdir/$method/Overlap_Merged/Run_4_min2tracks/ATAC_FSC_all_${method}_concat_peaks.bed > $resultdir/$method/Overlap_Merged/Run_4_min2tracks/ATAC_FSC_all_${method}_merged_peaks.bed
+bedtools merge -i $resultdir/$method/Overlap_Merged/$analysis/ATAC_DeNovoTreg_${method}_concat_peaks.bed > $resultdir/$method/Overlap_Merged/$analysis/ATAC_DeNovoTreg_${method}_merged_peaks.bed
 
 
 #plotEnrichment -p 4 -b $rootdir/Analysis/ATAC_pilot/aligned/*/*.nodup.bam \

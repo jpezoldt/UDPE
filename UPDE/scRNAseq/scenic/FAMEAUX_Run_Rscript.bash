@@ -1,0 +1,1 @@
+Rscript --vanilla /home/pezoldt/NAS2/pezoldt/Scripts/scRNAseq/scenic/FAMEAUX_1_scenic.R 1>out 2>err &

@@ -229,15 +229,15 @@ fileNames <- tsneAUC(scenicOptions, aucType="AUC", nPcs=c(10,20,30), perpl=c(10,
 fileNames <- paste0("int/",grep(".Rds", grep("tSNE_", list.files("int"), value=T), value=T))
 plotTsne_compareSettings(fileNames, scenicOptions, showLegend=FALSE)
 
-par(mfcol=c(2,5))
+par(mfcol=c(3,5))
 fileNames <- paste0("int/",grep(".Rds", grep("tSNE_AUC", list.files("int"), value=T, perl = T), value=T))
 plotTsne_compareSettings(fileNames, scenicOptions, showLegend=FALSE, cex=.5, varName="cell_type1")
 plot.new(); legend(0,1, fill=colVars$CellType, legend=names(colVars$CellType))
 
 # Using only "high-confidence" regulons (normally similar)
-par(mfcol=c(2,5))
+par(mfcol=c(3,5))
 fileNames <- paste0("int/",grep(".Rds", grep("tSNE_oHC_AUC", list.files("int"), value=T, perl = T), value=T))
-plotTsne_compareSettings(fileNames, scenicOptions, showLegend=FALSE, cex=.5) # varName="cell_type1")
+plotTsne_compareSettings(fileNames, scenicOptions, showLegend=FALSE, cex=.5, varName="cell_type1")
 plot.new(); legend(0,1, fill=colVars$CellType, legend=names(colVars$CellType))
 
 #chosen t-SNE can then be saved as default to use for plots
@@ -246,17 +246,83 @@ scenicOptions@settings$defaultTsne$dims <- 20
 scenicOptions@settings$defaultTsne$perpl <- 10
 saveRDS(scenicOptions, file="int/scenicOptions.Rds")
 
+#################
+#Explore dataset
+#################
+loadInt(scenicOptions)
+logMat <- log2(exprMat+1) # Better if it is logged/normalized
+aucellApp <- plotTsne_AUCellApp(scenicOptions, logMat) #default t-SNE
+savedSelections <- shiny::runApp(aucellApp)
+##
+
 #####
-#TSNE Plots
+#Regulon t-SNE
 #####
-par(mfcol=c(3,5))
-fileNames <- paste0("int/",grep(".Rds", grep("tSNE_AUC", list.files("int"), value=T, perl = T), value=T))
-plotTsne_compareSettings(fileNames, scenicOptions, showLegend=FALSE, cex=.5, varName="cell_type1")
-plot.new(); 
-legend(0,1, fill=colVars$CellType, legend=names(colVars$CellType))
+par(mfrow=c(2,4))
+AUCell::AUCell_plotTSNE(tSNE_scenic$Y, exprMat,
+                        aucell_regulonAUC[onlyNonDuplicatedExtended(rownames(aucell_regulonAUC))[c("Irf1","Arntl","Fos","Fosl1",
+                                                                                                   "Rel","Junb","Jun","Egr1")],],
+                        plots="Expression")
+
+#####
+#Density plot to detect most likely stable states
+#####
+library(KernSmooth)
+library(RColorBrewer)
+dens2d <- bkde2D(tSNE_scenic$Y, 4)$fhat
+image(dens2d, col=brewer.pal(9, "YlOrBr"), axes=FALSE)
+contour(dens2d, add=TRUE, nlevels=3, drawlabels=FALSE)
+c("Hoxa5","Arnt","Ets1","Tcf3","Fosl2","Fosl1","Rela","Rel","Nfkb1","Bach1","Irf1","Arntl","Fos","Junb","Jun","Elk3","Egr1")
 
 
+#####
+#Genes included in a regulon
+#####
+regulons <- loadInt(scenicOptions, "regulons")
+regulons[c("Irf1","Arntl","Fos","Fosl1",
+           "Rel","Junb","Jun","Egr1")]
+
+regulons <- loadInt(scenicOptions, "aucell_regulons")
+head(cbind(onlyNonDuplicatedExtended(names(regulons))))
+tail(cbind(onlyNonDuplicatedExtended(names(regulons))))
+
+#####
+#Check genes included in regulon
+#####
+regulonTargetsInfo <- loadInt(scenicOptions, "regulonTargetsInfo")
+regulonTargetsInfo <- RcisTarget::addLogo(regulonTargetsInfo, motifCol="bestMotif")
+regulonTargetsInfo$Genie3Weight <- signif(regulonTargetsInfo$Genie3Weight, 2)
+regulonTargetsInfo_highConfAnnot <- subset(regulonTargetsInfo, highConfAnnot == "TRUE")
+
+                 
+
+#Grab regulons per cells
+#check output files
+loadInt(scenicOptions)
+
+motifEnrichment_full <- loadInt(scenicOptions, "motifEnrichment_full")    
 
 
+#regulons actually detected with associated genes
+regulons <- loadInt(scenicOptions, "regulons")
 
+#Genes per regulon
+aucell_regulons <- loadInt(scenicOptions, "aucell_regulons")
+
+#binary matrix for which gene belongs to which regulon
+regulon_incidence_matrix_binary <- loadInt(scenicOptions, "regulons_incidMat")
+regulon_incidence_matrix_binary[1:5,1:5]
+
+#Names of genes
+aucell_rankings <- loadInt(scenicOptions, "aucell_rankings")
+
+#Names of regulons
+#This table contains the non-binarized scores
+aucell_regulonAUC <- loadInt(scenicOptions, "aucell_regulonAUC")
+
+#thresholds for all regulons
+aucell_thresholds <- loadInt(scenicOptions, "aucell_thresholds")
+
+#Only if data has been binarized
+#aucell_binary_full <- loadInt(scenicOptions, "aucell_binary_full")
 

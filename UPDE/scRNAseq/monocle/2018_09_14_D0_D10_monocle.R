@@ -1,3 +1,7 @@
+#!/usr/bin/env Rscript
+#args <- commandArgs(trailingOnly = T)
+#blah = args[1]
+
 # Autor: Joern Pezoldt
 # 08.08.2018
 # Function:
@@ -12,6 +16,7 @@ library(monocle)
 library(pheatmap)
 library(reshape2)
 library(cellrangerRkit)
+library(biomaRt)
 
 #####
 #Notes - Important
@@ -21,9 +26,11 @@ library(cellrangerRkit)
 #####
 #Global variable
 #####
-datasets <- c("d000","d010","d024","d056","d300","mLNGF")
+datasets <- c("d000")
 #Number of cells in which a gene should be expressed to be included in analysis
 num_cells_exp <- 50
+#Export PATH
+PATH_output <- "/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/monocle/D0_Signature_Clusters"
 
 #####
 #Load and compile data into cde object
@@ -33,37 +40,28 @@ dir_d0 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Da
 d0 <- load_cellranger_matrix(dir_d0, genome = "mm10")
 
 #Timepoint 2: e.g day10
-dir_d10 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/C12_d10_mLN"
-d10 <- load_cellranger_matrix(dir_d10, genome = "mm10")
+#dir_d10 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/C12_d10_mLN"
+#d10 <- load_cellranger_matrix(dir_d10, genome = "mm10")
 
 #Timepoint 3: e.g. day24
-dir_d24 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/D1_d24_mLN"
-d24 <- load_cellranger_matrix(dir_d24, genome = "mm10")
+#dir_d24 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/D1_d24_mLN"
+#d24 <- load_cellranger_matrix(dir_d24, genome = "mm10")
 
 #Timepoint 4: e.g. day56 (merge two datasets)
-dir_d56 <- "~/NAS2/pezoldt/Data/scRNAseq/244_scRNA-Seq_mLN_pLN_SPF/Data/10X_results/L1700567_mLN_SPF"
-d56_1 <- load_cellranger_matrix(dir_d56, genome = "mm10")
-dir_d56_2 <- "~/NAS2/pezoldt/Data/scRNAseq/252_2017-07-19_scRNA-Seq_mLN_pLN_SPF_GF/Data/10x/mLN_SPF/B6"
-d56_2 <- load_cellranger_matrix(dir_d56_2, genome = "mm10")
+#dir_d56 <- "~/NAS2/pezoldt/Data/scRNAseq/244_scRNA-Seq_mLN_pLN_SPF/Data/10X_results/L1700567_mLN_SPF"
+#d56 <- load_cellranger_matrix(dir_d56, genome = "mm10")
+#dir_d56_2 <- "~/NAS2/pezoldt/Data/scRNAseq/252_2017-07-19_scRNA-Seq_mLN_pLN_SPF_GF/Data/10x/mLN_SPF/B6"
+#d56_2 <- load_cellranger_matrix(dir_d56_2, genome = "mm10")
 
 #Timepoint 5: e.g. day84
 #Being processed
 
 #Timepoint 6: e.g. day300
-dir_d300 <- "~/NAS2/pezoldt/Data/scRNAseq/275_2018-04-23_scRNA-Seq_mLN_SPF_45wk/Data/E7_SPF_mLN_42wk"
-d300 <- load_cellranger_matrix(dir_d300, genome = "mm10")
-
-#mLN GF
-dir_mLNGF <- "~/NAS2/pezoldt/Data/scRNAseq/269_2018-04-23_scRNA-Seq_mLN_GF/Data/E6_GF_mLN"
-mLNGF <- load_cellranger_matrix(dir_mLNGF, genome = "mm10")
-
-#mLN GF degraded
-#dir_mLNGF_deg <- "~/NAS2/pezoldt/Data/scRNAseq/252_2017-07-19_scRNA-Seq_mLN_pLN_SPF_GF/Data/10x/mLN_GF/B7"
-#mLNGF_deg <- load_cellranger_matrix(dir_mLNGF_deg, genome = "mm10")
-
+#dir_d300 <- "~/NAS2/pezoldt/Data/scRNAseq/275_2018-04-23_scRNA-Seq_mLN_SPF_45wk/Data/E7_SPF_mLN_42wk"
+#d300 <- load_cellranger_matrix(dir_d300, genome = "mm10")
 
 #list datasets
-l_GBCMs <- list(d0,d10,d24,d56_1,d56_2,mLNGF)
+l_GBCMs <- list(d0)
 names(l_GBCMs) <- datasets
 
 #quick glance at data (first entry number of genes, second entry number of cells)
@@ -125,7 +123,6 @@ cde_all <- newCellDataSet(expData_all_t,
 dim(cde_all@assayData$exprs)
 dim(pData(cde_all))
 dim(fData(cde_all))
-rm(expData_all_t,l_expData,l_GBCMs,l_cds)
 
 #####
 #QC
@@ -200,15 +197,28 @@ plot(pData(cde_all)$Total_n_genes, pData(cde_all)$Total_mRNAs)
 pData(cde_all)$exp_regression <- pData(cde_all)$Total_mRNAs / pData(cde_all)$Total_n_genes
 
 
+d0 <- subset(pData(cde_all), Time_point == "d000")
+#d10 <- subset(pData(cde_all), Time_point == "d010")
+#d24 <- subset(pData(cde_all), Time_point == "d024")
 #Plot ribo counts -> cutoff ~0.28
-plot(pData(cde_all)$Total_n_genes, pData(cde_all)$ribo_expression)
+plot(d0$Total_n_genes, d0$ribo_expression)
+#plot(d10$Total_n_genes, d10$ribo_expression)
+#plot(d24$Total_n_genes, d24$ribo_expression)
 #Plot cdk counts -> no cutoff
 plot(pData(cde_all)$Total_n_genes, pData(cde_all)$cdk_expression)
+plot(d0$Total_n_genes, d0$cdk_expression)
+#plot(d10$Total_n_genes, d10$cdk_expression)
+#plot(d24$Total_n_genes, d24$cdk_expression)
 #Plot Hsp counts -> cutoff ~0.09
 plot(pData(cde_all)$Total_n_genes, pData(cde_all)$hsp_expression)
+plot(d0$Total_n_genes, d0$hsp_expression)
+#plot(d10$Total_n_genes, d10$hsp_expression)
+#plot(d24$Total_n_genes, d24$hsp_expression)
 #Plot mito counts -> cutoff ~0.06
 plot(pData(cde_all)$Total_n_genes, pData(cde_all)$mito_expression)
-
+plot(d0$Total_n_genes, d0$mito_expression)
+#plot(d10$Total_n_genes, d10$mito_expression)
+#plot(d24$Total_n_genes, d24$mito_expression)
 
 
 #Filter the dataset by content of 'pData'
@@ -264,10 +274,10 @@ plot_pc_variance_explained(cde_all, return_all = F) # norm_method = 'log',
 #Count how many dimensions to use
 cde_all <- reduceDimension(cde_all, max_components = 2, num_dim = 16,
                         reduction_method = 'tSNE', verbose = T)
-cde_all <- clusterCells(cde_all, num_clusters = 20)
+cde_all <- clusterCells(cde_all, num_clusters = 10)
 plot_cell_clusters(cde_all, 1, 2, color = "CellType", markers = c("Pdpn", "Pecam1","Ccl19"))
 #plot cell clusters according to media/condition column of pData(HSMM/cds)
-plot_cell_clusters(cde_all, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
+#plot_cell_clusters(cde_all, 1, 2, color = "Time_point")
 plot_cell_clusters(cde_all, 1, 2, color = "Cluster")
 
 #substract/regress factors
@@ -276,13 +286,13 @@ plot_cell_clusters(cde_all, 1, 2, color = "Cluster")
 cde_all <- reduceDimension(cde_all, max_components = 2, num_dim = 16,
                         reduction_method = 'tSNE',
                         #residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                        residualModelFormulaStr = "~Time_point",
+                        #residualModelFormulaStr = "~Time_point",
                         verbose = T)
 cde_all <- clusterCells(cde_all, num_clusters = 23)
 plot_cell_clusters(cde_all, 1, 2, color = "Time_point")
-plot_cell_clusters(cde_all, 1, 2, color = "Cluster", markers = c("Madcam1")) + facet_wrap(~Time_point)
-plot_cell_clusters(cde_all, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-plot_cell_clusters(cde_all, 1, 2, color = "Cluster", markers = c("Pecam1")) + facet_wrap(~Time_point)
+plot_cell_clusters(cde_all, 1, 2, color = "Cluster", markers = c("Ackr4")) + facet_wrap(~Time_point)
+#plot_cell_clusters(cde_all, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
+#plot_cell_clusters(cde_all, 1, 2, color = "Cluster", markers = c("Pecam1")) + facet_wrap(~Time_point)
 plot_cell_clusters(cde_all, 1, 2, color = "Cluster")
 
 #####
@@ -329,29 +339,57 @@ SC_cells <- row.names(subset(pData(cde_all),
 cde_SC <- cde_all[,SC_cells]
 cde_Endothelial <- cde_all[,Endothelial_cells]
 
+
+##############
+#Extract RCM
+##############
+#Generate ReadCountMatrix with GeneSymbols for export
+#Endothelial cells
+#RCM_endothelial <- as.matrix(exprs(cde_Endothelial))
+#mart <- useDataset("mmusculus_gene_ensembl", useMart("ensembl"))
+#genes <- rownames(RCM_endothelial)
+#RCM_endothelial <- cbind(genes, RCM_endothelial)
+#rownames(RCM_endothelial) <- c()
+#G_list <- getBM(filters= "ensembl_gene_id", attributes= c("ensembl_gene_id","mgi_symbol"),values=genes,mart= mart)
+#RCM_endothelial_export <- merge(G_list,RCM_endothelial,by.x="ensembl_gene_id",by.y="genes")
+#RCM_endothelial_export <- RCM_endothelial_export[,2:ncol(RCM_endothelial_export)]
+#write.table(RCM_endothelial_export, paste(PATH_output,"/RCM_endothelial_export.txt",sep=""), sep = "\t")
+
+#non-Endothelial SCs
+#RCM_SC <- as.matrix(exprs(cde_SC))
+#mart <- useDataset("mmusculus_gene_ensembl", useMart("ensembl"))
+#genes <- rownames(RCM_SC)
+#RCM_SC <- cbind(genes, RCM_SC)
+#rownames(RCM_endothelial) <- c()
+#G_list <- getBM(filters= "ensembl_gene_id", attributes= c("ensembl_gene_id","mgi_symbol"),values=genes,mart= mart)
+#RCM_SC_export <- merge(G_list,RCM_SC,by.x="ensembl_gene_id",by.y="genes")
+#RCM_SC_export <- RCM_SC_export[,2:ncol(RCM_SC_export)]
+#write.table(RCM_SC_export, paste(PATH_output,"/RCM_SC_export.txt",sep=""), sep = "\t")
+
 ###############
 #Analyze Endothelial cell
 ###############
-print(paste("Number of non-endothelial SC:", nrow(pData(Endothelial_cells))))
+#print(paste("Number of non-endothelial SC:", nrow(pData(Endothelial_cells))))
 #####
 #Regress and cluster
 #####
-plot_pc_variance_explained(cde_Endothelial, return_all = F)
-cde_Endothelial <- reduceDimension(cde_Endothelial, max_components = 2, num_dim = 11,
-                          reduction_method = 'tSNE',
-                          residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                          #residualModelFormulaStr = "~Time_point",
-                          verbose = T)
-cde_Endothelial <- clusterCells(cde_Endothelial, num_clusters = 13)
-plot_cell_clusters(cde_Endothelial, 1, 2, color = "Time_point")
-plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster", markers = c("Pecam1")) + facet_wrap(~Time_point)
-plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster")
+#plot_pc_variance_explained(cde_Endothelial, return_all = F)
+#cde_Endothelial <- reduceDimension(cde_Endothelial, max_components = 2, num_dim = 11,
+ #                         reduction_method = 'tSNE',
+#                          residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
+ #                         #residualModelFormulaStr = "~Time_point",
+  #                        verbose = T)
+#cde_Endothelial <- clusterCells(cde_Endothelial, num_clusters = 13)
+#plot_cell_clusters(cde_Endothelial, 1, 2, color = "Time_point")
+#plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
+#plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster", markers = c("Pecam1")) + facet_wrap(~Time_point)
+#plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster")
 
 ###############
 #Analyze SC cell
 ###############
 print(paste("Number of non-endothelial SC:", nrow(pData(cde_SC))))
+setwd(PATH_output)
 #####
 #Regress and cluster
 #####
@@ -361,60 +399,25 @@ cde_SC <- reduceDimension(cde_SC, max_components = 2, num_dim = 11,
                            residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
                            #residualModelFormulaStr = "~Time_point",
                            verbose = T)
-cde_SC <- clusterCells(cde_SC, num_clusters = 18)
-plot_cell_clusters(cde_SC, 1, 2, color = "Time_point")
-plot_cell_clusters(cde_SC, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
+cde_SC <- clusterCells(cde_SC, num_clusters = 10)
 plot_cell_clusters(cde_SC, 1, 2, color = "Cluster")
-
-#####
-#Building trajectories Endothelial cells
-#####
-#Inferring the genes----------------------------------------------
-diff_test_res <- differentialGeneTest(cde_Endothelial[expressed_genes,],
-                                      fullModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                                      cores = 4)
-ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
-# Note: time trajectories are usefull to identify key genes
-#       but not required
-#Set trajectory genes in cde
-cde_Endothelial <- setOrderingFilter(cde_Endothelial, ordering_genes)
-plot_ordering_genes(cde_Endothelial)
-
-#Reduce dimensionality--------------------------------------------
-
-cde_Endothelial <- reduceDimension(cde_Endothelial, max_components = 2, method = 'DDRTree')
-
-#####
-#Build trajectory
-#####
-cde_Endothelial <- orderCells(cde_Endothelial)
-#plot by condition/timepoint
-plot_cell_trajectory(cde_Endothelial, color_by = "Time_point")
-#plot by state
-plot_cell_trajectory(cde_Endothelial, color_by = "State")
-#pass state to pData
-Neonatal_state <- function(cds){
-  if (length(unique(pData(cde_Endothelial)$State)) > 1){
-    T0_counts <- table(pData(cde_Endothelial)$State, pData(cde_Endothelial)$Time_point)[,"d000"]
-    return(as.numeric(names(T0_counts)[which(T0_counts == max(T0_counts))]))
-  }else {
-    return (1)
-  }
-}
-cde_Endothelial <- orderCells(cde_Endothelial, root_state = Neonatal_state(cde_Endothelial))
-plot_cell_trajectory(cde_Endothelial, color_by = "Pseudotime")
-#facet the trajectory according to states
-plot_cell_trajectory(cde_Endothelial, color_by = "State") + facet_wrap(~Time_point, nrow = 1)
-
-
+#plot_cell_clusters(cde_SC, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
+#plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
+plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
+                                                                "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
+                                                                "Cd248","Gdf10","Cxcl9","Has1"))
 
 #####
 #Building trajectories SC
 #####
+#Reduce dimensionality
+cde_SC <- reduceDimension(cde_SC, max_components = 2, method = 'DDRTree')
+#Build trajectory
+cde_SC <- orderCells(cde_SC)
+
 #Inferring the genes----------------------------------------------
 diff_test_res <- differentialGeneTest(cde_SC[expressed_genes,],
-                                      fullModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
+                                      #fullModelFormulaStr = "~Clusters",
                                       cores = 4)
 ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
 # Note: time trajectories are usefull to identify key genes
@@ -423,17 +426,16 @@ ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
 cde_SC <- setOrderingFilter(cde_SC, ordering_genes)
 plot_ordering_genes(cde_SC)
 
-#Reduce dimensionality
 
-cde_SC <- reduceDimension(cde_SC, max_components = 2, method = 'DDRTree')
-
-#Build trajectory--------------------------------------------
-cde_SC <- orderCells(cde_SC)
 #plot by condition/timepoint
-plot_cell_trajectory(cde_SC, color_by = "Time_point")
+#plot_cell_trajectory(cde_SC, color_by = "Time_point")
 #plot by state
 plot_cell_trajectory(cde_SC, color_by = "State")
-#pass state to pData
+#plot by cluster
+plot_cell_trajectory(cde_SC, color_by = "State") + facet_wrap(~Cluster)
+plot_cell_trajectory(cde_SC, color_by = "Cluster") + facet_wrap(~State)
+
+#pass intel of earliest time point in trajectory to state to pData
 GM_state <- function(cds){
   if (length(unique(pData(cde_SC)$State)) > 1){
     T0_counts <- table(pData(cde_SC)$State, pData(cde_SC)$Time_point)[,"d000"]
@@ -443,31 +445,132 @@ GM_state <- function(cds){
   }
 }
 cde_SC <- orderCells(cde_SC, root_state = GM_state(cde_SC))
-plot_cell_trajectory(cde_SC, color_by = "Pseudotime")
+plot_cell_trajectory(cde_SC, color_by = "Pseudotime") + facet_wrap(~Time_point, nrow = 1)
 #facet the trajectory according to states
 plot_cell_trajectory(cde_SC, color_by = "State") + facet_wrap(~Time_point, nrow = 1)
 
 #####
-#Save R object
+#Save/Load R object
 #####
-saveRDS(cde_SC, file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180813_monocle_ontogeny_mLNGFdeg.Rds") 
+#saveRDS(cde_SC, file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180826_monocle_ontogeny.Rds") 
+cde_SC <- readRDS(file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180815_monocle_ontogeny.Rds")
+
+#####
+#Plot Genes expression
+#####
+#Jitter-----------------------------
+blast_genes <- row.names(subset(fData(cde_SC),
+                                gene_short_name %in% c("Nkx2-3", "Ccl9", "Cd34")))
+plot_genes_jitter(cde_SC[blast_genes,],
+                  grouping = "Time_point",
+                  min_expr = 0.05)
+
+#Plot gene expression in pseudotime
+cde_SC_expressed_genes <-  row.names(subset(fData(cde_SC),
+                                          num_cells_expressed >= 10))
+cde_SC_filtered <- cde_SC[cde_SC_expressed_genes,]
+my_genes <- row.names(subset(fData(cde_SC_filtered),
+                             gene_short_name %in% c("Cxcl1","Cd34","Ccl19")))
+cde_SC_subset <- cde_SC_filtered[my_genes,]
+plot_genes_in_pseudotime(cde_SC_subset, color_by = "Time_point")
+
+#####
+#Ordering based on genes that difer between clusters
+#####
+# Pick genes that are expressed in >5% of the cell
+cde_SC <- detectGenes(cde_SC, min_expr = 0.1)
+fData(cde_SC)$use_for_ordering <-
+  fData(cde_SC)$num_cells_expressed > 0.05 * ncol(cde_SC)
+#Plot variance explainedby picked genes
+plot_pc_variance_explained(cde_SC, return_all = F)
+#Reduce dimensions using genes
+cde_SC <- reduceDimension(cde_SC,
+                            max_components = 2,
+                            norm_method = 'log',
+                            num_dim = 5,
+                            reduction_method = 'tSNE',
+                            verbose = T)
+
+#cluster cells
+cde_SC <- clusterCells(cde_SC, num_clusters = 13)
+plot_cell_clusters(cde_SC, color_by = 'as.factor(Cluster)')
+plot_cell_clusters(cde_SC, color_by = 'as.factor(Time_point)')
+
+#Decision plot to define Rho and P
+plot_rho_delta(cde_SC, rho_threshold = 2, delta_threshold = 4 )
+
+#Re-cluster cells implementing cut-off
+cde_SC <- clusterCells(cde_SC,
+                         rho_threshold = 70,
+                         delta_threshold = 4,
+                         skip_rho_sigma = T,
+                         verbose = F)
+
+#Differential gene expression across clusters
+clustering_DEG_genes <- differentialGeneTest(cde_SC[cde_SC_expressed_genes,],
+                                              fullModelFormulaStr = '~Cluster',
+                                              cores = 4)
+
+#Print number of DEGs
+
+
+#Take the top 1000 DEGs according to qval
+cde_SC_ordering_genes <- row.names(clustering_DEG_genes)[order(clustering_DEG_genes$qval)][1:1000]
+#Use top DEGs as ordering for trajectories
+cde_SC <- setOrderingFilter(cde_SC,
+                    ordering_genes = cde_SC_ordering_genes)
+#Perfomr RF
+cde_SC <- reduceDimension(cde_SC, method = 'DDRTree')
+#Order cells
+#cde_SC <- orderCells(cde_SC)
+cde_SC <- orderCells(cde_SC, root_state = GM_state(cde_SC))
+#
+plot_cell_trajectory(cde_SC, color_by = "State") + facet_wrap(~Time_point, nrow = 1)
+
+
+#####
+#DEG analysis
+#####
+#Computations expensive
+diff_test_res <- differentialGeneTest(cde_SC, fullModelFormulaStr = "~Time_point",
+                                      cores = 4)
+
+# Select genes that are significant at an FDR < 10%
+sig_genes <- subset(diff_test_res, qval < 0.1)
+
+head(sig_genes[,c("gene_short_name", "pval", "qval")])
+
+#####
+#Distinguish Cluster or State
+#####
+#Calculation DEGs
+# Determine how good a gene explains the state of a cell by checking/building a model
+# 1) that knows about the cluster annotation
+# 2) that does not know about the cluster annotation
+#Compare output of models and choose highest scoring models
+#DEG according to cluster
+diff_test_res_cluster <- differentialGeneTest(cde_SC,
+                                      fullModelFormulaStr = "~CellType")
+head(diff_test_res_cluster[,c("gene_short_name", "pval", "qval")])
+
+#DEG according to state
+diff_test_res_state <- differentialGeneTest(cde_SC,
+                                              fullModelFormulaStr = "~CellType")
+sig_gene_names_pseudotime <- rownames(subset(diff_test_res_pseudotime, qval <= 0.00000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000000001))
+
+plot_pseudotime_heatmap(cde_SC[sig_gene_names_pseudotime,],
+                        num_clusters = 3,
+                        cores = 1,
+                        show_rownames = T,
+                        trend_formula = "~Time_point")
+ 
+#####
+#Multifactorial DEG analyis
+#####
 
 
 
-# Note: If no timeseries is available one can set the root of the tree
-#        based on progenitor genes
-#blast_genes <- row.names(subset(fData(HSMM_myo),
-                 #               gene_short_name %in% c("CCNB2", "MYOD1", "MYOG")))
-#plot_genes_jitter(HSMM_myo[blast_genes,], grouping = "State", min_expr = 0.1)
 
-#Check with key genes whether states are correct
-#HSMM_expressed_genes <-  row.names(subset(fData(HSMM_myo),
-                  #                        num_cells_expressed >= 10))
-#HSMM_filtered <- HSMM_myo[HSMM_expressed_genes,]
-#my_genes <- row.names(subset(fData(HSMM_filtered),
-    #                         gene_short_name %in% c("CDK1", "MEF2C", "MYH3")))
-#cds_subset <- HSMM_filtered[my_genes,]
-#plot_genes_in_pseudotime(cds_subset, color_by = "Hours")
 
 
 

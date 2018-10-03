@@ -1,0 +1,39 @@
+Loading required package: ggplot2
+Loading required package: cowplot
+
+Attaching package: ‘cowplot’
+
+The following object is masked from ‘package:ggplot2’:
+
+    ggsave
+
+Loading required package: Matrix
+
+Attaching package: ‘dplyr’
+
+The following objects are masked from ‘package:data.table’:
+
+    between, first, last
+
+The following object is masked from ‘package:biomaRt’:
+
+    select
+
+The following objects are masked from ‘package:stats’:
+
+    filter, lag
+
+The following objects are masked from ‘package:base’:
+
+    intersect, setdiff, setequal, union
+
+09:33	Creating TF modules
+Number of links between TFs and targets: 1850981
+09:35	Step 2. Identifying regulons
+tfModulesSummary:
+09:35	RcisTarget: Calculating AUC
+Scoring database:  [Source file: mm10__refseq-r80__10kb_up_and_down_tss.mc9nr.feather]
+10:41	RcisTarget: Adding motif annotation
+Number of motifs in the initial enrichment: 1044409
+Number of motifs annotated to the corresponding TF: 12190
+10:50	RcisTarget: Prunning targets

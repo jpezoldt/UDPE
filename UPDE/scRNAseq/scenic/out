@@ -1,0 +1,10 @@
+             [,1]
+nTFs          848
+nTargets     9317
+nGeneSets    5081
+nLinks    4326063
+
+ top5perTarget top10perTarget          top50 top50perTarget           w001 
+           263            489            517            829            848 
+          w005 
+           848 

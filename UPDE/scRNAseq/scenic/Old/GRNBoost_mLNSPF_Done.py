@@ -10,9 +10,7 @@
 #Function:
 # 1) Perform GRNBoost
 
-#Set sample ID
-sample_ID = 'mLN_SPF'
-cell_type = 'nonAdventi'
+
 
 import os
 import pandas as pd
@@ -22,8 +20,8 @@ from arboreto.algo import grnboost2, genie3
 from arboreto.utils import load_tf_names
 
 #Set directory!!!
-wd = '/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/scenic/' + sample_ID + '/' + cell_type + '/int'
-#Set directories for TF list and expMat data
+wd = '/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/scenic/mLN_SPF/Adventi/int/'
+#Set directories for example data
 net1_ex_path = wd + '/1.1_exprMatrix_filtered_t.txt'
 net1_tf_path = wd + '/1.2_inputTFs.txt'
 
@@ -43,7 +41,7 @@ tf_names[:5]
 len(tf_names)
 
 #Set computational local environment
-# Obersvation: Less Ascertion errors if run with less people on cluster
+# n ... number of nodes / 2
 from distributed import LocalCluster, Client
 local_cluster = LocalCluster(n_workers=6, threads_per_worker=1)
 custom_client = Client(local_cluster)
@@ -58,10 +56,20 @@ network = grnboost2(expression_data=ex_matrix,
 network.head()
 len(network)
 
-#Save output
-wd_output = '/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/scenic/' + sample_ID + '/' + cell_type + '/int/GRNBoost_linklist.tsv'
-network.to_csv(wd_output, sep='\t', header=False, index=False)
+#Save output!!!
+network.to_csv('/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/scenic/mLN_SPF/Adventi/int/
+GRNBoost_linklist.tsv', sep='\t', header=False, index=False)
 
 #close client
 custom_client.close()
 local_cluster.close()
+
+
+
+
+
+					
+
+
+
+

@@ -88,6 +88,7 @@ pLN_sce <- SingleCellExperiment(assays = list(counts = as.matrix(count_matrix_pL
 #extract count matrix
 exprMat <- counts(pLN_sce)
 dim(exprMat)
+saveRDS(exprMat_filtered, paste(path_scenic_rds, "/int/exprMat.Rds",sep=""))
 #Note: Use Seurat output for SCENIC
 
 ##################
@@ -165,6 +166,7 @@ genesKept <- genesLeft_minCells_inDatabases
 exprMat_filtered <- exprMat[genesKept, ]
 exprMat_filtered <- as.matrix(exprMat_filtered)
 exprMat_filtered <- log2(exprMat_filtered+1)
+saveRDS(exprMat_filtered, paste(path_scenic_rds, "/int/exprMat_filtered_log.Rds",sep=""))
 
 #Delete matrix
 #rm(exprMat)
@@ -264,7 +266,7 @@ plot.new(); legend(0,1, fill=colVars$CellType, legend=names(colVars$CellType))
 # Using only "high-confidence" regulons (normally similar)
 par(mfcol=c(2,5))
 fileNames <- paste0("int/",grep(".Rds", grep("tSNE_oHC_AUC", list.files("int"), value=T, perl = T), value=T))
-plotTsne_compareSettings(fileNames, scenicOptions, showLegend=FALSE, cex=.5) # varName="cell_type1")
+plotTsne_compareSettings(fileNames, scenicOptions, showLegend=FALSE, cex=.5, varName="cell_type1")
 plot.new(); legend(0,1, fill=colVars$CellType, legend=names(colVars$CellType))
 
 #chosen t-SNE can then be saved as default to use for plots
@@ -272,17 +274,6 @@ scenicOptions@settings$defaultTsne$aucType <- "AUC"
 scenicOptions@settings$defaultTsne$dims <- 20
 scenicOptions@settings$defaultTsne$perpl <- 10
 saveRDS(scenicOptions, file="int/scenicOptions.Rds")
-
-#####
-#TSNE Plots
-#####
-par(mfcol=c(2,5))
-fileNames <- paste0("int/",grep(".Rds", grep("tSNE_AUC", list.files("int"), value=T, perl = T), value=T))
-plotTsne_compareSettings(fileNames, scenicOptions, showLegend=FALSE, cex=.5, varName="cell_type1")
-plot.new(); legend(0,1, fill=colVars$CellType, legend=names(colVars$CellType))
-
-
-
 
 #Optional: Binarize AUC 
 #Note: Needs https://cran.r-project.org/web/packages/rbokeh/index.html

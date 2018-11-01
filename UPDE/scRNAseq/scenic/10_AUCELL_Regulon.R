@@ -21,16 +21,15 @@ library(dplyr)
 #PATHs
 #####
 #Input required:
-cell_type = "nonAdventi"
+cell_type = "Il6Cxcl1_Madcam1"
 path_scenic_rds <- paste("/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/scenic/mLN_SPF/", cell_type, "/int", sep="")
 setwd(paste("/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/scenic/mLN_SPF/", cell_type, sep=""))
-
 
 #####
 #load respective "scenicOptions" file
 #####
 scenicOptions <- readRDS(file=paste(path_scenic_rds,"/scenicOptions.Rds",sep=""))
-exprMat <- readRDS(file=paste(path_scenic_rds,"/exprMat_",cell_type,".Rds",sep=""))
+exprMat <- readRDS(file=paste(path_scenic_rds,"/exprMat.Rds",sep=""))
 
 #####
 #GRNBoost Output processing

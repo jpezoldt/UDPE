@@ -1,1 +1,1 @@
-Rscript --vanilla /home/pezoldt/NAS2/pezoldt/Scripts/scRNAseq/scenic/10_AUCELL_Regulon.R 1>out 2>err &
+Rscript --vanilla /home/pezoldt/NAS2/pezoldt/Scripts/scRNAseq/scenic/10_AUCELL_Regulon.R 1>out_II 2>err_II &

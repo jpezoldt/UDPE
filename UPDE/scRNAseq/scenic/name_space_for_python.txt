@@ -1,0 +1,4 @@
+"x"
+"pSC"
+"pLN_mLN_SPF"
+"/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/scenic/"

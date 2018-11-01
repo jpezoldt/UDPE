@@ -318,7 +318,7 @@ for(i in seq(length(l_DMRs_to_homer))){
 #####
 #Variables
 # delta meth required for CpG to be included and locied
-CpG_state_thresh <- 0.4
+CpG_state_thresh <- 0.3
 #Function:
 # Merges overlapping entries in Granges object
 # Extract clusters from Hits object.
@@ -374,7 +374,6 @@ names(l_DMRs_CpG_regions) <- list("SPF_mLN_pLN_TSS_hypo_thresh","SPF_mLN_pLN_TSS
                                   "GF_mLN_pLN_TSS_hyper_thresh","GF_mLN_pLN_TSS_hyper_all")
 
 #initialize lists that will contain the list of the CpGs regions per DMR
-l_26bp <- list()
 l_50bp <- list()
 l_100bp <- list()
 l_200bp <- list()
@@ -390,15 +389,15 @@ for(i in 1:length(l_DMRs_CpG_regions)){
   #Check in CpG list for lists of respective DMR
   #Take only "mLN_SPF_vs_pLN_SPF"
   CpGs_SPF_mLN_pLN_i <- subset(CpGs_per_DMR, DMR_comp_origin == "mLN_SPF_vs_pLN_SPF")
-  split_CpGs_per_DMR_i <- split(CpGs_SPF_mLN_pLN_i, CpGs_SPF_mLN_pLN_i$DMR_identifier)
+  split_CpGs_per_DMR_i <- split(CpGs_SPF_mLN_pLN_i, CpGs_SPF_mLN_pLN$DMR_identifier)
   split_CpGs_per_DMR_overlap_i <- split_CpGs_per_DMR_i[Identifier_CpG_table_i]
   #Initialize lists objects to store results of CpG extension and merge
-  ll_CpG_per_DMR_26bp_i <- list()
   ll_CpG_per_DMR_50bp_i <- list()
   ll_CpG_per_DMR_100bp_i <- list()
   ll_CpG_per_DMR_200bp_i <- list()
   #for each DMR go through the CpGs
   for(j in 1:length(Identifier_CpG_table_i)){
+  
     print(paste("j == ", j, sep = ""))
     #grab ith CpG DMR content
     t_CpGs_per_DMR_j <- as.data.frame(split_CpGs_per_DMR_overlap_i[names(split_CpGs_per_DMR_overlap_i[j])])
@@ -441,25 +440,9 @@ for(i in 1:length(l_DMRs_CpG_regions)){
                                starts.in.df.are.0based=FALSE,
                                keep.extra.columns = TRUE)
       # Granges Objects to be changed
-      gr_CpGs_per_DMR_26bp_j <- gr_CpGs_per_DMR_thresh_j
       gr_CpGs_per_DMR_50bp_j <- gr_CpGs_per_DMR_thresh_j
       gr_CpGs_per_DMR_100bp_j <- gr_CpGs_per_DMR_thresh_j
       gr_CpGs_per_DMR_200bp_j <- gr_CpGs_per_DMR_thresh_j
-      
-      #Extend by:
-      # 13 each direction
-      start(gr_CpGs_per_DMR_26bp_j) <- start(gr_CpGs_per_DMR_50bp_j) - 13
-      end(gr_CpGs_per_DMR_26bp_j) <- end(gr_CpGs_per_DMR_50bp_j) + 13
-      hits <- findOverlaps(gr_CpGs_per_DMR_26bp_j)
-      ## Subset 'hits' to keep only hits that achieve 60% overlap.
-      x <- gr_CpGs_per_DMR_26bp_j[queryHits(hits)]
-      y <- gr_CpGs_per_DMR_26bp_j[subjectHits(hits)]
-      relative_overlap <- width(pintersect(x, y)) / pmin(width(x), width(y))
-      hits <- hits[relative_overlap >= 0.01]
-      ## Merge the ranges in 'gr0' that are connected via one or more hits in 'hits'.
-      gr_CpGs_per_DMR_26bp_j <- mergeConnectedRanges(gr_CpGs_per_DMR_26bp_j, hits)
-      #Print Number of input CpGs
-      print(paste("n output 26bp regions: ", length(gr_CpGs_per_DMR_26bp_j)))
       
       #Extend by:
       # 25 each direction
@@ -475,6 +458,7 @@ for(i in 1:length(l_DMRs_CpG_regions)){
       gr_CpGs_per_DMR_50bp_j <- mergeConnectedRanges(gr_CpGs_per_DMR_50bp_j, hits)
       #Print Number of input CpGs
       print(paste("n output 50bp regions: ", length(gr_CpGs_per_DMR_50bp_j)))
+      
       
       # 50 each direction
       start(gr_CpGs_per_DMR_100bp_j) <- start(gr_CpGs_per_DMR_100bp_j) - 50
@@ -505,21 +489,24 @@ for(i in 1:length(l_DMRs_CpG_regions)){
       print(paste("n output 200bp regions: ", length(gr_CpGs_per_DMR_200bp_j)))
       
       #store results in list
-      ll_CpG_per_DMR_26bp_i[[j]] <- gr_CpGs_per_DMR_26bp_j
       ll_CpG_per_DMR_50bp_i[[j]] <- gr_CpGs_per_DMR_50bp_j
       ll_CpG_per_DMR_100bp_i[[j]] <- gr_CpGs_per_DMR_100bp_j
       ll_CpG_per_DMR_200bp_i[[j]] <- gr_CpGs_per_DMR_200bp_j
     }
   }
-  l_26bp[[i]] <- ll_CpG_per_DMR_26bp_i
   l_50bp[[i]] <- ll_CpG_per_DMR_50bp_i
   l_100bp[[i]] <- ll_CpG_per_DMR_100bp_i
   l_200bp[[i]] <- ll_CpG_per_DMR_200bp_i
 }
 
-#
-l_all_regions <- list(l_26bp,l_50bp,l_100bp,l_200bp)
-names(l_all_regions) <- c("26bp","50bp","100bp","200bp")
+#Continue here:
+# for each table
+#       get the gr_25 and gr_50 objects
+#       append them
+#       Save as BED in Homer format
+
+l_all_regions <- list(l_50bp,l_100bp,l_200bp)
+names(l_all_regions) <- c("50bp","100bp","200bp")
 
 for(i in 1:length(l_all_regions)){
   print(i)
@@ -566,7 +553,7 @@ for(i in 1:length(l_all_regions)){
        #Store Feature BEDs 
        #Write .bed compatible for homer
        print(head(t_CpG_bp_output_bed_j))
-       write.table(t_CpG_bp_output_bed_j, file=paste(output_beds_for_motifs,"/CpG_DMRs_40/", l_CpG_bp_ID_i,"_",l_CpG_bp_output_ID_j,".bed", sep = ""),
+       write.table(t_CpG_bp_output_bed_j, file=paste(output_beds_for_motifs,"/CpG_DMRs_30/", l_CpG_bp_ID_i,"_",l_CpG_bp_output_ID_j,".bed", sep = ""),
                    quote=F, sep="\t", row.names=F, col.names=F)
     }
   }
@@ -824,7 +811,7 @@ DARs_features <- as.data.frame(gr_DARs_regions_anno_TSS)
 ##################
 colnames(SPF_mLN_pLN_Crossmapped)
 #significant DMRs
-DMR_sig_SPF_mLN_pLN <- subset(SPF_mLN_pLN_Crossmapped, n >= 5 & (meanDiff >= 0.40 | meanDiff <= -0.40) &
+DMR_sig_SPF_mLN_pLN <- subset(SPF_mLN_pLN_Crossmapped, n >= 5 & (meanDiff >= 0.20 | meanDiff <= 0.20) &
                                 distance_to_nearest_tss <= 10000)
 DMR_sig_SPF_mLN_pLN$nearest_gene_name <- as.character(DMR_sig_SPF_mLN_pLN$nearest_gene_name) 
 split_DMR_sig_SPF_mLN_pLN <- split(DMR_sig_SPF_mLN_pLN, DMR_sig_SPF_mLN_pLN$nearest_gene_name)

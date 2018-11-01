@@ -1,17 +1,17 @@
              [,1]
-nTFs          848
-nTargets     9317
-nGeneSets    5077
-nLinks    4323406
+nTFs          811
+nTargets     9060
+nGeneSets    4856
+nLinks    3658405
 
  top5perTarget top10perTarget          top50 top50perTarget           w001 
-           269            478            485            833            848 
+           332            562            595            805            811 
           w005 
-           848 
+           811 
 [1] "Saving a widget with selfcontained = TRUE requires pandoc. For details see:\nhttps://github.com/rstudio/rmarkdown/blob/master/PANDOC.md"
    Min. 1st Qu.  Median    Mean 3rd Qu.    Max. 
-    2.0     9.0    32.5   186.0   206.5  2721.0 
+    2.0     8.0    27.0   149.7   178.0  2214.0 
     min      1%      5%     10%     50%    100% 
- 606.00  715.52  969.20 1204.40 1947.00 3466.00 
+ 608.00  679.96  932.45 1121.40 1845.00 3466.00 
 null device 
           1 

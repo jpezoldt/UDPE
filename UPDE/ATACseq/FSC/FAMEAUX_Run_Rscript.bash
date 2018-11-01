@@ -1,0 +1,1 @@
+Rscript --vanilla /home/pezoldt/NAS2/pezoldt/Scripts/2018_DFG_grant/FSC/35_ATAC_DEseq_FSC_QC_Transcriptome_TopGo_underconstruction_VII_noGO.R 1>out 2>err &

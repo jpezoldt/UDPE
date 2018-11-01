@@ -27,31 +27,31 @@ The following objects are masked from ‘package:base’:
 
     intersect, setdiff, setequal, union
 
-13:55	Creating TF modules
-Number of links between TFs and targets: 1849816
-13:57	Step 2. Identifying regulons
+13:57	Creating TF modules
+Number of links between TFs and targets: 1530357
+13:59	Step 2. Identifying regulons
 tfModulesSummary:
-13:57	RcisTarget: Calculating AUC
+13:59	RcisTarget: Calculating AUC
 Scoring database:  [Source file: mm10__refseq-r80__10kb_up_and_down_tss.mc9nr.feather]
-15:01	RcisTarget: Adding motif annotation
-Number of motifs in the initial enrichment: 1024124
-Number of motifs annotated to the corresponding TF: 12528
-15:09	RcisTarget: Prunning targets
-Number of motifs that support the regulons: 12528
-16:31	Step 3. Analyzing the network activity in each individual cell
+15:03	RcisTarget: Adding motif annotation
+Number of motifs in the initial enrichment: 1030102
+Number of motifs annotated to the corresponding TF: 10439
+15:11	RcisTarget: Prunning targets
+Number of motifs that support the regulons: 10439
+16:42	Step 3. Analyzing the network activity in each individual cell
 
-Number of regulons to evaluate on cells: 256
+Number of regulons to evaluate on cells: 268
 Biggest (non-extended) regulons: 
-	 Egr1 (1346g)
-	 Fos (1130g)
-	 Elk3 (932g)
-	 Elf2 (828g)
-	 Elf1 (726g)
-	 Bclaf1 (524g)
-	 Nr3c1 (505g)
-	 Sp3 (363g)
-	 Yy1 (363g)
-	 Etv6 (330g)
+	 Atf3 (918g)
+	 Egr1 (838g)
+	 Elf2 (647g)
+	 Elf1 (561g)
+	 Relb (473g)
+	 Creb1 (334g)
+	 Taf1 (331g)
+	 Bclaf1 (321g)
+	 Nrf1 (319g)
+	 Ets1 (319g)
 Quantiles for the number of genes detected by cell: 
 (Non-detected genes are shuffled at the end of the ranking. Keep it in mind when choosing the threshold for calculating the AUC).
 Using 4 cores.
@@ -97,5 +97,3 @@ t-SNE plots saved as:
   int/tSNE_oHC_AUC_30pcs_10perpl.pdf
   int/tSNE_oHC_AUC_30pcs_20perpl.pdf
   int/tSNE_oHC_AUC_30pcs_30perpl.pdf
-Error: unexpected end of input
-Execution halted

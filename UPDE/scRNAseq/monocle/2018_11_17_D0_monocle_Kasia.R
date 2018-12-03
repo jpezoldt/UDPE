@@ -27,12 +27,13 @@ set.seed(123)
 #####
 #Global variable
 #####
-datasets <- c("d000") #,"d010","d024","d056")
+condition = "day0_10"
+datasets <- c("d000","d010") #,"d010","d024","d056")
 #Number of cells in which a gene should be expressed to be included in analysis
 num_cells_exp <- 50
 #Export PATH
 PATH_output <- "/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/monocle/D0_Signature_Clusters"
-
+PATH_CDS_objects <- "/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/monocle/"
 #####
 #Load and compile data into cde object
 #####
@@ -41,8 +42,8 @@ dir_d0 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Da
 d0 <- load_cellranger_matrix(dir_d0, genome = "mm10")
 
 #Timepoint 2: e.g day10
-#dir_d10 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/C12_d10_mLN"
-#d10 <- load_cellranger_matrix(dir_d10, genome = "mm10")
+dir_d10 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/C12_d10_mLN"
+d10 <- load_cellranger_matrix(dir_d10, genome = "mm10")
 
 #Timepoint 3: e.g. day24
 #dir_d24 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/D1_d24_mLN"
@@ -62,7 +63,8 @@ d0 <- load_cellranger_matrix(dir_d0, genome = "mm10")
 #d300 <- load_cellranger_matrix(dir_d300, genome = "mm10")
 
 #list datasets
-l_GBCMs <- list(d0) #,d10,d24,d56)
+l_GBCMs <- list(d0,d10)
+#,d24,d56)
 names(l_GBCMs) <- datasets
 
 #quick glance at data (first entry number of genes, second entry number of cells)
@@ -284,18 +286,15 @@ plot_cell_clusters(cde_all, 1, 2, color = "Cluster")
 
 #substract/regress factors
 #Notes
-#ribo and number of expressed genes mak no big impact on clustering
+#ribo and number of expressed genes make no big impact on clustering
 cde_all <- reduceDimension(cde_all, max_components = 2, num_dim = 16,
                         reduction_method = 'tSNE',
-                        #residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                        #residualModelFormulaStr = "~Time_point",
+                        residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
                         verbose = T)
-cde_all <- clusterCells(cde_all, num_clusters = 23)
-plot_cell_clusters(cde_all, 1, 2, color = "Time_point")
-plot_cell_clusters(cde_all, 1, 2, color = "Cluster", markers = c("Vcam1")) #+ facet_wrap(~Time_point)
-#plot_cell_clusters(cde_all, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-#plot_cell_clusters(cde_all, 1, 2, color = "Cluster", markers = c("Pecam1")) + facet_wrap(~Time_point)
+cde_all <- clusterCells(cde_all, num_clusters = 16)
 plot_cell_clusters(cde_all, 1, 2, color = "Cluster")
+plot_cell_clusters(cde_all, 1, 2, color = "Cluster", markers = c("Cxcl13")) #+ facet_wrap(~Time_point)
+#plot_cell_clusters(cde_all, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
 
 #####
 #Endothelial cell subset identification
@@ -397,17 +396,15 @@ cde_Endothelial <- cde_all[,Endothelial_cells]
 cde_SC <- reduceDimension(cde_SC, max_components = 2, num_dim = 11,
                           reduction_method = 'tSNE',
                           residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                          #residualModelFormulaStr = "~Time_point",
                           verbose = T)
-cde_SC <- clusterCells(cde_SC, num_clusters = 15)
+cde_SC <- clusterCells(cde_SC, num_clusters = 14)
 plot_cell_clusters(cde_SC, 1, 2, color = "Cluster")
 plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Cxcl13")) #+ facet_wrap(~Time_point)
 #plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
 plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
                                                                 "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
-                                                                "Cd248","Ackr3"),
-                   cell_size = 0.5)
-plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Acta2"),
+                                                                "Cd248","Ackr3"),cell_size = 0.5)
+plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Tagln"),
                    cell_size = 0.5)
 plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Cxcl13"),
                    cell_size = 0.5)
@@ -416,64 +413,82 @@ plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Tnfsf11"),
 plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Cd34"),
                    cell_size = 0.5)
 
+plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Acta2","Tagln","Lmod1","Tinagl1"),
+                   cell_size = 0.5)
+plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Vcam1","Icam1","Tnfsf11","Cxcl13"),
+                   cell_size = 0.5)
+
+
+
 #Building trajectories SC-----------------------------------------
 #Reduce dimensionality
-cde_SC <- reduceDimension(cde_SC, max_components = 2, method = 'DDRTree')
+#cde_SC <- reduceDimension(cde_SC, max_components = 2, method = 'DDRTree')
 #Build trajectory
-cde_SC <- orderCells(cde_SC)
+#cde_SC <- orderCells(cde_SC)
 
 #Inferring the genes----------------------------------------------
-diff_test_res <- differentialGeneTest(cde_SC[expressed_genes,],
-                                      #fullModelFormulaStr = "~Clusters",
-                                      cores = 8)
-ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
+#diff_test_res <- differentialGeneTest(cde_SC[expressed_genes,],
+ #                                     #fullModelFormulaStr = "~Clusters",
+  #                                    cores = 8)
+#ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
 # Note: time trajectories are usefull to identify key genes
 #       but not required
 #Set trajectory genes in cde
-cde_SC <- setOrderingFilter(cde_SC, ordering_genes)
-plot_ordering_genes(cde_SC)
+#cde_SC <- setOrderingFilter(cde_SC, ordering_genes)
+#plot_ordering_genes(cde_SC)
 
 #plot by condition/timepoint
 #plot_cell_trajectory(cde_SC, color_by = "Time_point")
 #plot by state
-plot_cell_trajectory(cde_SC, color_by = "State")
-plot_cell_trajectory(cde_SC, markers = c("Aldh1a2"), use_color_gradient = TRUE)
+#plot_cell_trajectory(cde_SC, color_by = "State")
+#plot_cell_trajectory(cde_SC, markers = c("Aldh1a2"), use_color_gradient = TRUE)
 
-markers = c("Vcam1")
+#markers = c("Vcam1")
 #plot by cluster
-plot_cell_trajectory(cde_SC, color_by = "State") + facet_wrap(~Cluster)
-plot_cell_trajectory(cde_SC, color_by = "Cluster") + facet_wrap(~State)
-plot_cell_trajectory(cde_SC, markers = c("Cd34")) + facet_wrap(~State)
+#plot_cell_trajectory(cde_SC, color_by = "State") + facet_wrap(~Cluster)
+#plot_cell_trajectory(cde_SC, color_by = "Cluster") + facet_wrap(~State)
+#plot_cell_trajectory(cde_SC, markers = c("Cd34")) + facet_wrap(~State)
 
 #####
 #Separate SCs into subsets
 #####
 #Calculate mean expression of Pecam1 ove and add to pData
 #PvC gene------------------------------
-PvC.genes <- c("Acta2")
+PvC.genes <- c("Acta2","Tagln","Lmod1","Tinagl1")
 #get ensemble Ids
 PvC.genes.ensembl <- subset(fData(cde_SC), gene_short_name %in% PvC.genes)$id
 #subset expression matrix and perform colmeans per cell
 PvC.genes_expr <- as.matrix(exprs(cde_SC)[rownames(exprs(cde_all)) %in% PvC.genes.ensembl,])
-pData(cde_SC)$PvC_expression <- PvC.genes_expr
+#Add_expression as columns to pData()
+pData(cde_SC) <- cbind(pData(cde_SC),t(PvC.genes_expr))
+colnames(pData(cde_SC))[(ncol(pData(cde_SC))-3):ncol(pData(cde_SC))] <- PvC.genes
 #Calculate mean expression of PvC genes
 # For each cluster calculate mean expression for Endothelial genes
 # Store cluster IDs in vector
-PvC.classificator <- c()
-for(i in seq(length(levels(pData(cde_SC)$Cluster)))){
-  cluster_ID_i <- levels(pData(cde_SC)$Cluster)[i]
-  print(cluster_ID_i)
-  mean_PvC.genes <- mean(subset(pData(cde_SC), Cluster %in% cluster_ID_i)$PvC_expression)
-  print(mean_PvC.genes)
-  PvC.classificator[i] <- mean_PvC.genes
+PvC.classificator <- list()
+PvC.classificator_j <- c()
+for(j in 1:length(PvC.genes)){
+  PvC.genes_j <- PvC.genes[j]
+  for(i in seq(length(levels(pData(cde_SC)$Cluster)))){
+    cluster_ID_i <- levels(pData(cde_SC)$Cluster)[i]
+    print(cluster_ID_i)
+    mean_PvC.genes <- mean(subset(pData(cde_SC), Cluster %in% cluster_ID_i)[,PvC.genes_j])
+    print(mean_PvC.genes)
+    PvC.classificator_j[i] <- mean_PvC.genes
+  }
+  names(PvC.classificator_j) <- levels(pData(cde_SC)$Cluster)
+  PvC.classificator[[j]] <- PvC.classificator_j
 }
-names(PvC.classificator) <- levels(pData(cde_SC)$Cluster)
+names(PvC.classificator) <- rev(PvC.genes)
+
+#Make table from list
+PvC_score <- colSums(do.call("rbind", PvC.classificator))
 
 #Get all clusters with expression above threshold
 # Note: Manually check average expressions
-PvC_subsets <- PvC.classificator[PvC.classificator >= 20]
+PvC_subsets <- PvC_score[PvC_score >= 20]
 PvC_subsets
-nonPvC_subsets <- PvC.classificator[PvC.classificator < 20]
+nonPvC_subsets <- PvC_score[PvC_score < 20]
 nonPvC_subsets
 
 #Separate data in to Endothelial and SC
@@ -488,94 +503,51 @@ cde_PvC <- cde_SC[,PvC_cells]
 
 print(paste("Number of nonPvC SC:", nrow(pData(cde_nonPvC))))
 print(paste("Number of PvC SC:", nrow(pData(cde_PvC))))
-setwd(PATH_output)
-
-#Adventitial gene------------------------------
-Adventi.genes <- c("Cd34")
-#get ensemble Ids
-Adventi.genes.ensembl <- subset(fData(cde_nonPvC), gene_short_name %in% Adventi.genes)$id
-#subset expression matrix and perform colmeans per cell
-Adventi.genes_expr <- as.matrix(exprs(cde_nonPvC)[rownames(exprs(cde_all)) %in% Adventi.genes.ensembl,])
-pData(cde_nonPvC)$Adventi_expression <- Adventi.genes_expr
-#Calculate mean expression of Adventi genes
-# For each cluster calculate mean expression for Endothelial genes
-# Store cluster IDs in vector
-Adventi.classificator <- c()
-for(i in seq(length(levels(pData(cde_nonPvC)$Cluster)))){
-  cluster_ID_i <- levels(pData(cde_nonPvC)$Cluster)[i]
-  print(cluster_ID_i)
-  mean_Adventi.genes <- mean(subset(pData(cde_nonPvC), Cluster %in% cluster_ID_i)$Adventi_expression)
-  print(mean_Adventi.genes)
-  Adventi.classificator[i] <- mean_Adventi.genes
-}
-names(Adventi.classificator) <- levels(pData(cde_nonPvC)$Cluster)
-
-#Get all clusters with expression above threshold
-# Note: Manually check average expressions
-Adventi_subsets <- Adventi.classificator[Adventi.classificator >= 1.5]
-Adventi_subsets
-nonAdventi_subsets <- Adventi.classificator[Adventi.classificator < 1.5]
-nonAdventi_subsets
-
-#Separate data in to different SC subsets
-Adventi_cells <- row.names(subset(pData(cde_nonPvC),
-                                      Cluster %in% names(Adventi_subsets)))
-nonAdventi_cells <- row.names(subset(pData(cde_nonPvC),
-                             Cluster %in% names(nonAdventi_subsets)))
-
-#Generate cds object for Endothelial and SC cells
-cde_nonAdventi <- cde_nonPvC[,nonAdventi_cells]
-cde_Adventi <- cde_nonPvC[,Adventi_cells]
-
-print(paste("Number of nonAdventi SC:", nrow(pData(cde_nonAdventi))))
-print(paste("Number of Adventi SC:", nrow(pData(cde_Adventi))))
-setwd(PATH_output)
-
-#Adventitial separation by state------------------------------
-cells_Adventi_plus_stage <- rownames(pData(cde_Adventi)[pData(cde_Adventi)$State %in% c(3), ])
-cells_Adventi_minus_stage <- rownames(pData(cde_Adventi)[ !pData(cde_Adventi)$State %in% c(3), ])
-
-
-#Generate cds object for Endothelial and SC cells
-cde_Adventi_minus_stage <- cde_Adventi[,cells_Adventi_minus_stage]
-cde_Adventi_plus_stage <- cde_Adventi[,cells_Adventi_plus_stage]
-
-print(paste("Number of Adventi minus:", nrow(pData(cde_Adventi_minus_stage))))
-print(paste("Number of Adventi plus:", nrow(pData(cde_Adventi_plus_stage))))
-setwd(PATH_output)
 
 #LTO gene------------------------------
-LTO.genes <- c("Cxcl13")
+LTO.genes <- c("Vcam1","Icam1","Tnfsf11","Cxcl13")
 #get ensemble Ids
-LTO.genes.ensembl <- subset(fData(cde_nonPvC), gene_short_name %in% LTO.genes)$id
+LTO.genes.ensembl <- subset(fData(cde_SC), gene_short_name %in% LTO.genes)$id
 #subset expression matrix and perform colmeans per cell
-LTO.genes_expr <- as.matrix(exprs(cde_nonPvC)[rownames(exprs(cde_all)) %in% LTO.genes.ensembl,])
-pData(cde_nonPvC)$LTO_expression <- LTO.genes_expr
+LTO.genes_expr <- as.matrix(exprs(cde_SC)[rownames(exprs(cde_all)) %in% LTO.genes.ensembl,])
+#Add_expression as columns to pData()
+pData(cde_SC) <- cbind(pData(cde_SC),t(LTO.genes_expr))
+colnames(pData(cde_SC))[(ncol(pData(cde_SC))-3):ncol(pData(cde_SC))] <- LTO.genes
 #Calculate mean expression of LTO genes
 # For each cluster calculate mean expression for Endothelial genes
 # Store cluster IDs in vector
-LTO.classificator <- c()
-for(i in seq(length(levels(pData(cde_nonPvC)$Cluster)))){
-  cluster_ID_i <- levels(pData(cde_nonPvC)$Cluster)[i]
-  print(cluster_ID_i)
-  mean_LTO.genes <- mean(subset(pData(cde_nonPvC), Cluster %in% cluster_ID_i)$LTO_expression)
-  print(mean_LTO.genes)
-  LTO.classificator[i] <- mean_LTO.genes
+LTO.classificator <- list()
+LTO.classificator_j <- c()
+for(j in 1:length(LTO.genes)){
+  LTO.genes_j <- LTO.genes[j]
+  for(i in seq(length(levels(pData(cde_SC)$Cluster)))){
+    cluster_ID_i <- levels(pData(cde_SC)$Cluster)[i]
+    print(cluster_ID_i)
+    mean_LTO.genes <- mean(subset(pData(cde_SC), Cluster %in% cluster_ID_i)[,LTO.genes_j])
+    print(mean_LTO.genes)
+    LTO.classificator_j[i] <- mean_LTO.genes
+  }
+  names(LTO.classificator_j) <- levels(pData(cde_SC)$Cluster)
+  LTO.classificator[[j]] <- LTO.classificator_j
 }
-names(LTO.classificator) <- levels(pData(cde_nonPvC)$Cluster)
+names(LTO.classificator) <- rev(LTO.genes)
+
+#Make table from list
+do.call("rbind", LTO.classificator)
+LTO_score <- colSums(do.call("rbind", LTO.classificator))
 
 #Get all clusters with expression above threshold
 # Note: Manually check average expressions
-LTO_subsets <- LTO.classificator[LTO.classificator >= 3]
+LTO_subsets <- LTO_score[LTO_score >= 15]
 LTO_subsets
-nonLTO_subsets <- LTO.classificator[LTO.classificator < 3]
+nonLTO_subsets <- LTO_score[LTO_score < 15]
 nonLTO_subsets
 
-#Separate data in to different SC subsets
+#Separate data in to Endothelial and SC
 LTO_cells <- row.names(subset(pData(cde_nonPvC),
-                                  Cluster %in% names(LTO_subsets)))
+                              Cluster %in% names(LTO_subsets)))
 nonLTO_cells <- row.names(subset(pData(cde_nonPvC),
-                                     Cluster %in% names(nonLTO_subsets)))
+                                 Cluster %in% names(nonLTO_subsets)))
 
 #Generate cds object for Endothelial and SC cells
 cde_nonLTO <- cde_nonPvC[,nonLTO_cells]
@@ -583,308 +555,18 @@ cde_LTO <- cde_nonPvC[,LTO_cells]
 
 print(paste("Number of nonLTO SC:", nrow(pData(cde_nonLTO))))
 print(paste("Number of LTO SC:", nrow(pData(cde_LTO))))
-setwd(PATH_output)
-
-
-#####
-#Regress and cluster PvC
-#####
-#plot_pc_variance_explained(cde_PvC, return_all = F)
-cde_PvC <- reduceDimension(cde_PvC, max_components = 2, num_dim = 11,
-                          reduction_method = 'tSNE',
-                          residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                          #residualModelFormulaStr = "~Time_point",
-                          verbose = T)
-cde_PvC <- clusterCells(cde_PvC, num_clusters = 4)
-plot_cell_clusters(cde_PvC, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10)
-plot_cell_clusters(cde_PvC, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-#plot_cell_clusters(cde_PvC, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
-plot_cell_clusters(cde_PvC, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
-                                                                "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
-                                                                "Cd248","Gdf10","Cxcl9","Has1","Ackr3"),
-                   cell_size = 0.5)
-
-#Building trajectories PvC------------------------------
-#Reduce dimensionality
-cde_PvC <- reduceDimension(cde_PvC, max_components = 2, method = 'DDRTree')
-#Build trajectory
-cde_PvC <- orderCells(cde_PvC)
-
-#Inferring the genes----------------------------------------------
-diff_test_res <- differentialGeneTest(cde_PvC[expressed_genes,],
-                                      #fullModelFormulaStr = "~Clusters",
-                                      cores = 4)
-ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
-# Note: time trajectories are usefull to identify key genes
-#       but not required
-#Set trajectory genes in cde
-cde_PvC <- setOrderingFilter(cde_PvC, ordering_genes)
-plot_ordering_genes(cde_PvC)
-
-#plot by condition/timepoint
-plot_cell_trajectory(cde_PvC, color_by = "Time_point")
-#plot by state
-plot_cell_trajectory(cde_PvC, color_by = "State")
-#plot by cluster
-plot_cell_trajectory(cde_PvC, color_by = "State") + facet_wrap(~Cluster)
-plot_cell_trajectory(cde_PvC, color_by = "Cluster") + facet_wrap(~Time_point)
-
-#####
-#Regress and cluster Adventi
-#####
-plot_pc_variance_explained(cde_Adventi, return_all = F)
-cde_Adventi <- reduceDimension(cde_Adventi, max_components = 2, num_dim = 11,
-                               reduction_method = 'tSNE',
-                               residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                               #residualModelFormulaStr = "~Time_point",
-                               verbose = T)
-cde_Adventi <- clusterCells(cde_Adventi, num_clusters = 9)
-plot_cell_clusters(cde_Adventi, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10)
-plot_cell_clusters(cde_Adventi, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-plot_cell_clusters(cde_Adventi, markers = c("Ccl19"))
-#plot_cell_clusters(cde_Adventi, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
-plot_cell_clusters(cde_Adventi, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
-                                                                     "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
-                                                                     "Cd248","Gdf10","Cxcl9","Has1","Ackr3"),cell_size = 0.5)
-
-#Building trajectories Adventi------------------------------
-#Reduce dimensionality
-cde_Adventi <- reduceDimension(cde_Adventi, max_components = 2, method = 'DDRTree')
-#Build trajectory
-cde_Adventi <- orderCells(cde_Adventi)
-
-#Inferring the genes----------------------------------------------
-diff_test_res <- differentialGeneTest(cde_Adventi[expressed_genes,],
-                                      #fullModelFormulaStr = "~Clusters",
-                                      cores = 8)
-ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
-# Note: time trajectories are usefull to identify key genes
-#       but not required
-#Set trajectory genes in cde
-cde_Adventi <- setOrderingFilter(cde_Adventi, ordering_genes)
-plot_ordering_genes(cde_Adventi)
-
-#plot by condition/timepoint
-plot_cell_trajectory(cde_Adventi, color_by = "Time_point")
-#plot by state
-plot_cell_trajectory(cde_Adventi, color_by = "Cluster")
-plot_cell_trajectory(cde_Adventi, color_by = "Pseudotime")
-#plot by cluster
-plot_cell_trajectory(cde_Adventi, markers = c("Aldh1a2"), use_color_gradient = TRUE)
-plot_cell_trajectory(cde_Adventi, color_by = "State") + facet_wrap(~Cluster)
-plot_cell_trajectory(cde_Adventi, color_by = "Cluster") + facet_wrap(~Time_point)
-
-#pass intel of earliest time point in trajectory to state to pData
-#GM_state <- function(cds){
-#  if (length(unique(pData(cde_Adventi)$State)) > 1){
-#    T0_counts <- table(pData(cde_Adventi)$State, pData(cde_Adventi)$Time_point)[,"d000"]
-#    return(as.numeric(names(T0_counts)[which(T0_counts == max(T0_counts))]))
-#  }else {
-#    return (1)
-#  }
-#}
-#cde_Adventi <- orderCells(cde_Adventi, root_state = GM_state(cde_Adventi))
-#plot_cell_trajectory(cde_Adventi, color_by = "Pseudotime") + facet_wrap(~Time_point, nrow = 1)
-#facet the trajectory according to states
-#plot_cell_trajectory(cde_Adventi, color_by = "State") + facet_wrap(~Time_point, nrow = 1)
-
-#####
-#Regress and cluster Adventi Plus
-#####
-plot_pc_variance_explained(cde_Adventi_minus_stage, return_all = F)
-cde_Adventi_minus_stage <- reduceDimension(cde_Adventi_minus_stage, max_components = 2, num_dim = 11,
-                               reduction_method = 'tSNE',
-                               residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                               #residualModelFormulaStr = "~Time_point",
-                               verbose = T)
-cde_Adventi_minus_stage <- clusterCells(cde_Adventi_minus_stage, num_clusters = 9)
-plot_cell_clusters(cde_Adventi_minus_stage, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10)
-plot_cell_clusters(cde_Adventi_minus_stage, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-plot_cell_clusters(cde_Adventi_minus_stage, markers = c("Ccl19"))
-#plot_cell_clusters(cde_Adventi_minus_stage, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
-plot_cell_clusters(cde_Adventi_minus_stage, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
-                                                                     "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
-                                                                     "Cd248","Gdf10","Cxcl9","Has1","Ackr3"),
-                   cell_size = 0.5)
-
-#Building trajectories Adventi------------------------------
-#Reduce dimensionality
-cde_Adventi_minus_stage <- reduceDimension(cde_Adventi_minus_stage, max_components = 2, method = 'DDRTree')
-#Build trajectory
-cde_Adventi_minus_stage <- orderCells(cde_Adventi_minus_stage)
-
-#Inferring the genes----------------------------------------------
-diff_test_res <- differentialGeneTest(cde_Adventi_minus_stage[expressed_genes,],
-                                      #fullModelFormulaStr = "~Clusters",
-                                      cores = 8)
-ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
-# Note: time trajectories are usefull to identify key genes
-#       but not required
-#Set trajectory genes in cde
-cde_Adventi_minus_stage <- setOrderingFilter(cde_Adventi_minus_stage, ordering_genes)
-plot_ordering_genes(cde_Adventi_minus_stage)
-
-#plot by condition/timepoint
-plot_cell_trajectory(cde_Adventi_minus_stage, color_by = "Time_point")
-#plot by state
-plot_cell_trajectory(cde_Adventi_minus_stage, color_by = "Cluster")
-plot_cell_trajectory(cde_Adventi_minus_stage, color_by = "Pseudotime")
-#plot by cluster
-plot_cell_trajectory(cde_Adventi_minus_stage, markers = c("Aldh1a2"), use_color_gradient = TRUE)
-plot_cell_trajectory(cde_Adventi_minus_stage, color_by = "State") + facet_wrap(~Cluster)
-plot_cell_trajectory(cde_Adventi_minus_stage, color_by = "Cluster") + facet_wrap(~Time_point)
-
-#####
-#Regress and cluster Adventi Minus
-#####
-plot_pc_variance_explained(cde_Adventi_minus_stage, return_all = F)
-cde_Adventi_minus_stage <- reduceDimension(cde_Adventi_minus_stage, max_components = 2, num_dim = 11,
-                                      reduction_method = 'tSNE',
-                                      residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                                      #residualModelFormulaStr = "~Time_point",
-                                      verbose = T)
-cde_Adventi_minus_stage <- clusterCells(cde_Adventi_minus_stage, num_clusters = 9)
-plot_cell_clusters(cde_Adventi_minus_stage, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10)
-plot_cell_clusters(cde_Adventi_minus_stage, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-plot_cell_clusters(cde_Adventi_minus_stage, markers = c("Ccl19"))
-#plot_cell_clusters(cde_Adventi_minus_stage, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
-plot_cell_clusters(cde_Adventi_minus_stage, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
-                                                                            "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
-                                                                            "Cd248","Gdf10","Cxcl9","Has1","Ackr3"),
-                   cell_size = 0.5)
-
-#Building trajectories Adventi------------------------------
-#Reduce dimensionality
-cde_Adventi_minus_stage <- reduceDimension(cde_Adventi_minus_stage, max_components = 2, method = 'DDRTree')
-#Build trajectory
-cde_Adventi_minus_stage <- orderCells(cde_Adventi_minus_stage)
-
-#Inferring the genes----------------------------------------------
-diff_test_res <- differentialGeneTest(cde_Adventi_minus_stage[expressed_genes,],
-                                      #fullModelFormulaStr = "~Clusters",
-                                      cores = 8)
-ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
-# Note: time trajectories are usefull to identify key genes
-#       but not required
-#Set trajectory genes in cde
-cde_Adventi_minus_stage <- setOrderingFilter(cde_Adventi_minus_stage, ordering_genes)
-plot_ordering_genes(cde_Adventi_minus_stage)
-
-#plot by condition/timepoint
-plot_cell_trajectory(cde_Adventi_minus_stage, color_by = "Time_point")
-#plot by state
-plot_cell_trajectory(cde_Adventi_minus_stage, color_by = "Cluster")
-plot_cell_trajectory(cde_Adventi_minus_stage, color_by = "Pseudotime")
-#plot by cluster
-plot_cell_trajectory(cde_Adventi_minus_stage, markers = c("Cd34"), use_color_gradient = TRUE)
-plot_cell_trajectory(cde_Adventi_minus_stage, color_by = "State") + facet_wrap(~Cluster)
-plot_cell_trajectory(cde_Adventi_minus_stage, color_by = "Cluster") + facet_wrap(~Time_point)
-
-
-
-
-#####
-#Regress and cluster nonAdventi
-#####
-#plot_pc_variance_explained(cde_nonAdventi, return_all = F)
-cde_nonAdventi <- reduceDimension(cde_nonAdventi, max_components = 2, num_dim = 11,
-                               reduction_method = 'tSNE',
-                               residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                               #residualModelFormulaStr = "~Time_point",
-                               verbose = T)
-cde_nonAdventi <- clusterCells(cde_nonAdventi, num_clusters = 8)
-plot_cell_clusters(cde_nonAdventi, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10)
-plot_cell_clusters(cde_nonAdventi, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-#plot_cell_clusters(cde_nonAdventi, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
-plot_cell_clusters(cde_nonAdventi, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
-                                                                     "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
-                                                                     "Cd248","Gdf10","Cxcl9","Has1","Ackr3"),
-                   cell_size = 0.5)
-
-#Building trajectories nonAdventi------------------------------
-#Reduce dimensionality
-cde_nonAdventi <- reduceDimension(cde_nonAdventi, max_components = 2, method = 'DDRTree')
-#Build trajectory
-cde_nonAdventi <- orderCells(cde_nonAdventi)
-
-#Inferring the genes----------------------------------------------
-diff_test_res <- differentialGeneTest(cde_nonAdventi[expressed_genes,],
-                                      #fullModelFormulaStr = "~Clusters",
-                                      cores = 4)
-ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
-# Note: time trajectories are usefull to identify key genes
-#       but not required
-#Set trajectory genes in cde
-cde_nonAdventi <- setOrderingFilter(cde_nonAdventi, ordering_genes)
-plot_ordering_genes(cde_nonAdventi)
-
-#plot by condition/timepoint
-plot_cell_trajectory(cde_nonAdventi, color_by = "Time_point")
-#plot by state
-plot_cell_trajectory(cde_nonAdventi, color_by = "State")
-plot_cell_trajectory(cde_nonAdventi, color_by = "Pseudotime")
-#plot by cluster
-plot_cell_trajectory(cde_nonAdventi, color_by = "State") + facet_wrap(~Cluster)
-plot_cell_trajectory(cde_nonAdventi, color_by = "Cluster") + facet_wrap(~Time_point)
-
-#####
-#Regress and cluster Endothelial
-#####
-#plot_pc_variance_explained(cde_nonAdventi, return_all = F)
-cde_Endothelial <- reduceDimension(cde_Endothelial, max_components = 2, num_dim = 11,
-                                  reduction_method = 'tSNE',
-                                  residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                                  #residualModelFormulaStr = "~Time_point",
-                                  verbose = T)
-cde_Endothelial <- clusterCells(cde_Endothelial, num_clusters = 8)
-plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10)
-plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-#plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
-plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
-                                                                        "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
-                                                                        "Cd248","Gdf10","Cxcl9","Has1","Ackr3"),
-                   cell_size = 0.5)
-
-#Building trajectories Endothelial------------------------------
-#Reduce dimensionality
-cde_Endothelial <- reduceDimension(cde_Endothelial, max_components = 2, method = 'DDRTree')
-#Build trajectory
-cde_Endothelial <- orderCells(cde_Endothelial)
-
-#Inferring the genes----------------------------------------------
-diff_test_res <- differentialGeneTest(cde_Endothelial[expressed_genes,],
-                                      #fullModelFormulaStr = "~Clusters",
-                                      cores = 4)
-ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
-# Note: time trajectories are usefull to identify key genes
-#       but not required
-#Set trajectory genes in cde
-cde_Endothelial <- setOrderingFilter(cde_Endothelial, ordering_genes)
-plot_ordering_genes(cde_Endothelial)
-
-#plot by condition/timepoint
-plot_cell_trajectory(cde_Endothelial, color_by = "Time_point")
-#plot by state
-plot_cell_trajectory(cde_Endothelial, color_by = "State")
-#plot by cluster
-plot_cell_trajectory(cde_Endothelial, color_by = "State") + facet_wrap(~Cluster)
-plot_cell_trajectory(cde_Endothelial, color_by = "Cluster") + facet_wrap(~Time_point)
-
-
 
 #####
 #Regress and cluster nonLTO
 #####
 #plot_pc_variance_explained(cde_nonAdventi, return_all = F)
-cde_nonLTO <- reduceDimension(cde_nonLTO, max_components = 2, num_dim = 11,
+cde_nonLTO <- reduceDimension(cde_nonLTO, max_components = 2, num_dim = 14,
                                    reduction_method = 'tSNE',
                                    residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
                                    #residualModelFormulaStr = "~Time_point",
                                    verbose = T)
-cde_nonLTO <- clusterCells(cde_nonLTO, num_clusters = 8)
+cde_nonLTO <- clusterCells(cde_nonLTO, num_clusters = 10)
 plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-#plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
 plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
                                                                          "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
                                                                          "Cd248","Gdf10","Cxcl9","Has1","Ackr3"),cell_size = 0.5)
@@ -902,83 +584,33 @@ cde_nonLTO <- orderCells(cde_nonLTO)
 #Inferring the genes----------------------------------------------
 diff_test_res <- differentialGeneTest(cde_nonLTO[expressed_genes,],
                                       #fullModelFormulaStr = "~Clusters",
-                                      cores = 4)
+                                      cores = 8)
+#diff_test_res_test <- differentialGeneTest(cde_nonLTO[expressed_genes, pData(cde_nonLTO)$Cluster %in% c(1, 9)], fullModelFormulaStr="~Cluster", cores = 8)
+#DEG_1_9 <- subset(diff_test_res, qval < 0.0000001)
 ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
 # Note: time trajectories are usefull to identify key genes
 #       but not required
 #Set trajectory genes in cde
-cde_nonLTO <- setOrderingFilter(cde_nonLTO, ordering_genes)
-plot_ordering_genes(cde_nonLTO)
-
-#plot by condition/timepoint
-plot_cell_trajectory(cde_nonLTO, color_by = "Time_point")
-#plot by state
-plot_cell_trajectory(cde_nonLTO, color_by = "State")
-#plot by cluster
-plot_cell_trajectory(cde_nonLTO, color_by = "State") + facet_wrap(~Cluster)
-plot_cell_trajectory(cde_nonLTO, color_by = "Cluster") + facet_wrap(~Time_point)
-#####
-#Regress and cluster nonLTO
-#####
-#plot_pc_variance_explained(cde_nonAdventi, return_all = F)
-cde_nonLTO <- reduceDimension(cde_nonLTO, max_components = 2, num_dim = 11,
-                           reduction_method = 'tSNE',
-                           residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
-                           #residualModelFormulaStr = "~Time_point",
-                           verbose = T)
-cde_nonLTO <- clusterCells(cde_nonLTO, num_clusters = 8)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster")
-#plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
+ 
+plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10) + facet_wrap(~Time_point)
+plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
 plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
                                                                  "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
-                                                                 "Cd248","Gdf10","Cxcl9","Has1","Ackr3"),
-                   cell_size = 0.5)
-
-#Building trajectories nonLTO------------------------------
-#Reduce dimensionality
-cde_nonLTO <- reduceDimension(cde_nonLTO, max_components = 2, method = 'DDRTree')
-#Build trajectory
-cde_nonLTO <- orderCells(cde_nonLTO)
-
-#Inferring the genes----------------------------------------------
-diff_test_res <- differentialGeneTest(cde_nonLTO[expressed_genes,],
-                                      #fullModelFormulaStr = "~Clusters",
-                                      cores = 4)
-ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
-# Note: time trajectories are usefull to identify key genes
-#       but not required
-#Set trajectory genes in cde
-cde_nonLTO <- setOrderingFilter(cde_nonLTO, ordering_genes)
-plot_ordering_genes(cde_nonLTO)
-
-#plot by condition/timepoint
-plot_cell_trajectory(cde_nonLTO, color_by = "Time_point")
-#plot by state
+                                                                 "Cd248","Gdf10","Cxcl9","Has1","Ackr3"), cell_size = 0.5)
 plot_cell_trajectory(cde_nonLTO, color_by = "State")
-#plot by cluster
-plot_cell_trajectory(cde_nonLTO, color_by = "State") + facet_wrap(~Cluster)
-plot_cell_trajectory(cde_nonLTO, color_by = "Cluster") + facet_wrap(~Time_point)
+plot_cell_trajectory(cde_nonLTO, color_by = "State") + facet_wrap(~Time_point + Cluster)
 
-
-
+plot_complex_cell_trajectory(cde_nonLTO, color_by = 'State', show_branch_points = T,
+                             cell_size = 0.5, cell_link_size = 0.3, root_states = c(2))
 
 #####
 #Save/Load R object
 #####
-#saveRDS(cde_SC, file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180826_monocle_ontogeny.Rds") 
-cde_SC <- readRDS(file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180826_d0_SC.Rds")
-saveRDS(cde_Adventi, file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180915_d0_Adventi.Rds")
-saveRDS(cde_nonAdventi, file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180826_d0_nonAdventi.Rds")
-saveRDS(cde_PvC, file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180826_d0_PvC.Rds")
-saveRDS(cde_Endothelial, file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180826_d0_Endothelial.Rds")
-saveRDS(cde_Adventi_plus_stage, file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180826_d0_Adventi_plus_stage.Rds")
-saveRDS(cde_nonLTO, file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20181027_d0_nonLTO.Rds")
-saveRDS(cde_LTO, file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20181027_d0_LTO.Rds")
-cde_nonAdventi <- readRDS(file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180826_d0_d10_nonAdventi.Rds")
-cde_Adventi <- readRDS(file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20180915_d0_Adventi.Rds")
+saveRDS(cde_nonLTO, file=paste(PATH_CDS_objects,condition,"/CDS_objects","/d0_10_nonLTO.Rds",sep=""))
+saveRDS(cde_LTO, file=paste(PATH_CDS_objects,condition,"/CDS_objects","/d0_10_LTO.Rds",sep=""))
+
 cde_nonLTO <- readRDS(file="~/NAS2/pezoldt/Analysis/scRNAseq/monocle/20181027_d0_nonLTO.Rds")
-cde_SC
+
 #####
 #Plot Genes expression
 #####

@@ -29,13 +29,11 @@ PATH_general <- "/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_FSC_all/Motif/
 PATH_motifs <- "/knownResults/"
 homer_find_conditions <- "si500_v46_bgTSS_noExt_"
 conditions <- c("Closed_DEG_SPF_lowRNAseq",
-                "Closed_mLN_DAR_SPF",
                 "No_DAR_DOWN_SPF_lowRNAseq",
                 "No_DAR_UP_SPF_lowRNAseq",
                 "NoDEG_Closed_SPF_lowRNAseq",
                 "NoDEG_Open_SPF_lowRNAseq",
-                "Open_DEG_SPF_lowRNAseq",
-                "Open_mLN_DAR_SPF")
+                "Open_DEG_SPF_lowRNAseq")
 PATH_TF_motifs_in_gene <- "/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_FSC_all/Motif/Regions_by_Motif"
 
 #Databases
@@ -105,8 +103,8 @@ PATH_samples_TF_Motif_Gene <- paste(PATH_TF_motifs_in_gene,"/",conditions,sep = 
 pinpointTFMotifstoGenes <- function(PATH_samples_TF_Motif_Gene, conditions){
   l_TF_binding_freq <- list()
   for(i in 1:length(PATH_samples_TF_Motif_Gene)){
-    PATH_samples_TF_Motif_Gene_i <- PATH_samples_TF_Motif_Gene[2]
-    conditions_i <- conditions[2]
+    PATH_samples_TF_Motif_Gene_i <- PATH_samples_TF_Motif_Gene[i]
+    conditions_i <- conditions[i]
     print(i)
     #Load TF binding sits
     #t_TF_binding_sites_i <- read.delim(paste(PATH_samples_TF_Motif_Gene_i,"/",conditions_i,"_MotifInstances.txt",sep = ""),stringsAsFactors=FALSE)
@@ -132,7 +130,6 @@ pinpointTFMotifstoGenes <- function(PATH_samples_TF_Motif_Gene, conditions){
     t_Peak_location_i <- t_Peak_location_i[2:nrow(t_Peak_location_i),]
     #t_Peak_location <- t_Peak_location[,1:4]
     colnames(t_Peak_location_i)[1] <- "ID"
-    t_Peak_location_i_works <- t_Peak_location_i
     #Annotate Peak to gene
     gr_Peaks_i <- toGRanges(t_Peak_location_i, names = t_Peak_location[,1])
     #Annotate Peaks

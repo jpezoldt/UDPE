@@ -34,8 +34,8 @@ resolution_single <- 1.2
 
 #Parameters FSC only
 pca_use <- 24
-n_variable_genes <- 1500
-resolution_use <- 1.6
+n_variable_genes <- 1000
+resolution_use <- 1.5
 
 #######
 #Load and label
@@ -313,16 +313,14 @@ dev.off()
 
 current.cluster.ids <- c(0:8)
 
-new.cluster.ids <- c("Il6+Cxcl1+","Inmt+_1","Inmt+_2","Inmt+Gdf10+",
-                     "CD34+Aldh1a2+Gdf10+","Ccl19+Madcam1+","Inmt+Cxcl12+","CD34+Ackr3+CD248+",
+new.cluster.ids <- c("Il6+Cxcl1+","Inmt+Ptgs2+","Inmt+Nfkbia+","Inmt+Gdf10+",
+                     "Cd34+Gdf10+","Ccl19+Madcam+","Ccl19+Il7+","Cd34+Ackr3+",
                      "PvC")
 
 sample_1_seurat_minus@ident <- plyr::mapvalues(x = sample_1_seurat_minus@ident, from = current.cluster.ids, to = new.cluster.ids)
 
 
 TSNEPlot(object = sample_1_seurat_minus, pt.size = 0.3, do.label = TRUE)
-
-
 
 #####
 #Find differentially expressed genes
@@ -338,7 +336,6 @@ sample_1_seurat_minus.markers_40 <- sample_1_seurat_minus.markers %>% group_by(c
 write.table(sample_1_seurat_minus.markers, paste(path_output,"/",organ,"_",condition,"","_ALL_DEGs.csv", sep=""), dec=".", sep=",")
 write.table(sample_1_seurat_minus.markers_20, paste(path_output,"/",organ,"_",condition,"","_ALL_Top20_DEGs.csv", sep=""), dec=".", sep=",")
 write.table(sample_1_seurat_minus.markers_40, paste(path_output,"/",organ,"_",condition,"","_ALL_Top40_DEGs.csv", sep=""), dec=".", sep=",")
-
 
 #Plot differential expression of Marker genes
 #title <- paste(organ,condition,"Heatmap_Top10",sep = "_")

@@ -18,18 +18,24 @@ library(ggplot2)
 ############ PATH & Global Variables ----------------------------
 
 sample_ID <- "SPF"
-condition <- "mLN_SPF"
+condition <- "pLN_SPF"
 # path to binary matrix of TFs detected using homer via motifs identified
 PATH_input_TF_homer_matrix <- paste("/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_FSC_all/Motif/Homer_Output/allHomerResults/size_500bp/", sample_ID, sep = "")
+#PATH_input_TF_homer_matrix <- paste("/Volumes/Pezoldt_HD_4TB/UPDE_Transfer/20181101/Analysis/ATACseq/ATAC_FSC_all/Motif/Homer_Output/allHomerResults/size_500bp/", sample_ID, sep = "")
+
+
 
 # path to regulons identified
 # Note: Input required
-organ <- c("mLN_SPF")
+organ <- c("pLN_SPF")
 cell_subsets <- c("KeySubsets")
-time_point <- c("D56","D0","D10","D24","D300")
-#
-PATH_analysis_scenic <- "/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/scenic"
-PATH_input_regulons_scenic <- "/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/scenic/mLN_SPF"
+time_point <- c("D56")
+#"D0","D10","D24",   ,"D300"
+#PATH_analysis_scenic <- "/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/scenic"
+PATH_analysis_scenic <- "/Volumes/Pezoldt_HD_4TB/UPDE_Transfer/20181101/Analysis/scRNAseq/scenic"
+
+#PATH_input_regulons_scenic <- "/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/scenic/mLN_SPF"
+PATH_input_regulons_scenic <- "/Volumes/Pezoldt_HD_4TB/UPDE_Transfer/20181101/Analysis/scRNAseq/scenic/mLN_SPF"
 
 cell_subsets_1 <- "KeySubsets_D56"
 cell_subsets_2 <- "nonAdventi"
@@ -186,7 +192,7 @@ regulons_significant <- function(l_regulon_seuratNames_core,l_annotation_pheatma
       max(abs(x$Cluster[,1]))
     }))
     #select regulons with a maximal diff
-    diff_tuk_names <- diff_tuk[diff_tuk >= 0.025]
+    diff_tuk_names <- diff_tuk[diff_tuk >= 0.04]
     print(paste(j, ":", names(diff_tuk_names), sep = " "))
     l_regulons_significant[[j]] <- diff_tuk_names
   }
@@ -220,7 +226,11 @@ regulon_seuratNames_ext_x <- l_regulon_seuratNames_ext[[indexed]]
 rownames(regulon_seuratNames_ext_x) <- regulon_seuratNames_ext_x$GeneSymbol
 regulon_seuratNames_ext_heat_x <- as.matrix(regulon_seuratNames_ext_x[,(ncol(regulon_seuratNames_ext_x)-nrow(l_annotation_pheatmap[[indexed]])+1):ncol(regulon_seuratNames_ext_x)])
 #Heatmap across all regulons and all cells
-pheatmap(regulon_seuratNames_ext_heat_x, annotation = l_annotation_pheatmap[[indexed]])
+pheatmap(regulon_seuratNames_ext_heat_x, annotation = l_annotation_pheatmap[[indexed]],cluster_rows = TRUE, legend = TRUE,
+         treeheight_row = 0, treeheight_col = 15, show_rownames = FALSE, cluster_cols = FALSE,
+         scale = "none", show_colnames = FALSE,
+         color = colorRampPalette(c("black", "white","green"), space="rgb")(128),
+         main = paste("All regulons ", time_point[[indexed]], sep = ""))
 
 #Make heatmap for significant regulons
 indexed <- 1
@@ -228,10 +238,14 @@ regulon_seuratNames_ext_x <- l_regulon_seuratNames_ext[[indexed]]
 l_regulons_significant_x <- names(l_regulons_significant[[indexed]])
 regulon_seuratNames_ext_sig_x <- subset(regulon_seuratNames_ext_x, GeneSymbol %in% l_regulons_significant_x)
 regulon_seuratNames_ext_sig_heat_x <- as.matrix(regulon_seuratNames_ext_sig_x[,(ncol(regulon_seuratNames_ext_sig_x)-nrow(l_annotation_pheatmap[[indexed]])+1):ncol(regulon_seuratNames_ext_sig_x)])
-pheatmap(regulon_seuratNames_ext_sig_heat_x, annotation = l_annotation_pheatmap[[indexed]])
+pheatmap(regulon_seuratNames_ext_sig_heat_x, annotation = l_annotation_pheatmap[[indexed]],cluster_rows = TRUE, legend = TRUE,
+         treeheight_row = 0, treeheight_col = 15, cluster_cols = FALSE,
+         scale = "none", show_colnames = FALSE,show_rownames = TRUE,
+         color = colorRampPalette(c("black", "white","green"), space="rgb")(128),
+         main = paste("Significant_TopDiff_regulons ", time_point[[indexed]], sep = ""))
 
 #Boxplot of regulon
-name_x <- names(diff_tuk_names)[2]
+name_x <- names(diff_tuk_names)[1]
 test_boxplot <- l_regulon_to_anova[[name_x]]
 ggplot(test_boxplot,aes(factor(Cluster), AUCell_scores)) +
   geom_violin(aes(fill = Cluster)) +
@@ -258,11 +272,15 @@ upset(TFs_ATAC, sets = colnames(TFs_ATAC),
 ############ Overlap and heatmap -------------------------------
 indexed <- 1
 regulon_seuratNames_ext_x <- l_regulon_seuratNames_ext[[indexed]]
-regulon_seuratNames_ext_x_TFs <- subset(regulon_seuratNames_ext_x, GeneSymbol %in% rownames(TFs_ATAC))
+regulon_seuratNames_ext_x_TFs <- subset(regulon_seuratNames_ext_x, GeneSymbol %in% rownames(TFs_interest))
 rownames(regulon_seuratNames_ext_x_TFs) <- regulon_seuratNames_ext_x_TFs$GeneSymbol
 #Heatmap across all regulons and all cells
 pheatmap(as.matrix(regulon_seuratNames_ext_x_TFs[,4:ncol(regulon_seuratNames_ext_x_TFs)]),
-         scale = "none",annotation = l_annotation_pheatmap[[indexed]])
+         annotation = l_annotation_pheatmap[[indexed]],cluster_rows = TRUE, legend = TRUE,
+         treeheight_row = 0, treeheight_col = 15, cluster_cols = FALSE,
+         scale = "none", show_colnames = FALSE,show_rownames = TRUE,
+         color = colorRampPalette(c("black", "white","green"), space="rgb")(128),
+         main = paste("ATACseq_TF_regulons_mLN_ ", time_point[[indexed]], sep = ""))
 
 
 ########### Include content of regulon---------------------------

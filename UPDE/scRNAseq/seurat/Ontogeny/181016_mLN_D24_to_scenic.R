@@ -48,9 +48,6 @@ NC_Pezoldt_Pasztoi_2018 <- read.csv("/home/pezoldt/NAS2/pezoldt/Analysis/scRNAse
 sample_1.data <- Read10X(data.dir = path_input)
 sample_1.data@Dimnames[[2]] <- paste(paste("sample_",organ,"_",condition,"_", sep=""), c(1:length(sample_1.data@Dimnames[[2]])), sep = "")
 
-
-
-
 #########
 #Setup sample_1
 #########

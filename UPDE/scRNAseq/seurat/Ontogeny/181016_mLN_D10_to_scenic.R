@@ -34,9 +34,9 @@ min_cells <- 20
 resolution_single <- 1.2
 
 #Parameters FSC only
-pca_use <- 20
-n_variable_genes <- 1500
-resolution_use <- 1.5
+pca_use <- 12
+n_variable_genes <- 1000
+resolution_use <- 1.2
 
 #######
 #Load and label
@@ -48,9 +48,6 @@ NC_Pezoldt_Pasztoi_2018 <- read.csv("/home/pezoldt/NAS2/pezoldt/Analysis/scRNAse
 ###
 sample_1.data <- Read10X(data.dir = path_input)
 sample_1.data@Dimnames[[2]] <- paste(paste("sample_",organ,"_",condition,"_", sep=""), c(1:length(sample_1.data@Dimnames[[2]])), sep = "")
-
-
-
 
 #########
 #Setup sample_1
@@ -149,7 +146,6 @@ for(i in 1:length(cluster_keep)){
 sample_1_NO_LECs_BECs <- as.character(rownames(all_cells_keep))
 write.table(sample_1_NO_LECs_BECs, paste(path_output,"/",organ,"_",condition, "_SCs_IDs.txt",sep=""), row.names = FALSE)
 
-
 #####
 #Select LECs and BECs sample_1
 #####
@@ -227,8 +223,6 @@ sample_1_seurat_minus <- RunPCA(object = sample_1_seurat_minus, pc.genes = var_g
 
 #ProjectPCA scores each gene in the dataset 
 sample_1_seurat_minus <- ProjectPCA(object = sample_1_seurat_minus, do.print = FALSE)
-
-
 
 #Group the cells into clusters
 #perfrom Tsne
@@ -314,13 +308,9 @@ dev.off()
 
 current.cluster.ids <- c(0:10)
 
-new.cluster.ids <- c("Cxcl12+","Ccl19+Il7+","PvC","CD34+",
-                     "Ccl19+","Gdf10+","Il6+Cxcl1+","Ccl19+Madcam1+",
-                     "Pdgfr1+","CD34+Gdf10+","SCx")
-
-#new.cluster.ids <- c("0","1","2","3",
- #                    "4","5","6","7",
-  #                   "8","9","10")
+new.cluster.ids <- c("Rarres+Mest+","Cxcl13+Il7+","PvClow","Cd34+Col4a1+",
+                     "Inmt+Il6+","Ccl19+Il7+","Cd34+Cd248+","Inmt+Gdf10+",
+                     "Mitotic","PvChigh","SCx")
 
 sample_1_seurat_minus@ident <- plyr::mapvalues(x = sample_1_seurat_minus@ident, from = current.cluster.ids, to = new.cluster.ids)
 

@@ -154,8 +154,16 @@ DAR_GF_Treg_Tconv <- as.data.frame(results(dds, contrast=c("condition","ATAC_Tre
 DAR_GF_Treg_Tconv <- DAR_GF_Treg_Tconv[,c("log2FoldChange","padj")]
 colnames(DAR_GF_Treg_Tconv) <- c(paste("log2FC_","GF_Treg_Tconv",sep=""),paste("padj_","GF_Treg_Tconv",sep=""))
 
+DAR_Tnaive_SPF_Tconv <- as.data.frame(results(dds, contrast=c("condition","ATAC_Tnaive","ATAC_TconSPF"), format = c("DataFrame")))
+DAR_Tnaive_SPF_Tconv <- DAR_Tnaive_SPF_Tconv[,c("log2FoldChange","padj")]
+colnames(DAR_Tnaive_SPF_Tconv) <- c(paste("log2FC_","Tnaive_SPF_Tconv",sep=""),paste("padj_","Tnaive_SPF_Tconv",sep=""))
+
+DAR_Tnaive_SPF_Treg <- as.data.frame(results(dds, contrast=c("condition","ATAC_Tnaive","ATAC_TregSPF"), format = c("DataFrame")))
+DAR_Tnaive_SPF_Treg <- DAR_Tnaive_SPF_Treg[,c("log2FoldChange","padj")]
+colnames(DAR_Tnaive_SPF_Treg) <- c(paste("log2FC_","Tnaive_SPF_Treg",sep=""),paste("padj_","Tnaive_SPF_Treg",sep=""))
+
 #Table of all conditions
-DARs <- cbind(id = rownames(DAR_Treg_SPF_GF), DAR_Treg_SPF_GF, DAR_Tconv_SPF_GF , DAR_SPF_Treg_Tconv, DAR_GF_Treg_Tconv)
+DARs <- cbind(id = rownames(DAR_Treg_SPF_GF), DAR_Treg_SPF_GF, DAR_Tconv_SPF_GF , DAR_SPF_Treg_Tconv, DAR_GF_Treg_Tconv,DAR_Tnaive_SPF_Tconv,DAR_Tnaive_SPF_Treg)
 rownames(DARs) <- c()
 
 #####
@@ -173,8 +181,6 @@ rownames(DARs_regions) <- c()
 #####
 #Peak/gene location
 #####
-
-
 #All features
 mm10_TxDb <- TxDb.Mmusculus.UCSC.mm10.knownGene
 
@@ -198,6 +204,23 @@ gr_DARs_regions_anno_TSS <- addGeneIDs(annotatedPeak=gr_DARs_regions_anno_TSS,
 
 #Generate dataframe
 DARs_features <- as.data.frame(gr_DARs_regions_anno_TSS)
+DARs_Treg_sig <- subset(DARs_features, abs(log2FC_Treg_SPF_GF) > 1.0 & padj_Treg_SPF_GF <= 0.05)
+DARs_Tconv_sig <- subset(DARs_features, abs(log2FC_Tconv_SPF_GF) > 1.0 & padj_Tconv_SPF_GF <= 0.05)
+DARs_GF_sig <-  subset(DARs_features, abs(log2FC_GF_Treg_Tconv) > 1.0 & padj_GF_Treg_Tconv <= 0.05)
+DARs_SPF_sig <- subset(DARs_features, abs(log2FC_SPF_Treg_Tconv) > 1.0 & padj_SPF_Treg_Tconv <= 0.05)
+
+DARs_SPF_Tnaive_Treg_sig <- subset(DARs_features, abs(log2FC_Tnaive_SPF_Treg) > 1.0 & padj_Tnaive_SPF_Treg <= 0.05)
+DARs_SPF_Tnaive_Treg_sig_NA <- DARs_SPF_Tnaive_Treg_sig[!(is.na(DARs_SPF_Tnaive_Treg_sig$symbol)),]
+
+DARs_SPF_Tnaive_Tconv_sig <- subset(DARs_features, abs(log2FC_Tnaive_SPF_Tconv) > 1.0 & padj_Tnaive_SPF_Tconv <= 0.05)
+DARs_SPF_Tnaive_Tconv_sig_NA <- DARs_SPF_Tnaive_Tconv_sig[!(is.na(DARs_SPF_Tnaive_Tconv_sig$symbol)),]
+#Overlap
+NonOverlap_Tnaive_Treg_Tconv <- subset(DARs_SPF_Tnaive_Treg_sig_NA, !(symbol %in% DARs_SPF_Tnaive_Tconv_sig_NA$symbol))
+Overlap_Tnaive_Treg_Tconv <- subset(DARs_SPF_Tnaive_Treg_sig_NA, (symbol %in% DARs_SPF_Tnaive_Tconv_sig_NA$symbol))
+NonOverlap_Tnaive_Tconv_Treg <- subset(DARs_SPF_Tnaive_Tconv_sig_NA, !(symbol %in% DARs_SPF_Tnaive_Treg_sig_NA$symbol))
+#Write Table
+write.table(NonOverlap_Tnaive_Treg_Tconv, paste(path_RNAseq_DESeq2,"/NonOverlap_Tnaive_Treg_Tconv_478.csv",sep=""),dec=".",sep=",")
+write.table(NonOverlap_Tnaive_Tconv_Treg, paste(path_RNAseq_DESeq2,"/NonOverlap_Tnaive_Tconv_Treg_395.csv",sep=""),dec=".",sep=",")
 
 ##########
 #Process RNA-seq data

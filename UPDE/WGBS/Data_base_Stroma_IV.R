@@ -39,6 +39,11 @@ Output_DMRs_DEGs <- "/home/pezoldt/NAS2/pezoldt/Analysis/01_Integrated/DMRs_DEGs
 log2FC_RNA = 1.0
 padj = 0.05
 
+#Global variables
+#Param
+padj = 0.05
+log2FC_ATAC = 1.0
+
 ######################
 #Bsmooth
 ######################
@@ -325,6 +330,20 @@ df_DMR_mean_Bsmooth_CpGmeaned_dMeth <- cbind(df_DMR_mean_Bsmooth_CpGmeaned_dMeth
 df_DMR_mean_Bsmooth_CpGmeaned_dMeth <- cbind(df_DMR_mean_Bsmooth_CpGmeaned_dMeth, dMeth_DMR_GF_mLN_pLN)
 df_DMR_mean_Bsmooth_CpGmeaned_dMeth_TSS <- subset(df_DMR_mean_Bsmooth_CpGmeaned_dMeth, distance_to_nearest_tss < 10000)
 
+#Demeth mLN
+Demeth_mLN <- subset(df_DMR_mean_Bsmooth_CpGmeaned_dMeth_TSS, dMeth_SPF_mLN_pLN < -0.15)
+Demeth_pLN <- subset(df_DMR_mean_Bsmooth_CpGmeaned_dMeth_TSS, dMeth_SPF_mLN_pLN > 0.15)
+Demeth_pLN_mLN <- subset(df_DMR_mean_Bsmooth_CpGmeaned_dMeth_TSS, abs(dMeth_SPF_mLN_pLN) > 0.15)
+#Heatmap
+data <- Demeth_pLN_mLN
+data_heatmap_matrix <- as.matrix(data[,c("pLN_GF","mLN_GF","pLN_SPF","mLN_SPF")])
+
+
+pheatmap(data_heatmap_matrix, cluster_rows = TRUE, legend = TRUE,
+         treeheight_row = 0, treeheight_col = 30, show_rownames = FALSE, cluster_cols = TRUE,
+         scale = "none", border_color = "black", cellwidth = 10,
+         cellheigth = 10, color = colorRampPalette(c("yellow", "green","blue"), space="rgb")(128))
+
 
 ####################
 #RNAseq analysis low Input
@@ -418,11 +437,6 @@ name = "ATAC_FSC_all"
 paste(path_input, "/",name,".txt",sep="")
 #read count table
 counts <- fread(paste(path_input, "/",name,".txt",sep=""))
-
-#Global variables
-#Param
-padj = 0.05
-log2FC_ATAC = 0.8
 
 #####
 #QC
@@ -635,6 +649,9 @@ pheatmap(data_heatmap, cluster_rows = TRUE, legend = TRUE,
          scale = "row", border_color = "black", color = colorRampPalette(c("white","grey", "darkgreen"), space="rgb")(128),
          main = "DARs TSS associated SPF")
 
+
+
+
 #####
 #Meaned GF & SPF
 #####
@@ -642,31 +659,36 @@ DARs_features_GF_SPF <- subset(DARs_features, (abs(log2FC_GF_mLN_pLN) >= log2FC_
                                  (abs(log2FC_SPF_mLN_pLN) >= log2FC_ATAC & padj_SPF_mLN_pLN <= padj) )
 DARs_features_GF_SPF_NA <- DARs_features_GF_SPF[!is.na(DARs_features_GF_SPF$symbol),]
 DARs_features_GF_SPF_NA_Prom <- subset(DARs_features_GF_SPF_NA, distancetoFeature >= -400 & distancetoFeature <= 10000)
+DARs_features_GF_SPF_NA_Prom_unique <- DARs_features_GF_SPF_NA_Prom[!duplicated(DARs_features_GF_SPF_NA_Prom[,c("symbol")]),]
+
 
 #Heatmap
-data_heatmap <- DARs_features_GF_SPF_NA[,c("id",
+data_heatmap <- DARs_features_GF_SPF_NA_Prom_unique[,c("symbol",
                                            "ATAC_mLNSPF1","ATAC_mLNSPF2","ATAC_mLNSPF3","ATAC_mLNSPF4",
                                            "ATAC_pLNSPF1","ATAC_pLNSPF2","ATAC_pLNSPF3",
                                            "ATAC_mLNGF1","ATAC_mLNGF2","ATAC_mLNGF3",
                                            "ATAC_pLNGF1","ATAC_pLNGF3")]
 
-rownames(data_heatmap) <- data_heatmap$id
+rownames(data_heatmap) <- data_heatmap$symbol
 data_heatmap <- as.matrix(data_heatmap[,2:ncol(data_heatmap)])
-mLN_SPF <- rowMeans(data_heatmap[,2:5])
-pLN_SPF <- rowMeans(data_heatmap[,6:8])
-mLN_GF <- rowMeans(data_heatmap[,9:11])
-pLN_GF <- rowMeans(data_heatmap[,12:13])
-
-data_heatmap <- 
-data_heatmap[data_heatmap == 0] <- 0.4
+mLN_SPF <- rowMeans(data_heatmap[,1:4])
+pLN_SPF <- rowMeans(data_heatmap[,5:7])
+mLN_GF <- rowMeans(data_heatmap[,8:10])
+pLN_GF <- rowMeans(data_heatmap[,11:12])
+data_heatmap <- cbind(mLN_SPF,pLN_SPF,mLN_GF,pLN_GF)
+#data_heatmap[data_heatmap == 0] <- 0.4
 min(data_heatmap)
 data_heatmap <- log2(data_heatmap)
 
 min(data_heatmap)
 pheatmap(data_heatmap, cluster_rows = TRUE, legend = TRUE,
-         treeheight_row = 0, treeheight_col = 0, show_rownames = FALSE, cluster_cols = TRUE, cellwidth = 10,
-         scale = "row", border_color = "black", color = colorRampPalette(c("white","grey", "darkgreen"), space="rgb")(128),
+         treeheight_row = 0, treeheight_col = 20, show_rownames = FALSE, cluster_cols = TRUE, cellwidth = 10,
+         scale = "none", border_color = "black", color = colorRampPalette(c("black","dimgrey","gray48","grey","white"), space="rgb")(128),
          main = "DARs TSS associated SPF")
+outs <- pheatmap(data_heatmap, cluster_rows = TRUE, legend = TRUE,
+                 treeheight_row = 0, treeheight_col = 20, show_rownames = TRUE, cluster_cols = TRUE, cellwidth = 10,
+                 scale = "none", border_color = "black", color = colorRampPalette(c("black","dimgrey","gray48","grey","white"), space="rgb")(128),
+                 main = "DARs TSS associated SPF")
 
 ####################
 #Compare DEG vs. DMR

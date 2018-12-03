@@ -34,9 +34,9 @@ min_cells <- 20
 resolution_single <- 1.2
 
 #Parameters FSC only
-pca_use <- 20
+pca_use <- 24
 n_variable_genes <- 1500
-resolution_use <- 1.1
+resolution_use <- 0.9
 
 #######
 #Load and label
@@ -240,9 +240,9 @@ sample_1_seurat_minus <- FindClusters(object = sample_1_seurat_minus, reduction.
 PrintFindClustersParams(object = sample_1_seurat_minus)
 
 FeaturePlot(sample_1_seurat_minus, features.plot = c("Madcam1","Il7", "Aldh1a2",
-                                                     "Ccl19","Acta2","Vcam1",
+                                                     "Klf5","Acta2","Vcam1",
                                                      "Icam1","Inmt","Cd34",
-                                                     "Tnfsf11","Cxcl13"),
+                                                     "Tnfsf11","Cxcl13","Krt7"),
             min.cutoff = "q9",
             cols.use = c('gainsboro', 'darkred'),
             pt.size = 0.1)
@@ -314,10 +314,10 @@ dev.off()
 
 current.cluster.ids <- c(0:13)
 
-new.cluster.ids <- c("CD34+_1","CD34+_3","Ccl19+Madcam+_1","CD34+_1",
-                     "CD34+_4","CD34+_5","Il6+Cxcl1+","CD34+Aldh1a2+",
-                     "Unknown","PvC_2","Ccl19+Madcam+_1","SCx",
-                     "PvC_1","13")
+new.cluster.ids <- c("Cd34+Igf1+Gdf10+","Cd34+Igf2+","Cxcl13+Vcam1+","Cd34+Col1a2/2+",
+                     "Cd34+Ly6c1+[Ackr3]","Cd34+Sept7+Ccl11+","Cd34+Maff+Il6+","Cd34+Cdk1+",
+                     "Cd34+Aldh1a2+Krt7+","Cd34+Egfr+Klf5+","Il7+Cdk1+","Tgfb_sig",
+                     "???","PvC")
 
 sample_1_seurat_minus@ident <- plyr::mapvalues(x = sample_1_seurat_minus@ident, from = current.cluster.ids, to = new.cluster.ids)
 

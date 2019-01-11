@@ -1,0 +1,48 @@
+Create directories
+Processing Sample day_2_g3_sub_1_S6  following DropSeq pipeline...
+1. Fastq to SAM using Picard
+2. Filtering
+2.1. Tag Cells (12bp Barcode)
+2.2. Tag Molecules (8bp UMI)
+2.3. Filter Bad quality reads
+2.4. Trim SMART adapter in 5' sequence of reads (at least 5bp)
+2.5. Trim PolyA sequences in 3' sequence of reads (at least 6bp)
+3. Revert back from BAM to Fastq file
+4. Alignment
+4.1. Mapping with STAR (unsorted)
+Jan 09 16:43:45 ..... started STAR run
+Jan 09 16:43:45 ..... loading genome
+Jan 09 16:45:55 ..... started mapping
+Jan 09 17:05:26 ..... finished successfully
+4.2. Sorting by read name (required)
+4.3. Add tags from unaligned BAM to the STAR-aligned BAM file
+4.4. Add GE (Gene Exon) tags from the GTF file to the BAM file when read overlaps a gene exon
+Create directories
+Processing Sample day_2_g3_sub_1_S6  following DropSeq pipeline...
+1. Fastq to SAM using Picard
+2. Filtering
+2.1. Tag Cells (12bp Barcode)
+2.2. Tag Molecules (8bp UMI)
+2.3. Filter Bad quality reads
+2.4. Trim SMART adapter in 5' sequence of reads (at least 5bp)
+2.5. Trim PolyA sequences in 3' sequence of reads (at least 6bp)
+3. Revert back from BAM to Fastq file
+4. Alignment
+4.1. Mapping with STAR (unsorted)
+Jan 09 20:41:01 ..... started STAR run
+Jan 09 20:41:01 ..... loading genome
+Jan 09 20:43:06 ..... started mapping
+Jan 09 21:02:37 ..... finished successfully
+4.2. Sorting by read name (required)
+4.3. Add tags from unaligned BAM to the STAR-aligned BAM file
+4.4. Add GE (Gene Exon) tags from the GTF file to the BAM file when read overlaps a gene exon
+4.5. Detect and Correct Bead Synthesis Errors (NUM_BARCODES parameters should be roughly 2x expected number of cells)
+5. Digital Gene Expression and final stats/cleaning
+5.1. Generate Histogram of reads per cell barcodes (to select relevant cell number cutoff)
+5.2. Adapt 'expectedCellNumber' variable if needed
+Current value = 1000
+5.2. Generate UMI Matrix (use at least one of MIN_NUM_GENES_PER_CELL, MIN_NUM_TRANSCRIPTS_PER_CELL, NUM_CORE_BARCODES or CELL_BC_FILE)
+5.3. Clean intermediate files
+5.4. Generate fastQC for fastq file and final BAM
+Analysis complete for day_2_g3_sub_1_S6.fastq.gz
+Analysis complete for day_2_g3_sub_1_S6.bam

@@ -34,6 +34,7 @@ path_RNAseq_DESeq2 <- "/home/pezoldt/NAS2/pezoldt/Data/RNAseq/2017_FSC_LEC_BEC_m
 Output_DARs_DMRs <- "/home/pezoldt/NAS2/pezoldt/Analysis/01_Integrated/DMRs_DARs"
 Output_DARs <- "/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_FSC_all/DARs"
 Output_DMRs_DEGs <- "/home/pezoldt/NAS2/pezoldt/Analysis/01_Integrated/DMRs_DEGs"
+Output_PATH_DMRs <- "/home/pezoldt/NAS2/pezoldt/Analysis/WGBS/FSC/Tables"
 
 #Param
 log2FC_RNA = 1.0
@@ -177,6 +178,11 @@ DMR_pLN_SPF_GF[,"Bsmooth_comp"] <- "pLN_SPF_GF"
 DMR_SPF_mLN_pLN[,"Bsmooth_comp"] <- "SPF_mLN_pLN"
 DMR_GF_mLN_pLN[,"Bsmooth_comp"] <- "GF_mLN_pLN"
 Bsmooth_list <- list(DMR_mLN_SPF_GF,DMR_pLN_SPF_GF, DMR_SPF_mLN_pLN, DMR_GF_mLN_pLN)
+
+#Write tables
+write.table(DMR_mLN_SPF_GF, paste(Output_PATH_DMRs,"/DMR_mLN_SPF_GF.txt",sep=""),sep="\t",dec=".")
+write.table(DMR_pLN_SPF_GF, paste(Output_PATH_DMRs,"/DMR_pLN_SPF_GF.txt",sep=""),sep="\t",dec=".")
+
 #reduce data content
 for(i in 1:length(Bsmooth_list)){
   data_i <- Bsmooth_list[[i]]
@@ -293,6 +299,7 @@ Bsmooth_CpGmeaned <- rbind(Bsmooth_CpGmeaned, Bsmooth_unique_CpGmeaned[[4]])
 #lack methylation value
 Bsmooth_CpGmeaned_NA <- na.omit(Bsmooth_CpGmeaned)
 Bsmooth_CpGmeaned_NA_complete <- Bsmooth_CpGmeaned_NA[!(Bsmooth_CpGmeaned_NA$nearest_gene_name == ""), ]
+print(paste("Total Number of non-overlapping DMRs:", nrow(Bsmooth_CpGmeaned_NA_complete)))
 #Bsmooth_CpGmeaned_NA_complete <- Bsmooth_CpGmeaned_NA[!(Bsmooth_CpGmeaned_NA$nearest_gene_name == "NaN"), ]
 
 #Mean genes with more than one DMR
@@ -331,16 +338,16 @@ df_DMR_mean_Bsmooth_CpGmeaned_dMeth <- cbind(df_DMR_mean_Bsmooth_CpGmeaned_dMeth
 df_DMR_mean_Bsmooth_CpGmeaned_dMeth_TSS <- subset(df_DMR_mean_Bsmooth_CpGmeaned_dMeth, distance_to_nearest_tss < 10000)
 
 #Demeth mLN
-Demeth_mLN <- subset(df_DMR_mean_Bsmooth_CpGmeaned_dMeth_TSS, dMeth_SPF_mLN_pLN < -0.15)
-Demeth_pLN <- subset(df_DMR_mean_Bsmooth_CpGmeaned_dMeth_TSS, dMeth_SPF_mLN_pLN > 0.15)
-Demeth_pLN_mLN <- subset(df_DMR_mean_Bsmooth_CpGmeaned_dMeth_TSS, abs(dMeth_SPF_mLN_pLN) > 0.15)
+Demeth_mLN <- subset(df_DMR_mean_Bsmooth_CpGmeaned_dMeth_TSS, dMeth_DMR_SPF_mLN_pLN < -0.15)
+Demeth_pLN <- subset(df_DMR_mean_Bsmooth_CpGmeaned_dMeth_TSS, dMeth_DMR_SPF_mLN_pLN > 0.15)
+Demeth_pLN_mLN <- subset(df_DMR_mean_Bsmooth_CpGmeaned_dMeth_TSS, abs(dMeth_DMR_SPF_mLN_pLN) > 0.15)
 #Heatmap
 data <- Demeth_pLN_mLN
 data_heatmap_matrix <- as.matrix(data[,c("pLN_GF","mLN_GF","pLN_SPF","mLN_SPF")])
 
 
 pheatmap(data_heatmap_matrix, cluster_rows = TRUE, legend = TRUE,
-         treeheight_row = 0, treeheight_col = 30, show_rownames = FALSE, cluster_cols = TRUE,
+         treeheight_row = 0, treeheight_col = 30, show_rownames = TRUE, cluster_cols = TRUE,
          scale = "none", border_color = "black", cellwidth = 10,
          cellheigth = 10, color = colorRampPalette(c("yellow", "green","blue"), space="rgb")(128))
 
@@ -658,8 +665,8 @@ pheatmap(data_heatmap, cluster_rows = TRUE, legend = TRUE,
 DARs_features_GF_SPF <- subset(DARs_features, (abs(log2FC_GF_mLN_pLN) >= log2FC_ATAC & padj_GF_mLN_pLN <= padj) |
                                  (abs(log2FC_SPF_mLN_pLN) >= log2FC_ATAC & padj_SPF_mLN_pLN <= padj) )
 DARs_features_GF_SPF_NA <- DARs_features_GF_SPF[!is.na(DARs_features_GF_SPF$symbol),]
-DARs_features_GF_SPF_NA_Prom <- subset(DARs_features_GF_SPF_NA, distancetoFeature >= -400 & distancetoFeature <= 10000)
-DARs_features_GF_SPF_NA_Prom_unique <- DARs_features_GF_SPF_NA_Prom[!duplicated(DARs_features_GF_SPF_NA_Prom[,c("symbol")]),]
+#DARs_features_GF_SPF_NA_Prom <- subset(DARs_features_GF_SPF_NA, distancetoFeature >= -400 & distancetoFeature <= 10000)
+DARs_features_GF_SPF_NA_unique <- DARs_features_GF_SPF_NA[!duplicated(DARs_features_GF_SPF_NA[,c("symbol")]),]
 
 
 #Heatmap

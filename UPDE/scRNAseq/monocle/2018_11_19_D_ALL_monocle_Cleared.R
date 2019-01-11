@@ -31,7 +31,7 @@ set.seed(123)
 condition = "day0_10_24_56_300"
 datasets <- c("d000","d010","d024","d056","d300")
 #Number of cells in which a gene should be expressed to be included in analysis
-num_cells_exp <- 25
+num_cells_exp <- 20
 #Export PATH
 PATH_output <- "/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/monocle/day0_10_24_56_300/Cleared"
 PATH_CDS_objects <- "/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/monocle/day0_10_24_56_300/Cleared/CDS_objects"
@@ -43,25 +43,25 @@ NC_Pezoldt_Pasztoi_2018 <- read.csv("/home/pezoldt/NAS2/pezoldt/Analysis/scRNAse
 #Load and compile data into cde object
 #####
 #Timepoint 1: e.g. neonatal/d0
-dir_d0 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/C11_neo_mLN"
+dir_d0 <- "/home/pezoldt/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/C11_neo_mLN"
 d0 <- load_cellranger_matrix(dir_d0, genome = "mm10")
 
 #Timepoint 2: e.g day10
-dir_d10 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/C12_d10_mLN"
+dir_d10 <- "/home/pezoldt/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/C12_d10_mLN"
 d10 <- load_cellranger_matrix(dir_d10, genome = "mm10")
 
 #Timepoint 3: e.g. day24
-dir_d24 <- "~/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/D1_d24_mLN"
+dir_d24 <- "/home/pezoldt/NAS2/pezoldt/Data/scRNAseq/270_2018-01-03_scRNA-Seq_mLN_ontogeny/Data/D1_d24_mLN"
 d24 <- load_cellranger_matrix(dir_d24, genome = "mm10")
 
 #Timepoint 4: e.g. day56 (merge two datasets)
-dir_d56 <- "~/NAS2/pezoldt/Data/scRNAseq/244_scRNA-Seq_mLN_pLN_SPF/Data/10X_results/L1700567_mLN_SPF"
+dir_d56 <- "/home/pezoldt/NAS2/pezoldt/Data/scRNAseq/244_scRNA-Seq_mLN_pLN_SPF/Data/10X_results/L1700567_mLN_SPF"
 d56 <- load_cellranger_matrix(dir_d56, genome = "mm10")
 #dir_d56_2 <- "~/NAS2/pezoldt/Data/scRNAseq/252_2017-07-19_scRNA-Seq_mLN_pLN_SPF_GF/Data/10x/mLN_SPF/B6"
 #d56_2 <- load_cellranger_matrix(dir_d56_2, genome = "mm10")
 
 #Timepoint 6: e.g. day300
-dir_d300 <- "~/NAS2/pezoldt/Data/scRNAseq/275_2018-04-23_scRNA-Seq_mLN_SPF_45wk/Data/E7_SPF_mLN_42wk"
+dir_d300 <- "/home/pezoldt/NAS2/pezoldt/Data/scRNAseq/275_2018-04-23_scRNA-Seq_mLN_SPF_45wk/Data/E7_SPF_mLN_42wk"
 d300 <- load_cellranger_matrix(dir_d300, genome = "mm10")
 
 #list datasets
@@ -89,8 +89,8 @@ l_cds <- lapply(l_GBCMs, function(x) {
 # Note: Selection performed via Seurat
 # At this stage of data processing both d0 Seurat and monocle object have the same number of cells
 # Choose cells over index of row
-PATH_Output <- "/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/seurat/Ontogney_Multialign"
-cells_include <- readRDS(paste(PATH_Output,"/Day0_cells_include_withCluster4.Rds", sep=""))
+PATH_Output <- "/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/seurat/Ontogney_Multialign/D0_to_D56"
+cells_include <- readRDS(paste(PATH_Output,"/Day0_cells_include.Rds", sep=""))
 #Row index
 index <- as.numeric(unlist(lapply(strsplit(cells_include, "_"), function(x){x[[3]]})))
 #make cds object for selection
@@ -325,7 +325,7 @@ plot_cell_clusters(cde_all, 1, 2, color = "Cluster", markers = c("Pecam1","Cd34"
 plot_cell_clusters(cde_all, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
 
 #Save RDS
-saveRDS(cde_all, file=paste(PATH_CDS_objects,"/day0_10_24_56_300_ALL_withCluster4.Rds",sep=""))
+saveRDS(cde_all, file=paste(PATH_CDS_objects,"/day0_10_24_56_300_ALL_withoutNEO.Rds",sep=""))
 
 #####
 #Endothelial cell subset identification
@@ -372,7 +372,7 @@ cde_SC <- cde_all[,SC_cells]
 cde_Endothelial <- cde_all[,Endothelial_cells]
 
 #Save RDS
-saveRDS(cde_Endothelial, file=paste(PATH_CDS_objects,"/day0_10_24_56_300_Endothelial_withCluster4.Rds",sep=""))
+saveRDS(cde_Endothelial, file=paste(PATH_CDS_objects,"/day0_10_24_56_300_Endothelial_withoutNEO.Rds",sep=""))
 
 
 ##############
@@ -401,24 +401,6 @@ saveRDS(cde_Endothelial, file=paste(PATH_CDS_objects,"/day0_10_24_56_300_Endothe
 #RCM_SC_export <- RCM_SC_export[,2:ncol(RCM_SC_export)]
 #write.table(RCM_SC_export, paste(PATH_output,"/RCM_SC_export.txt",sep=""), sep = "\t")
 
-###############
-#Analyze Endothelial cell
-###############
-#print(paste("Number of non-endothelial SC:", nrow(pData(Endothelial_cells))))
-#####
-#Regress and cluster
-#####
-#plot_pc_variance_explained(cde_Endothelial, return_all = F)
-#cde_Endothelial <- reduceDimension(cde_Endothelial, max_components = 2, num_dim = 11,
- #                         reduction_method = 'tSNE',
-#                          residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression",
- #                         #residualModelFormulaStr = "~Time_point",
-  #                        verbose = T)
-#cde_Endothelial <- clusterCells(cde_Endothelial, num_clusters = 13)
-#plot_cell_clusters(cde_Endothelial, 1, 2, color = "Time_point")
-#plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-#plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster", markers = c("Pecam1")) + facet_wrap(~Time_point)
-#plot_cell_clusters(cde_Endothelial, 1, 2, color = "Cluster")
 
 ###############
 #Analyze SC cell
@@ -453,8 +435,8 @@ plot_cell_clusters(cde_SC, 1, 2, color = "Cluster", markers = c("Vcam1","Icam1",
                    cell_size = 0.5)
 
 #Save RDS
-saveRDS(cde_SC, file=paste(PATH_CDS_objects,"/day0_10_24_56_300_SC.Rds",sep=""))
-cde_SC <- readRDS(file=paste(PATH_CDS_objects,"/day0_10_24_56_300_SC.Rds",sep=""))
+saveRDS(cde_SC, file=paste(PATH_CDS_objects,"/day0_10_24_56_300_SC_withoutNEO.Rds",sep=""))
+cde_SC <- readRDS(file=paste(PATH_CDS_objects,"/day0_10_24_56_300_SC_withoutNEO.Rds",sep=""))
 #####
 #Separate SCs into subsets
 #####
@@ -492,9 +474,9 @@ PvC_score <- colSums(do.call("rbind", PvC.classificator))
 
 #Get all clusters with expression above threshold
 # Note: Manually check average expressions
-PvC_subsets <- PvC_score[PvC_score >= 15]
+PvC_subsets <- PvC_score[PvC_score >= 12]
 PvC_subsets
-nonPvC_subsets <- PvC_score[PvC_score < 15]
+nonPvC_subsets <- PvC_score[PvC_score < 12]
 nonPvC_subsets
 
 #Separate data in to Endothelial and SC
@@ -509,59 +491,6 @@ cde_PvC <- cde_SC[,PvC_cells]
 
 print(paste("Number of nonPvC SC:", nrow(pData(cde_nonPvC))))
 print(paste("Number of PvC SC:", nrow(pData(cde_PvC))))
-######
-#LTO gene------------------------------
-######
-LTO.genes <- c("Vcam1","Icam1","Tnfsf11","Cxcl13")
-#get ensemble Ids
-LTO.genes.ensembl <- subset(fData(cde_SC), gene_short_name %in% LTO.genes)$id
-#subset expression matrix and perform colmeans per cell
-LTO.genes_expr <- as.matrix(exprs(cde_SC)[rownames(exprs(cde_all)) %in% LTO.genes.ensembl,])
-#Add_expression as columns to pData()
-pData(cde_SC) <- cbind(pData(cde_SC),t(LTO.genes_expr))
-colnames(pData(cde_SC))[(ncol(pData(cde_SC))-3):ncol(pData(cde_SC))] <- LTO.genes
-#Calculate mean expression of LTO genes
-# For each cluster calculate mean expression for Endothelial genes
-# Store cluster IDs in vector
-LTO.classificator <- list()
-LTO.classificator_j <- c()
-for(j in 1:length(LTO.genes)){
-  LTO.genes_j <- LTO.genes[j]
-  for(i in seq(length(levels(pData(cde_SC)$Cluster)))){
-    cluster_ID_i <- levels(pData(cde_SC)$Cluster)[i]
-    print(cluster_ID_i)
-    mean_LTO.genes <- mean(subset(pData(cde_SC), Cluster %in% cluster_ID_i)[,LTO.genes_j])
-    print(mean_LTO.genes)
-    LTO.classificator_j[i] <- mean_LTO.genes
-  }
-  names(LTO.classificator_j) <- levels(pData(cde_SC)$Cluster)
-  LTO.classificator[[j]] <- LTO.classificator_j
-}
-names(LTO.classificator) <- rev(LTO.genes)
-
-#Make table from list
-do.call("rbind", LTO.classificator)
-LTO_score <- colSums(do.call("rbind", LTO.classificator))
-
-#Get all clusters with expression above threshold
-# Note: Manually check average expressions
-LTO_subsets <- LTO_score[LTO_score >= 15]
-LTO_subsets
-nonLTO_subsets <- LTO_score[LTO_score < 15]
-nonLTO_subsets
-
-#Separate data in to Endothelial and SC
-LTO_cells <- row.names(subset(pData(cde_nonPvC),
-                              Cluster %in% names(LTO_subsets)))
-nonLTO_cells <- row.names(subset(pData(cde_nonPvC),
-                                 Cluster %in% names(nonLTO_subsets)))
-
-#Generate cds object for Endothelial and SC cells
-cde_nonLTO <- cde_nonPvC[,nonLTO_cells]
-cde_LTO <- cde_nonPvC[,LTO_cells]
-
-print(paste("Number of nonLTO SC:", nrow(pData(cde_nonLTO))))
-print(paste("Number of LTO SC:", nrow(pData(cde_LTO))))
 
 #########
 #Building trajectories SC------------------------------
@@ -583,16 +512,6 @@ cde_SC <- reduceDimension(cde_SC, max_components = 2, method = 'DDRTree')
 cde_SC <- orderCells(cde_SC)
 
 #Inferring the genes----------------------------------------------
-#diff_test_res <- differentialGeneTest(cde_SC[expressed_genes,],
- #                                     "~Total_mRNAs + mito_expression + ribo_expression + Time_point",
-  #                                    cores = 8)
-#diff_test_res_test <- differentialGeneTest(cde_nonLTO[expressed_genes, pData(cde_nonLTO)$Cluster %in% c(1, 9)], fullModelFormulaStr="~Cluster", cores = 8)
-#DEG_1_9 <- subset(diff_test_res, qval < 0.0000001)
-#ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
-# Note: time trajectories are usefull to identify key genes
-#       but not required
-#Set trajectory genes in cde
-#cde_nonPvC <- readRDS(file=paste(PATH_CDS_objects,condition,"/CDS_objects","/day0_10_24_56_300_nonPvC.Rds",sep=""))
 plot_cell_trajectory(cde_SC, color_by = "Pseudotime")
 plot_cell_trajectory(cde_SC, markers = c("Cdk1","Aldh1a2","Cxcl13","Cd34","Acta2"), use_color_gradient = TRUE, cell_size = 0.5)
 plot_cell_trajectory(cde_SC, markers = c("Bst1","Pdpn","Pdgfrb","Cd34"), use_color_gradient = TRUE, cell_size = 0.5)
@@ -602,7 +521,7 @@ cde_SC <- orderCells(cde_SC, root_state = 1)
 
 plot_cell_trajectory(cde_SC, color_by = "State") + facet_wrap(~Cluster)
 plot_cell_trajectory(cde_SC, color_by = "State") + facet_wrap(~Time_point)
-plot_cell_trajectory(cde_SC, color_by = "State", markers = c("Ltbr"), use_color_gradient = TRUE)  + facet_wrap(~Time_point)
+plot_cell_trajectory(cde_SC, color_by = "State", markers = c("Cxcl13"), use_color_gradient = TRUE)  + facet_wrap(~Time_point)
 plot_cell_trajectory(cde_SC, markers = c("Cdk1"), use_color_gradient = TRUE) + facet_wrap(~Time_point)
 
 plot_complex_cell_trajectory(cde_SC, color_by = 'State', show_branch_points = T,
@@ -610,66 +529,9 @@ plot_complex_cell_trajectory(cde_SC, color_by = 'State', show_branch_points = T,
 plot_complex_cell_trajectory(cde_SC, color_by = 'State', show_branch_points = T,
                              cell_size = 0.5, cell_link_size = 0.3, root_states = c(2))  + facet_wrap(~Cluster)
 
-#Save RDS
-saveRDS(cde_SC, file=paste(PATH_CDS_objects,"/day0_10_24_56_300_SC.Rds",sep=""))
-cde_nonPvC <- readRDS(file=paste(PATH_CDS_objects,"/day0_10_24_56_300_nonPvC.Rds",sep=""))
-#cde_nonPvC <- readRDS("/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/monocle/day0_10_24_56_300/CDS_objects/day0_10_24_56_300_nonPvC.Rds")
 
 
 
-#####
-#Regress and cluster nonLTO
-#####
-plot_pc_variance_explained(cde_nonLTO, return_all = F)
-cde_nonLTO <- reduceDimension(cde_nonLTO, max_components = 2, num_dim = 10,
-                                   reduction_method = 'tSNE',
-                                   residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression + Time_point",
-                                   verbose = T)
-cde_nonLTO <- clusterCells(cde_nonLTO, num_clusters = 10)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster") + facet_wrap(~Time_point)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
-                                                                         "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
-                                                                         "Cd248","Gdf10","Cxcl9","Has1","Ackr3"),cell_size = 0.5)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Ackr3"),cell_size = 1.0)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Aldh1a2"),cell_size = 1.0)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Cd34"),cell_size = 1.0)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Il6"),cell_size = 1.0)
-
-#####
-#Building trajectories nonLTO------------------------------
-#####
-#Reduce dimensionality
-cde_nonLTO <- reduceDimension(cde_nonLTO, max_components = 2, method = 'DDRTree')
-#Build trajectory
-cde_nonLTO <- orderCells(cde_nonLTO)
-
-#Inferring the genes----------------------------------------------
-diff_test_res <- differentialGeneTest(cde_nonLTO[expressed_genes,],
-                                      "~Total_mRNAs + mito_expression + ribo_expression + Time_point",
-                                      cores = 8)
-#diff_test_res_test <- differentialGeneTest(cde_nonLTO[expressed_genes, pData(cde_nonLTO)$Cluster %in% c(1, 9)], fullModelFormulaStr="~Cluster", cores = 8)
-#DEG_1_9 <- subset(diff_test_res, qval < 0.0000001)
-ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
-# Note: time trajectories are usefull to identify key genes
-#       but not required
-#Set trajectory genes in cde
-
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10) + facet_wrap(~Time_point)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
-plot_cell_clusters(cde_nonLTO, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
-                                                                    "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
-                                                                    "Cd248","Gdf10","Cxcl9","Has1","Ackr3"), cell_size = 0.5)
-plot_cell_trajectory(cde_nonLTO, color_by = "State") + facet_wrap(~Time_point)
-plot_cell_trajectory(cde_nonLTO, color_by = "State", markers = c("Cd34"), use_color_gradient = TRUE)
-plot_cell_trajectory(cde_nonLTO, color_by = "State", markers = c("Cd34"), use_color_gradient = TRUE) + facet_wrap(~Time_point)
-
-plot_complex_cell_trajectory(cde_nonLTO, color_by = 'State', show_branch_points = T,
-                             cell_size = 0.5, cell_link_size = 0.3, root_states = c(2))
-
-#Save RDS
-saveRDS(cde_nonLTO, file=paste(PATH_CDS_objects,condition,"/CDS_objects","/day0_10_24_56_300_nonLTO.Rds",sep=""))
-saveRDS(cde_LTO, file=paste(PATH_CDS_objects,condition,"/CDS_objects","/day0_10_24_56_300_LTO.Rds",sep=""))
 
 #########
 #Building trajectories nonPvC------------------------------
@@ -678,13 +540,31 @@ cde_nonPvC <- reduceDimension(cde_nonPvC, max_components = 2, num_dim = 10,
                               reduction_method = 'tSNE',
                               residualModelFormulaStr = "~Total_mRNAs + mito_expression + ribo_expression + Time_point",
                               verbose = T)
-cde_nonPvC <- clusterCells(cde_nonPvC, num_clusters = 15)
+cde_nonPvC <- clusterCells(cde_nonPvC, num_clusters = 14)
+plot_cell_clusters(cde_nonPvC, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10) + facet_wrap(~Cluster)
 plot_cell_clusters(cde_nonPvC, 1, 2, color = "Cluster", show_cell_names = TRUE, cell_name_size = 10) + facet_wrap(~Time_point)
-plot_cell_clusters(cde_nonPvC, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Time_point)
+plot_cell_clusters(cde_nonPvC, 1, 2, color = "Cluster", markers = c("Cd34")) + facet_wrap(~Cluster)
 plot_cell_clusters(cde_nonPvC, 1, 2, color = "Cluster", markers = c("Cd34","Tnfsf11","Aldh1a2","Cxcl13",
-                                                                    "Nfkb1","Ltbr","Icam1","Vcam1","Acta2",
-                                                                    "Cd248","Gdf10","Cxcl9","Has1","Ackr3",
+                                                                    "Ccl19","Vcam1",
+                                                                    "Cd248","Gdf10","Madcam1","Ackr3",
                                                                     "Cdk1","Il6"), cell_size = 0.5)
+
+#"Clock","Hoxb3","Prrx1","Gata6",
+#####
+#Rename Clusters
+#####
+#current.cluster.ids <- c("Cd34+Aldh1a2+","Ccl19+Il7+","NEOx","Il6+Cxcl1+",
+ #                        "SCx","Cd34+Aldh1a2+","?SC?","Ccl19+Madcam+","ProgProf",
+  #                       "Inmt+Cxcl12+","Inmt+","prePvC","LTO")
+#current.cluster.ids <- c("1","2","3","4","5","6","7","8","9","10","11","12","13")
+
+#new.cluster.ids <- c("Cd34+Aldh1a2+","Ccl19+Il7+","NEOx","Il6+Cxcl1+",
+ #                    "SCx","Cd34+Aldh1a2+","TransSC","Ccl19+Madcam+","ProgProf",
+  #                   "Inmt+Cxcl12+","Inmt+","preAdv","LTO")
+
+#pData(cde_nonPvC)$Cluster <- plyr::mapvalues(x = pData(cde_nonPvC)$Cluster, from = current.cluster.ids, to = new.cluster.ids)
+
+
 #Reduce dimensionality
 cde_nonPvC <- reduceDimension(cde_nonPvC, max_components = 2, method = 'DDRTree')
 #Build trajectory
@@ -702,16 +582,19 @@ ordering_genes <- row.names(subset(diff_test_res, qval < 0.01))
 #Set trajectory genes in cde
 #cde_nonPvC <- readRDS(file=paste(PATH_CDS_objects,condition,"/CDS_objects","/day0_10_24_56_300_nonPvC.Rds",sep=""))
 plot_cell_trajectory(cde_nonPvC, color_by = "Pseudotime")
-plot_cell_trajectory(cde_nonPvC, markers = c("Cdk1","Aldh1a2","Cxcl13","Cd34"), use_color_gradient = TRUE, cell_size = 0.5)
+plot_cell_trajectory(cde_nonPvC, markers = c("Cdk1","Cxcl13","Cd34"), use_color_gradient = TRUE, cell_size = 0.5)
+
 
 #Set root state
 cde_nonPvC <- orderCells(cde_nonPvC, root_state = 2)
 
-plot_cell_trajectory(cde_nonPvC, color_by = "State") + facet_wrap(~Cluster)
+plot_cell_trajectory(cde_nonPvC, color_by = "Cluster") + facet_wrap(~Cluster)
 plot_cell_trajectory(cde_nonPvC, color_by = "State") + facet_wrap(~Time_point)
-plot_cell_trajectory(cde_nonPvC, color_by = "State", markers = c("Cxcl13"), use_color_gradient = TRUE)
+plot_cell_trajectory(cde_nonPvC, color_by = "State", markers = c("Cd34"), use_color_gradient = TRUE)
 plot_cell_trajectory(cde_nonPvC, markers = c("Cxcl13"), use_color_gradient = TRUE) + facet_wrap(~Time_point)
 
+plot_complex_cell_trajectory(cde_nonPvC, color_by = 'State', show_branch_points = F,
+                             cell_size = 0.5, cell_link_size = 0.3, root_states = c(2))
 plot_complex_cell_trajectory(cde_nonPvC, color_by = 'State', show_branch_points = F,
                              cell_size = 0.5, cell_link_size = 0.3, root_states = c(2))  + facet_wrap(~Time_point)
 plot_complex_cell_trajectory(cde_nonPvC, show_branch_points = F,
@@ -719,9 +602,8 @@ plot_complex_cell_trajectory(cde_nonPvC, show_branch_points = F,
                              cell_link_size = 0.3, root_states = c(2))
 
 #Save RDS
-saveRDS(cde_nonPvC, file=paste(PATH_CDS_objects,"/day0_10_24_56_300_nonPvC_withCluster4.Rds",sep=""))
-cde_nonPvC <- readRDS(file=paste(PATH_CDS_objects,"/day0_10_24_56_300_nonPvC.Rds",sep=""))
-#cde_nonPvC <- readRDS("/home/pezoldt/NAS2/pezoldt/Analysis/scRNAseq/monocle/day0_10_24_56_300/CDS_objects/day0_10_24_56_300_nonPvC.Rds")
+#saveRDS(cde_nonPvC, file=paste(PATH_CDS_objects,"/day0_10_24_56_300_nonPvC_withoutNEO.Rds",sep=""))
+cde_nonPvC <- readRDS(file=paste(PATH_CDS_objects,"/day0_10_24_56_300_nonPvC_withoutNEO.Rds",sep=""))
 
 #####
 #Extract RCM of CDE per Stage
@@ -739,20 +621,24 @@ States <- levels(pData(cde_RCM_export)$State)
 for(i in 1:length(States)){
   #Get State
   State_i <- as.numeric(States[i])
+  print(State_i)
   #Get cells in state and obtain RCM
-  Cells_state_i <- row.names(subset(pData(cde_RCM_export), State == State_i))
+  Cells_state_i <- row.names(subset(pData(cde_RCM_export), Time_point == "d024" & State == State_i))
   RCM_export_i <- as.matrix(exprs(cde_RCM_export)[,Cells_state_i])
   
   #Rename RCM
   genes <- rownames(RCM_export_i)
   RCM_export_i <- cbind(genes, RCM_export_i)
+  print(ncol(RCM_export_i))
   rownames(RCM_export_i) <- c()
   RCM_export_i <- merge(G_list,RCM_export_i,by.x="ensembl_gene_id",by.y="genes")
   RCM_export_i <- RCM_export_i[,2:ncol(RCM_export_i)]
   #Export RCM for usage in progenitor profile
-  write.table(RCM_export_i, paste(PATH_output,"/",name,"_",State_i,".txt",sep=""), sep = "\t")
+  write.table(RCM_export_i, paste(PATH_output,"/",name,"_d24_",State_i,".txt",sep=""), sep = "\t")
 }
 
+save_pData <- subset(pData(cde_RCM_export), Time_point == "d024")
+write.table(save_pData, paste(PATH_output,"/",name,"_d24_phenotypicalData",".txt",sep=""), sep = "\t")
 
 #Generate ReadCountMatrix with GeneSymbols for export
 RCM_export <- as.matrix(exprs(cde_RCM_export))
@@ -769,22 +655,23 @@ write.table(RCM_export, paste(PATH_output,"/",name,"txt",sep=""), sep = "\t")
 #Extract RCM of CDE per Cluster
 #####
 # Note: Input required
-cde_RCM_export <- cde_stage_2
-name <- "RCM_cde_nonPvC_stage_2"
+cde_RCM_export <- cde_selected
+name <- "RCM_Progenitors"
 
 #Prep Biomart intel
 mart <- useDataset("mmusculus_gene_ensembl", useMart("ensembl"))
 G_list <- getBM(filters= "ensembl_gene_id", attributes= c("ensembl_gene_id","mgi_symbol"),values=genes,mart= mart)
 
 #Stages
-Clusters <- c("3","4")
+Clusters <- levels(as.factor(pData(cde_RCM_export)$Cluster))
 for(i in 1:length(Clusters)){
   #Get State
   Clusters_i <- as.numeric(Clusters[i])
   #Get cells in state and obtain RCM
   Cells_cluster_i <- row.names(subset(pData(cde_RCM_export), Cluster == Clusters_i))
   RCM_export_i <- as.matrix(exprs(cde_RCM_export)[,Cells_cluster_i])
-  
+  print(Clusters_i)
+  print(ncol(RCM_export_i))
   #Rename RCM
   genes <- rownames(RCM_export_i)
   RCM_export_i <- cbind(genes, RCM_export_i)
@@ -792,8 +679,14 @@ for(i in 1:length(Clusters)){
   RCM_export_i <- merge(G_list,RCM_export_i,by.x="ensembl_gene_id",by.y="genes")
   RCM_export_i <- RCM_export_i[,2:ncol(RCM_export_i)]
   #Export RCM for usage in progenitor profile
-  write.table(RCM_export_i, paste(PATH_output,"/",name,"_Cluster_",Clusters_i,".txt",sep=""), sep = "\t")
+  write.table(RCM_export_i, paste(PATH_output,"/",name,"_Cluster_","_d56_d300_State7",".txt",sep=""), sep = "\t")
 }
+
+#combine defined clusters
+Cluster_3 <- read.delim(paste(PATH_output,"/",name,"_Cluster_","3",".txt",sep=""))
+Cluster_4 <- read.delim(paste(PATH_output,"/",name,"_Cluster_","4",".txt",sep=""))
+Cluster_3_4 <- cbind(Cluster_3,Cluster_4)
+write.table(Cluster_3_4, paste(PATH_output,"/",name,"_Cluster_","3_4",".txt",sep=""), sep = "\t")
 
 
 #Generate ReadCountMatrix with GeneSymbols for export
@@ -805,7 +698,7 @@ rownames(RCM_export) <- c()
 G_list <- getBM(filters= "ensembl_gene_id", attributes= c("ensembl_gene_id","mgi_symbol"),values=genes,mart= mart)
 RCM_export <- merge(G_list,RCM_export,by.x="ensembl_gene_id",by.y="genes")
 RCM_export <- RCM_export[,2:ncol(RCM_export)]
-write.table(RCM_export, paste(PATH_output,"/",name,"txt",sep=""), sep = "\t")
+write.table(RCM_export, paste(PATH_output,"/",name,".txt",sep=""), sep = "\t")
 
 #####
 #select Stage / Cluster and rerun Trajectory
@@ -1015,17 +908,17 @@ plot_genes_branched_heatmap(cde_nonPvC[row.names(subset(l_BEAM_res[[2]],
                             show_rownames = T,
                             branch_colors = c("blue", "white", "red"))
 
-saveRDS(l_BEAM_res, paste(PATH_output,"/","BEMA_day0_10_24_56_300_nonPvC.rds",sep=""))
+saveRDS(l_BEAM_res, paste(PATH_output,"/","BEAM_day0_10_24_56_300_nonPvC_Named.rds",sep=""))
 
 
 #Identify TFs at branching points
 # Use TF list from Genomatix
 Genomatix_murineTFs <- read.table("/home/pezoldt/NAS2/pezoldt/Analysis/WGBS/FSC/Genomatix_TF/ANNa/Mouse/Genomatix_murineTFs_OnlyNames.txt",
-                                  sep = "\t", col.names = TRUE)
+                                  sep = "\t", skip = 1)
 # DMR TFs
-mLN_hypo <- read.table("/home/pezoldt/NAS2/pezoldt/Analysis/WGBS/FSC/Genomatix_TF/ANNa/Mouse/To_Use/Compiled_TFs_Genomatix_hypo_all.txt")
+mLN_hypo <- read.table("/home/pezoldt/NAS2/pezoldt/Analysis/WGBS/FSC/Genomatix_TF/ANNa/Mouse/To_Use/Output/Compiled_TFs_Genomatix_hypo_all.txt")
 mLN_hypo_TF <- as.character(mLN_hypo$V1)
-mLN_hyper <- read.table("/home/pezoldt/NAS2/pezoldt/Analysis/WGBS/FSC/Genomatix_TF/ANNa/Mouse/To_Use/Compiled_TFs_Genomatix_hyper_all.txt")
+mLN_hyper <- read.table("/home/pezoldt/NAS2/pezoldt/Analysis/WGBS/FSC/Genomatix_TF/ANNa/Mouse/To_Use/Output/Compiled_TFs_Genomatix_hyper_all.txt")
 mLN_hyper_TF <- as.character(mLN_hyper$V1)
 
 # DAR TFs existence matrix
@@ -1045,6 +938,20 @@ Unique_mLN_Open_None <- rownames(subset(DAR_existence_matrix,
                                pLN_Open_None == 0 &
                                mLN_Open_None == 1))
 
+Common_used <- rownames(subset(DAR_existence_matrix, 
+                                        !(pLN_Open_UP == 0 &
+                                          mLN_Open_UP == 0 &
+                                          pLN_peak_UP == 0 &
+                                          mLN_peak_UP == 0 &
+                                          pLN_Open_None == 0 &
+                                          mLN_Open_None == 1) |
+                                          !(pLN_Open_UP == 0 &
+                                          mLN_Open_UP == 0 &
+                                          pLN_peak_UP == 1 &
+                                          mLN_peak_UP == 0 &
+                                          pLN_Open_None == 0 &
+                                          mLN_Open_None == 0)))
+
 #Eliminate ribosomal genes from branch defining list
 TFs_genomatix <- Genomatix_murineTFs$V2
 #get ensemble Ids
@@ -1053,49 +960,100 @@ BEAM_mLN_hypo_TF <- subset(l_BEAM_res[[2]], gene_short_name %in% mLN_hypo_TF)
 BEAM_mLN_hyper_TF <- subset(l_BEAM_res[[2]], gene_short_name %in% mLN_hyper_TF)
 BEAM_mLN_Unique_pLN_peak_UP <- subset(l_BEAM_res[[2]], gene_short_name %in% Unique_pLN_peak_UP)
 BEAM_mLN_Unique_mLN_Open_None <- subset(l_BEAM_res[[2]], gene_short_name %in% Unique_mLN_Open_None)
-
+BEAM_Common_pLN_peak_UP_mLN_Open_None <- subset(l_BEAM_res[[2]], gene_short_name %in% Common_pLN_peak_UP_mLN_Open_None)
+BEAM_Common_used <- subset(l_BEAM_res[[2]], gene_short_name %in% Common_used)
 plot_genes_branched_heatmap(cde_nonPvC[row.names(subset(BEAM_mLN_hypo_TF,
                                                         qval < 5*1e-2)),],
                             branch_point = 2,
-                            num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
+                            #num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
                             cores = 8,
                             use_gene_short_name = T,
-                            show_rownames = T)
+                            show_rownames = T,
+                            branch_labels = c("NonAdv", "Adv"))
 
 plot_genes_branched_heatmap(cde_nonPvC[row.names(subset(BEAM_mLN_hyper_TF,
                                                         qval < 5*1e-2)),],
                             branch_point = 2,
-                            num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
+                            #num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
                             cores = 8,
                             use_gene_short_name = T,
-                            show_rownames = T)
+                            show_rownames = T,
+                            branch_labels = c("NonAdv", "Adv"))
 
 plot_genes_branched_heatmap(cde_nonPvC[row.names(subset(BEAM_mLN_Unique_pLN_peak_UP,
                                                         qval < 5*1e-2)),],
                             branch_point = 2,
-                            num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
+                            #num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
                             cores = 8,
                             use_gene_short_name = T,
-                            show_rownames = T)
+                            show_rownames = T,
+                            branch_labels = c("NonAdv", "Adv"))
+
+plot_genes_branched_heatmap(cde_nonPvC[row.names(subset(BEAM_mLN_Unique_mLN_Open_None,
+                                                        qval < 5*1e-2)),],
+                            branch_point = 2,
+                            #num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
+                            cores = 8,
+                            use_gene_short_name = T,
+                            show_rownames = T,
+                            branch_labels = c("NonAdv", "Adv"))
+
+plot_genes_branched_heatmap(cde_nonPvC[row.names(subset(BEAM_Common_pLN_peak_UP_mLN_Open_None,
+                                                        qval < 5*1e-2)),],
+                            branch_point = 2,
+                            #num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
+                            cores = 8,
+                            use_gene_short_name = T,
+                            show_rownames = T,
+                            branch_labels = c("NonAdv", "Adv"))
+
+plot_genes_branched_heatmap(cde_nonPvC[row.names(subset(BEAM_Common_used,
+                                                        qval < 5*1e-2)),],
+                            branch_point = 2,
+                            #num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
+                            cores = 8,
+                            use_gene_short_name = T,
+                            show_rownames = T,
+                            branch_labels = c("NonAdv", "Adv"))
+
+
+
 
 test <- rbind(BEAM_mLN_Unique_mLN_Open_None,BEAM_mLN_Unique_pLN_peak_UP)
 
 plot_genes_branched_heatmap(cde_nonPvC[row.names(subset(test,
                                                         qval < 5*1e-2)),],
                             branch_point = 2,
-                            num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
+                            #num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
                             cores = 8,
                             use_gene_short_name = T,
-                            show_rownames = T)
+                            show_rownames = T,
+                            branch_labels = c("NonAdv", "Adv"))
 
 plot_genes_branched_heatmap(cde_nonPvC[row.names(BEAM_mLN_hyper_TF),],
                             branch_point = 2,
                             num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
                             cores = 8,
                             use_gene_short_name = T,
-                            show_rownames = T)
+                            show_rownames = T,
+                            branch_labels = c("NonAdv", "Adv"))
 
+plot_genes_branched_heatmap(cde_nonPvC[row.names(BEAM_Common_pLN_peak_UP_mLN_Open_None),],
+                            branch_point = 2,
+                            num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
+                            cores = 8,
+                            use_gene_short_name = T,
+                            show_rownames = T,
+                            branch_labels = c("NonAdv", "Adv"))
 
+plot_genes_branched_heatmap(cde_nonPvC[row.names(subset(l_BEAM_res[[3]],
+                                                   qval < 1e-10)),],
+                            branch_point = 1,
+                            num_clusters = length(levels(as.factor(pData(cde_nonPvC)$Cluster))),
+                            cores = 8,
+                            use_gene_short_name = T,
+                            show_rownames = F,
+                            branch_labels = c("NonAdv", "Adv"))
 
 #####
 #Plot Genes expression
@@ -1172,7 +1130,7 @@ names(l_BEAM_res) <- paste("Branch", c(1:2), sep = "_")
 
 
 saveRDS(l_BEAM_res, paste(PATH_output,"/","BEAM_D0_res_all.rds",sep=""))
-l_BEAM_res <- readRDS(paste(PATH_output,"/","BEAM_D0_res_all.rds",sep=""))
+l_BEAM_res <- readRDS(paste(PATH_output,"/","BEMA_day0_10_24_56_300_nonPvC.rds",sep=""))
 #Eliminate ribosomal genes from branch defining list
 rpl.genes <- grep(pattern = "^Rpl", x = l_BEAM_res[[2]]$gene_short_name, value = TRUE)
 rps.genes <- grep(pattern = "^Rps", x = l_BEAM_res[[2]]$gene_short_name, value = TRUE)
@@ -1199,7 +1157,7 @@ plot_genes_branched_heatmap(cde_x[row.names(subset(l_BEAM_res[[2]],
                             use_gene_short_name = T,
                             show_rownames = T)
 
- #Branch 3
+#Branch 3
 plot_genes_branched_heatmap(cde_x[row.names(subset(l_BEAM_res[[2]],
                                                    qval < 1e-40)),],
                             branch_point = 1,

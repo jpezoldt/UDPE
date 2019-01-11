@@ -13,8 +13,8 @@
 #####
 #PATH & Global Variables
 #####
-PATH_input <- "C:/Users/pezoldt/Desktop/ANNa"
-PATH_output <- "C:/Users/pezoldt/Desktop/ANNa"
+PATH_input <- "/home/pezoldt/NAS2/pezoldt/Analysis/WGBS/FSC/Genomatix_TF/ANNa/Mouse/To_Use"
+PATH_output <- "/home/pezoldt/NAS2/pezoldt/Analysis/WGBS/FSC/Genomatix_TF/ANNa/Mouse/To_Use/Output"
 
 #Global variables
 Z_score_overrepresentation <- 2
@@ -61,11 +61,39 @@ for(i in 1:length(Genomatix_list)){
 
 names(l_TFs_genomatix) <- Genomatix_dataset_names
 #Save vectors as tables
-for(i in 1:length(l_TFs_genomatix)){
-  save_it_i <- l_TFs_genomatix[[i]]
-  name_i <- names(l_TFs_genomatix)[i]
-  write.table(save_it_i,paste(PATH_output,"/Compiled_TFs_",name_i,".txt",sep=""),
-              sep="\t",quote = FALSE,row.names = FALSE, col.names = FALSE)
-  
-}
+#Certain TF GeneSymbols need to be curated (e.g. "-" in Nkx2-3)
+#for(i in 1:length(l_TFs_genomatix)){
+#  save_it_i <- l_TFs_genomatix[[i]]
+#  name_i <- names(l_TFs_genomatix)[i]
+#  write.table(save_it_i,paste(PATH_output,"/Compiled_TFs_",name_i,".txt",sep=""),
+#              sep="\t",quote = FALSE,row.names = FALSE, col.names = FALSE)
+#}
+
+#Check overlap of identified TFs
+# All
+Genomatix_hyper_TFs_all <- read.delim(paste(PATH_output, "/Compiled_TFs_Genomatix_hyper_all.txt",sep=""), col.names = "GeneSymbol")
+Genomatix_hypo_TFs_all <- read.delim(paste(PATH_output, "/Compiled_TFs_Genomatix_hypo_all.txt",sep=""), col.names = "GeneSymbol")
+
+Genomatix_hyper_TFs_all <- Genomatix_hyper_TFs_all[!duplicated(Genomatix_hyper_TFs_all$GeneSymbol),]
+Genomatix_hypo_TFs_all <- Genomatix_hypo_TFs_all[!duplicated(Genomatix_hypo_TFs_all$GeneSymbol),]
+
+write.table(Genomatix_hyper_TFs_all,paste(PATH_output, "/Compiled_TFs_Genomatix_hyper_all_nondup.txt",sep=""), sep = "\t")
+write.table(Genomatix_hypo_TFs_all,paste(PATH_output, "/Compiled_TFs_Genomatix_hypo_all_nondup.txt",sep=""), sep = "\t")
+
+#Thresh
+Genomatix_hyper_TFs_thresh <- read.delim(paste(PATH_output, "/Compiled_TFs_Genomatix_hyper_thresh.txt",sep=""), col.names = "GeneSymbol")
+Genomatix_hypo_TFs_thresh <- read.delim(paste(PATH_output, "/Compiled_TFs_Genomatix_hypo_thresh.txt",sep=""), col.names = "GeneSymbol")
+
+Genomatix_hyper_TFs_thresh <- Genomatix_hyper_TFs_thresh[!duplicated(Genomatix_hyper_TFs_thresh$GeneSymbol),]
+Genomatix_hypo_TFs_thresh <- Genomatix_hypo_TFs_thresh[!duplicated(Genomatix_hypo_TFs_thresh$GeneSymbol),]
+
+write.table(Genomatix_hyper_TFs_thresh,paste(PATH_output, "/Compiled_TFs_Genomatix_hyper_thresh_nondup.txt",sep=""), sep = "\t")
+write.table(Genomatix_hypo_TFs_thresh,paste(PATH_output, "/Compiled_TFs_Genomatix_hypo_thresh_nondup.txt",sep=""), sep = "\t")
+
+
+Overlap_TFs_Meth <- Genomatix_hyper_TFs_thresh[Genomatix_hyper_TFs_all %in% Genomatix_hypo_TFs_all]
+
+length(Overlap_TFs_Meth)
+length(Genomatix_hyper_TFs_all) - length(Overlap_TFs_Meth)
+length(Genomatix_hypo_TFs_all) - length(Overlap_TFs_Meth)
 

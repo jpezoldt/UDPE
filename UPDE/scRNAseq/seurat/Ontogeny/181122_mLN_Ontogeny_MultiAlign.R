@@ -463,7 +463,7 @@ p6 <- TSNEPlot(mLN_Ontogeny_minus.merged, group.by = "tech", do.return = T, pt.s
                colors.use = c("orange","green","blue","purple"))
 par(mfrow = c(3, 2))
 plot_grid(p1, p2, p3, p4, p5, p6)
-plot_grid(p5,p6)
+ plot_grid(p5,p6)
 
 FeaturePlot(mLN_Ontogeny_minus.merged, features.plot = c("Tnfsf11","Tnfsf13b","Acta2","Ccl19",
                                                        "Madcam1","Ltbr","Tnfsf13b","Il6", 
@@ -474,8 +474,14 @@ FeaturePlot(mLN_Ontogeny_minus.merged, features.plot = c("Tnfsf11","Tnfsf13b","A
             cols.use = c('lightgrey', 'brown'),
             pt.size = 0.2)
 
+FeaturePlot(mLN_Ontogeny_minus.merged, features.plot = c("Igf1","Igf2",
+                                                         "Igfbp2","Igfbp4","Igfbp5","Igfbp6","Igfbp7",
+                                                         "Igf1r","Igf2r"),
+            min.cutoff = "q9",
+            cols.use = c('lightgrey', 'brown'),
+            pt.size = 0.2)
 
-saveRDS(mLN_Ontogeny_minus.merged, paste(PATH_Output,"/MultiAlign_D0_D10_D24_D56.Rds", sep=""))
+#saveRDS(mLN_Ontogeny_minus.merged, paste(PATH_Output,"/MultiAlign_D0_D10_D24_D56.Rds", sep=""))
 mLN_Ontogeny_minus.merged <- readRDS(paste(PATH_Output,"/MultiAlign_D0_D10_D24_D56.Rds", sep=""))
 
 #####

@@ -377,23 +377,27 @@ bottom_n <- length(bottom_n_Genes)
 
 #Plot
 d <- ggplot(data_DEGs_DARs, aes(log2FC_SPF_mLN_pLN, SPF_mLN_pLN_log2FoldChange)) #, colour = factor(ordering))
-d + geom_point(aes(colour = factor(ordering)), size = 1.5, show_guide = FALSE) +
-  scale_color_manual(values = c("black","deepskyblue3", "hotpink3", "deepskyblue", "hotpink1","deepskyblue4","hotpink4")) +
+d + geom_point(aes(colour = factor(ordering)), size = 2.0, show_guide = FALSE) +
+  scale_color_manual(values = c("black","gray48", "gray32", "deepskyblue", "deeppink3","deepskyblue4","deeppink4")) +
   #Line
   geom_hline(yintercept=1, colour = "black", linetype="dashed") +
   geom_hline(yintercept=-1, colour = "black", linetype="dashed") +
   geom_vline(xintercept=1, colour = "black", linetype="dashed") +
   geom_vline(xintercept=-1, colour = "black", linetype="dashed") +
-  theme_classic(base_size = 14, base_family = "") +
+  theme_classic(base_size = 20, base_family = "") +
+  
   #Numbers
-  #geom_text(data = data.frame(), aes(4, 4, label = right_up_n), colour = "deepskyblue1", size = 6) + 
-  #geom_text(data = data.frame(), aes(-5, -4, label = left_down_n), colour = "deeppink", size = 6) +
-  #geom_text(data = data.frame(), aes(-4.8, -0.5, label = left_n), colour = "grey33", size = 6) + 
-  #geom_text(data = data.frame(), aes(5, -0.5, label = right_n), colour = "grey57", size = 6) +
+  geom_text(data = data.frame(), aes(4, 4, label = right_up_n), colour = "gray48", size = 8) + 
+  geom_text(data = data.frame(), aes(-4, -4, label = left_down_n), colour = "gray32", size = 8) +
+  geom_text(data = data.frame(), aes(-4, 0, label = left_n), colour = "deeppink3", size = 8) + 
+  geom_text(data = data.frame(), aes(4, 0, label = right_n), colour = "deepskyblue", size = 8) +
+  geom_text(data = data.frame(), aes(0, 4, label = top_n), colour = "deepskyblue4", size = 8) + 
+  geom_text(data = data.frame(), aes(0, -4, label = bottom_n), colour = "deeppink4", size = 8) +
   
   #Lab
-  xlab("log2FC endo (mLN-SPF vs. pLN-SPF)") +
-  ylab("log2FC Tx (mLN-SPF vs. pLN-SPF)") +
+  xlab("ATAC log(FC) mLN/pLN") +
+  ylab("RNAseq log(FC) mLN/pLN") +
+  
   #Genenames
   #Range
   scale_x_continuous(limits = c(-4, 4)) +
@@ -635,12 +639,6 @@ only_expressed <- as.character(subset(expression_NA,
                                         (abs(GF_mLN_pLN_log2FoldChange) < log2FC_RNA & GF_mLN_pLN_padj > padj) &
                                         (abs(mLN_SPF_GF_log2FoldChange) < log2FC_RNA & mLN_SPF_GF_padj > padj) &
                                         (abs(pLN_SPF_GF_log2FoldChange) < log2FC_RNA & pLN_SPF_GF_padj > padj))$GeneSymbol)
-
-c("GeneSymbol",
-  "GF_mLN_pLN_log2FoldChange","mLN_SPF_GF_log2FoldChange",
-  "SPF_mLN_pLN_log2FoldChange","pLN_SPF_GF_log2FoldChange",
-  "GF_mLN_pLN_padj","mLN_SPF_GF_padj",
-  "SPF_mLN_pLN_padj","pLN_SPF_GF_padj")
 
 #all Peaks detected in TSS region but differentially
 only_open <- as.character(subset(DARs_features, 
@@ -1255,10 +1253,10 @@ pheatmap(data_heatmap_matrix, cluster_rows = TRUE, legend = TRUE,
          main = title)
 
 #Zoom into GO heatmap
-data_heatmap_zoom <- subset(data_heatmap, SPF_mp_PZ > 3 |
-                                          SPF_mp_MZ > 3 |
-                                          SPF_mp_ZM > 3 |
-                                          SPF_mp_ZP > 3)
+data_heatmap_zoom <- subset(data_heatmap, SPF_mp_PZ > 2 |
+                                          SPF_mp_MZ > 2 |
+                                          SPF_mp_ZM > 2 |
+                                          SPF_mp_ZP > 2)
 
 data_heatmap_zoom <- data_heatmap_zoom[,c("SPF_mp_PZ","SPF_mp_MZ","SPF_mp_ZM","SPF_mp_ZP")]
 

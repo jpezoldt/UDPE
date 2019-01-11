@@ -1,3 +1,9 @@
+# Author: Joern Pezoldt
+# Date: 05.12.2018
+# Function:
+#    1) Compare mLN SPF and mLN GF
+
+
 #Seurat 
 library("Seurat")
 library("cowplot")
@@ -428,13 +434,16 @@ p3 <- TSNEPlot(LN_minus, do.return = F, pt.size = 0.2, do.label = TRUE)
 p4 <- TSNEPlot(LN_minus, group.by = "protocol", do.return = T, pt.size = 0.2, colors.use = c("green","blue"))
 par(mfrow = c(2, 2))
 plot_grid(p1, p2, p3, p4)
-
+plot_grid(p1,p2)
 FeaturePlot(LN_minus, features.plot = c("Cxcl9","Tnfsf11","Madcam1","Il7","Vcam1",
                                         "Acta2","Bst1","Cxcl13","Has1","Ccl21a",
                                         "Cd248","Cd34","Il6","Inmt","Nr4a1","Aldh1a2","Gdf10"),
             no.legend = TRUE,
             cols.use = c('gainsboro', 'darkred'),
             pt.size = 0.2)
+
+saveRDS(LN_minus, paste(PATH_output,"/mLN_GF_SPF.Rds", sep = ""))
+LN_minus <- readRDS(paste(PATH_output,"/mLN_GF_SPF.Rds", sep = ""))
 
 #####
 #Cluster identification via signature

@@ -1,0 +1,803 @@
+[Wed Jan 09 15:07:27 CET 2019] picard.sam.FastqToSam FASTQ=/scratch/el/monthly/bdeplanc/pezoldt/Data/Organoid/2019_Organoid/d3_02/day_3_o3_S9_R1_001.fastq.gz FASTQ2=/scratch/el/monthly/bdeplanc/pezoldt/Data/Organoid/2019_Organoid/d3_02/day_3_o3_S9_R2_001.fastq.gz QUALITY_FORMAT=Standard OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.bam SAMPLE_NAME=day_3_o3_S9    USE_SEQUENTIAL_FASTQS=false READ_GROUP_NAME=A SORT_ORDER=queryname MIN_Q=0 MAX_Q=93 STRIP_UNPAIRED_MATE_NUMBER=false ALLOW_AND_IGNORE_EMPTY_LINES=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 15:07:27 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 2.10.3-SNAPSHOT
+INFO	2019-01-09 15:07:27	FastqToSam	Auto-detected quality format as: Standard.
+INFO	2019-01-09 15:07:33	FastqToSam	Processed     1,000,000 records.  Elapsed time: 00:00:06s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 15:07:42	FastqToSam	Processed     2,000,000 records.  Elapsed time: 00:00:14s.  Time for last 1,000,000:    8s.  Last read position: */*
+INFO	2019-01-09 15:07:49	FastqToSam	Processed     3,000,000 records.  Elapsed time: 00:00:22s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:07:57	FastqToSam	Processed     4,000,000 records.  Elapsed time: 00:00:29s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:08:04	FastqToSam	Processed     5,000,000 records.  Elapsed time: 00:00:37s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:08:12	FastqToSam	Processed     6,000,000 records.  Elapsed time: 00:00:44s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:08:19	FastqToSam	Processed     7,000,000 records.  Elapsed time: 00:00:51s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:08:26	FastqToSam	Processed     8,000,000 records.  Elapsed time: 00:00:58s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:08:33	FastqToSam	Processed     9,000,000 records.  Elapsed time: 00:01:06s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:08:41	FastqToSam	Processed    10,000,000 records.  Elapsed time: 00:01:13s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:08:48	FastqToSam	Processed    11,000,000 records.  Elapsed time: 00:01:21s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:08:55	FastqToSam	Processed    12,000,000 records.  Elapsed time: 00:01:28s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 15:09:02	FastqToSam	Processed    13,000,000 records.  Elapsed time: 00:01:35s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 15:09:10	FastqToSam	Processed    14,000,000 records.  Elapsed time: 00:01:42s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:09:17	FastqToSam	Processed    15,000,000 records.  Elapsed time: 00:01:50s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:09:24	FastqToSam	Processed    16,000,000 records.  Elapsed time: 00:01:56s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 15:09:31	FastqToSam	Processed    17,000,000 records.  Elapsed time: 00:02:03s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 15:09:38	FastqToSam	Processed    18,000,000 records.  Elapsed time: 00:02:11s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:09:45	FastqToSam	Processed    19,000,000 records.  Elapsed time: 00:02:18s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:09:53	FastqToSam	Processed    20,000,000 records.  Elapsed time: 00:02:25s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:10:01	FastqToSam	Processed    21,000,000 records.  Elapsed time: 00:02:33s.  Time for last 1,000,000:    8s.  Last read position: */*
+INFO	2019-01-09 15:10:09	FastqToSam	Processed    22,000,000 records.  Elapsed time: 00:02:42s.  Time for last 1,000,000:    8s.  Last read position: */*
+INFO	2019-01-09 15:10:16	FastqToSam	Processed    23,000,000 records.  Elapsed time: 00:02:49s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 15:10:23	FastqToSam	Processed    24,000,000 records.  Elapsed time: 00:02:55s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 15:10:30	FastqToSam	Processed    25,000,000 records.  Elapsed time: 00:03:02s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 15:10:38	FastqToSam	Processed    26,000,000 records.  Elapsed time: 00:03:10s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:10:45	FastqToSam	Processed    27,000,000 records.  Elapsed time: 00:03:17s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 15:10:54	FastqToSam	Processed    28,000,000 records.  Elapsed time: 00:03:26s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:11:01	FastqToSam	Processed    29,000,000 records.  Elapsed time: 00:03:34s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:11:09	FastqToSam	Processed    30,000,000 records.  Elapsed time: 00:03:41s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:11:16	FastqToSam	Processed    31,000,000 records.  Elapsed time: 00:03:48s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:11:23	FastqToSam	Processed    32,000,000 records.  Elapsed time: 00:03:56s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 15:11:31	FastqToSam	Processed 16458666 fastq reads
+[Wed Jan 09 15:16:07 CET 2019] picard.sam.FastqToSam done. Elapsed time: 8.66 minutes.
+Runtime.totalMemory()=11982077952
+[Wed Jan 09 15:16:08 CET 2019] org.broadinstitute.dropseqrna.utils.TagBamWithReadSequenceExtended INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.bam SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/cellular_tag_summary.txt BASE_RANGE=1-12 BARCODED_READ=1 DISCARD_READ=false BASE_QUALITY=10 NUM_BASES_BELOW_QUALITY=1 TAG_NAME=XC    TAG_BARCODED_READ=false HARD_CLIP_BASES=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 15:16:08 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 15:16:20	TagBamWithReadSequenceExtended	Processed     1,000,000 records.  Elapsed time: 00:00:11s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 15:16:31	TagBamWithReadSequenceExtended	Processed     2,000,000 records.  Elapsed time: 00:00:23s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 15:16:42	TagBamWithReadSequenceExtended	Processed     3,000,000 records.  Elapsed time: 00:00:33s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:16:52	TagBamWithReadSequenceExtended	Processed     4,000,000 records.  Elapsed time: 00:00:44s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:17:03	TagBamWithReadSequenceExtended	Processed     5,000,000 records.  Elapsed time: 00:00:54s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:17:14	TagBamWithReadSequenceExtended	Processed     6,000,000 records.  Elapsed time: 00:01:05s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:17:24	TagBamWithReadSequenceExtended	Processed     7,000,000 records.  Elapsed time: 00:01:15s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:17:35	TagBamWithReadSequenceExtended	Processed     8,000,000 records.  Elapsed time: 00:01:26s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:17:45	TagBamWithReadSequenceExtended	Processed     9,000,000 records.  Elapsed time: 00:01:37s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:17:56	TagBamWithReadSequenceExtended	Processed    10,000,000 records.  Elapsed time: 00:01:47s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:18:07	TagBamWithReadSequenceExtended	Processed    11,000,000 records.  Elapsed time: 00:01:58s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:18:18	TagBamWithReadSequenceExtended	Processed    12,000,000 records.  Elapsed time: 00:02:09s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:18:29	TagBamWithReadSequenceExtended	Processed    13,000,000 records.  Elapsed time: 00:02:20s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 15:18:39	TagBamWithReadSequenceExtended	Processed    14,000,000 records.  Elapsed time: 00:02:31s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:18:50	TagBamWithReadSequenceExtended	Processed    15,000,000 records.  Elapsed time: 00:02:41s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:19:01	TagBamWithReadSequenceExtended	Processed    16,000,000 records.  Elapsed time: 00:02:52s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:19:11	TagBamWithReadSequenceExtended	Processed    17,000,000 records.  Elapsed time: 00:03:03s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:19:22	TagBamWithReadSequenceExtended	Processed    18,000,000 records.  Elapsed time: 00:03:13s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:19:33	TagBamWithReadSequenceExtended	Processed    19,000,000 records.  Elapsed time: 00:03:24s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:19:43	TagBamWithReadSequenceExtended	Processed    20,000,000 records.  Elapsed time: 00:03:35s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:19:54	TagBamWithReadSequenceExtended	Processed    21,000,000 records.  Elapsed time: 00:03:45s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:20:05	TagBamWithReadSequenceExtended	Processed    22,000,000 records.  Elapsed time: 00:03:56s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:20:15	TagBamWithReadSequenceExtended	Processed    23,000,000 records.  Elapsed time: 00:04:07s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:20:28	TagBamWithReadSequenceExtended	Processed    24,000,000 records.  Elapsed time: 00:04:19s.  Time for last 1,000,000:   12s.  Last read position: */*
+INFO	2019-01-09 15:20:39	TagBamWithReadSequenceExtended	Processed    25,000,000 records.  Elapsed time: 00:04:30s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:20:49	TagBamWithReadSequenceExtended	Processed    26,000,000 records.  Elapsed time: 00:04:41s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:21:00	TagBamWithReadSequenceExtended	Processed    27,000,000 records.  Elapsed time: 00:04:52s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 15:21:12	TagBamWithReadSequenceExtended	Processed    28,000,000 records.  Elapsed time: 00:05:03s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 15:21:22	TagBamWithReadSequenceExtended	Processed    29,000,000 records.  Elapsed time: 00:05:13s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:21:33	TagBamWithReadSequenceExtended	Processed    30,000,000 records.  Elapsed time: 00:05:24s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:21:44	TagBamWithReadSequenceExtended	Processed    31,000,000 records.  Elapsed time: 00:05:35s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:21:55	TagBamWithReadSequenceExtended	Processed    32,000,000 records.  Elapsed time: 00:05:46s.  Time for last 1,000,000:   11s.  Last read position: */*
+[Wed Jan 09 15:22:04 CET 2019] org.broadinstitute.dropseqrna.utils.TagBamWithReadSequenceExtended done. Elapsed time: 5.94 minutes.
+Runtime.totalMemory()=1512570880
+[Wed Jan 09 15:22:06 CET 2019] org.broadinstitute.dropseqrna.utils.TagBamWithReadSequenceExtended INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.bam SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/molecular_tag_summary.txt BASE_RANGE=13-20 BARCODED_READ=1 DISCARD_READ=true BASE_QUALITY=10 NUM_BASES_BELOW_QUALITY=1 TAG_NAME=XM    TAG_BARCODED_READ=false HARD_CLIP_BASES=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 15:22:06 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 15:22:18	TagBamWithReadSequenceExtended	Processed     1,000,000 records.  Elapsed time: 00:00:11s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 15:22:28	TagBamWithReadSequenceExtended	Processed     2,000,000 records.  Elapsed time: 00:00:21s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:22:38	TagBamWithReadSequenceExtended	Processed     3,000,000 records.  Elapsed time: 00:00:31s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:22:48	TagBamWithReadSequenceExtended	Processed     4,000,000 records.  Elapsed time: 00:00:40s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:22:57	TagBamWithReadSequenceExtended	Processed     5,000,000 records.  Elapsed time: 00:00:50s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:23:07	TagBamWithReadSequenceExtended	Processed     6,000,000 records.  Elapsed time: 00:01:00s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:23:17	TagBamWithReadSequenceExtended	Processed     7,000,000 records.  Elapsed time: 00:01:09s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:23:27	TagBamWithReadSequenceExtended	Processed     8,000,000 records.  Elapsed time: 00:01:19s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:23:36	TagBamWithReadSequenceExtended	Processed     9,000,000 records.  Elapsed time: 00:01:29s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:23:46	TagBamWithReadSequenceExtended	Processed    10,000,000 records.  Elapsed time: 00:01:39s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:23:56	TagBamWithReadSequenceExtended	Processed    11,000,000 records.  Elapsed time: 00:01:49s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:24:06	TagBamWithReadSequenceExtended	Processed    12,000,000 records.  Elapsed time: 00:01:58s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:24:15	TagBamWithReadSequenceExtended	Processed    13,000,000 records.  Elapsed time: 00:02:08s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:24:26	TagBamWithReadSequenceExtended	Processed    14,000,000 records.  Elapsed time: 00:02:19s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:24:36	TagBamWithReadSequenceExtended	Processed    15,000,000 records.  Elapsed time: 00:02:28s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:24:45	TagBamWithReadSequenceExtended	Processed    16,000,000 records.  Elapsed time: 00:02:38s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:24:55	TagBamWithReadSequenceExtended	Processed    17,000,000 records.  Elapsed time: 00:02:48s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:25:05	TagBamWithReadSequenceExtended	Processed    18,000,000 records.  Elapsed time: 00:02:58s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:25:15	TagBamWithReadSequenceExtended	Processed    19,000,000 records.  Elapsed time: 00:03:08s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:25:25	TagBamWithReadSequenceExtended	Processed    20,000,000 records.  Elapsed time: 00:03:18s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:25:35	TagBamWithReadSequenceExtended	Processed    21,000,000 records.  Elapsed time: 00:03:28s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:25:45	TagBamWithReadSequenceExtended	Processed    22,000,000 records.  Elapsed time: 00:03:38s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:25:55	TagBamWithReadSequenceExtended	Processed    23,000,000 records.  Elapsed time: 00:03:48s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:26:05	TagBamWithReadSequenceExtended	Processed    24,000,000 records.  Elapsed time: 00:03:58s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:26:14	TagBamWithReadSequenceExtended	Processed    25,000,000 records.  Elapsed time: 00:04:07s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:26:25	TagBamWithReadSequenceExtended	Processed    26,000,000 records.  Elapsed time: 00:04:17s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:26:34	TagBamWithReadSequenceExtended	Processed    27,000,000 records.  Elapsed time: 00:04:27s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:26:45	TagBamWithReadSequenceExtended	Processed    28,000,000 records.  Elapsed time: 00:04:38s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 15:26:55	TagBamWithReadSequenceExtended	Processed    29,000,000 records.  Elapsed time: 00:04:48s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:27:05	TagBamWithReadSequenceExtended	Processed    30,000,000 records.  Elapsed time: 00:04:58s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 15:27:16	TagBamWithReadSequenceExtended	Processed    31,000,000 records.  Elapsed time: 00:05:08s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 15:27:25	TagBamWithReadSequenceExtended	Processed    32,000,000 records.  Elapsed time: 00:05:18s.  Time for last 1,000,000:    9s.  Last read position: */*
+[Wed Jan 09 15:27:34 CET 2019] org.broadinstitute.dropseqrna.utils.TagBamWithReadSequenceExtended done. Elapsed time: 5.46 minutes.
+Runtime.totalMemory()=1493696512
+[Wed Jan 09 15:27:35 CET 2019] org.broadinstitute.dropseqrna.utils.FilterBAM INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.bam TAG_REJECT=[XQ]    FILTER_PCR_DUPES=false RETAIN_ONLY_PRIMARY_READS=false DROP_REJECTED_REF=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 15:27:35 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 15:27:51	FilterBAM	Processed     1,000,000 records.  Elapsed time: 00:00:15s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 15:28:06	FilterBAM	Processed     2,000,000 records.  Elapsed time: 00:00:30s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 15:28:21	FilterBAM	Processed     3,000,000 records.  Elapsed time: 00:00:46s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 15:28:36	FilterBAM	Processed     4,000,000 records.  Elapsed time: 00:01:00s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 15:28:51	FilterBAM	Processed     5,000,000 records.  Elapsed time: 00:01:15s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 15:29:06	FilterBAM	Processed     6,000,000 records.  Elapsed time: 00:01:30s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 15:29:21	FilterBAM	Processed     7,000,000 records.  Elapsed time: 00:01:46s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 15:29:36	FilterBAM	Processed     8,000,000 records.  Elapsed time: 00:02:01s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 15:29:52	FilterBAM	Processed     9,000,000 records.  Elapsed time: 00:02:17s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 15:30:07	FilterBAM	Processed    10,000,000 records.  Elapsed time: 00:02:32s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 15:30:22	FilterBAM	Processed    11,000,000 records.  Elapsed time: 00:02:47s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 15:30:37	FilterBAM	Processed    12,000,000 records.  Elapsed time: 00:03:02s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 15:30:53	FilterBAM	Processed    13,000,000 records.  Elapsed time: 00:03:17s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 15:31:07	FilterBAM	Processed    14,000,000 records.  Elapsed time: 00:03:32s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 15:31:22	FilterBAM	Processed    15,000,000 records.  Elapsed time: 00:03:47s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 15:31:37	FilterBAM	Processed    16,000,000 records.  Elapsed time: 00:04:02s.  Time for last 1,000,000:   15s.  Last read position: */*
+[Wed Jan 09 15:31:44 CET 2019] org.broadinstitute.dropseqrna.utils.FilterBAM done. Elapsed time: 4.15 minutes.
+Runtime.totalMemory()=1685061632
+[Wed Jan 09 15:31:44 CET 2019] org.broadinstitute.dropseqrna.readtrimming.TrimStartingSequence INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.adapTrimmed.bam OUTPUT_SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/adapter_trimming_summary.txt SEQUENCE=AAGCAGTGGTATCAACGCAGAGTGAATGGG MISMATCHES=0 NUM_BASES=5    TRIM_TAG=ZS VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 15:31:44 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 15:32:02	TrimStartingSequence	Processed     1,000,000 records.  Elapsed time: 00:00:17s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:32:18	TrimStartingSequence	Processed     2,000,000 records.  Elapsed time: 00:00:33s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:32:35	TrimStartingSequence	Processed     3,000,000 records.  Elapsed time: 00:00:50s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:32:52	TrimStartingSequence	Processed     4,000,000 records.  Elapsed time: 00:01:07s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:33:08	TrimStartingSequence	Processed     5,000,000 records.  Elapsed time: 00:01:23s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 15:33:25	TrimStartingSequence	Processed     6,000,000 records.  Elapsed time: 00:01:40s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 15:33:42	TrimStartingSequence	Processed     7,000,000 records.  Elapsed time: 00:01:57s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:33:58	TrimStartingSequence	Processed     8,000,000 records.  Elapsed time: 00:02:13s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:34:15	TrimStartingSequence	Processed     9,000,000 records.  Elapsed time: 00:02:30s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 15:34:33	TrimStartingSequence	Processed    10,000,000 records.  Elapsed time: 00:02:48s.  Time for last 1,000,000:   18s.  Last read position: */*
+INFO	2019-01-09 15:34:50	TrimStartingSequence	Processed    11,000,000 records.  Elapsed time: 00:03:06s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 15:35:07	TrimStartingSequence	Processed    12,000,000 records.  Elapsed time: 00:03:22s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:35:25	TrimStartingSequence	Processed    13,000,000 records.  Elapsed time: 00:03:40s.  Time for last 1,000,000:   18s.  Last read position: */*
+INFO	2019-01-09 15:35:42	TrimStartingSequence	Processed    14,000,000 records.  Elapsed time: 00:03:57s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:35:58	TrimStartingSequence	Processed    15,000,000 records.  Elapsed time: 00:04:13s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:36:15	TrimStartingSequence	Processed    16,000,000 records.  Elapsed time: 00:04:30s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:36:23	TrimStartingSequence	Number of reads trimmed: 45592 total reads: 16450870
+[Wed Jan 09 15:36:23 CET 2019] org.broadinstitute.dropseqrna.readtrimming.TrimStartingSequence done. Elapsed time: 4.64 minutes.
+Runtime.totalMemory()=1613758464
+[Wed Jan 09 15:36:24 CET 2019] org.broadinstitute.dropseqrna.readtrimming.PolyATrimmer INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.adapTrimmed.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.adapTrimmed.polyATrimmed.bam OUTPUT_SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/polyA_trimming_summary.txt MISMATCHES=0 NUM_BASES=6    USE_NEW_TRIMMER=false TRIM_TAG=ZP ADAPTER=^XM^XCACGTACTCTGCGTTGCTACCACTG MAX_ADAPTER_ERROR_RATE=0.1 MIN_ADAPTER_MATCH=4 MIN_POLY_A_LENGTH=20 MIN_POLY_A_LENGTH_NO_ADAPTER_MATCH=6 DUBIOUS_ADAPTER_MATCH_LENGTH=6 MAX_POLY_A_ERROR_RATE=0.1 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 15:36:24 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 15:36:41	PolyATrimmer	Processed     1,000,000 records.  Elapsed time: 00:00:16s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:36:58	PolyATrimmer	Processed     2,000,000 records.  Elapsed time: 00:00:34s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 15:37:15	PolyATrimmer	Processed     3,000,000 records.  Elapsed time: 00:00:50s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:37:32	PolyATrimmer	Processed     4,000,000 records.  Elapsed time: 00:01:07s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:37:49	PolyATrimmer	Processed     5,000,000 records.  Elapsed time: 00:01:25s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 15:38:06	PolyATrimmer	Processed     6,000,000 records.  Elapsed time: 00:01:41s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:38:23	PolyATrimmer	Processed     7,000,000 records.  Elapsed time: 00:01:58s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 15:38:39	PolyATrimmer	Processed     8,000,000 records.  Elapsed time: 00:02:14s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:38:57	PolyATrimmer	Processed     9,000,000 records.  Elapsed time: 00:02:32s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 15:39:13	PolyATrimmer	Processed    10,000,000 records.  Elapsed time: 00:02:49s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:39:30	PolyATrimmer	Processed    11,000,000 records.  Elapsed time: 00:03:05s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:39:46	PolyATrimmer	Processed    12,000,000 records.  Elapsed time: 00:03:21s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 15:40:03	PolyATrimmer	Processed    13,000,000 records.  Elapsed time: 00:03:38s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:40:19	PolyATrimmer	Processed    14,000,000 records.  Elapsed time: 00:03:54s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:40:36	PolyATrimmer	Processed    15,000,000 records.  Elapsed time: 00:04:11s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 15:40:53	PolyATrimmer	Processed    16,000,000 records.  Elapsed time: 00:04:28s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 15:41:00	PolyATrimmer	Number of reads trimmed: 2593199
+INFO	2019-01-09 15:41:00	PolyATrimmer	Number of reads completely trimmed: 68750
+[Wed Jan 09 15:41:00 CET 2019] org.broadinstitute.dropseqrna.readtrimming.PolyATrimmer done. Elapsed time: 4.60 minutes.
+Runtime.totalMemory()=1584922624
+[Wed Jan 09 15:41:01 CET 2019] picard.sam.SamToFastq INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.adapTrimmed.polyATrimmed.bam FASTQ=/scratch/el/monthly/bdeplanc/pezoldt/Data/Organoid/2019_Organoid/d3_02/day_3_o3_S9.fastq.gz    OUTPUT_PER_RG=false RG_TAG=PU RE_REVERSE=true INTERLEAVE=false INCLUDE_NON_PF_READS=false CLIPPING_MIN_LENGTH=0 READ1_TRIM=0 READ2_TRIM=0 INCLUDE_NON_PRIMARY_ALIGNMENTS=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 15:41:01 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 2.10.3-SNAPSHOT
+INFO	2019-01-09 15:41:25	SamToFastq	Processed     1,000,000 records.  Elapsed time: 00:00:23s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 15:41:48	SamToFastq	Processed     2,000,000 records.  Elapsed time: 00:00:47s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 15:42:11	SamToFastq	Processed     3,000,000 records.  Elapsed time: 00:01:09s.  Time for last 1,000,000:   22s.  Last read position: */*
+INFO	2019-01-09 15:42:33	SamToFastq	Processed     4,000,000 records.  Elapsed time: 00:01:32s.  Time for last 1,000,000:   22s.  Last read position: */*
+INFO	2019-01-09 15:42:56	SamToFastq	Processed     5,000,000 records.  Elapsed time: 00:01:54s.  Time for last 1,000,000:   22s.  Last read position: */*
+INFO	2019-01-09 15:43:19	SamToFastq	Processed     6,000,000 records.  Elapsed time: 00:02:18s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 15:43:43	SamToFastq	Processed     7,000,000 records.  Elapsed time: 00:02:41s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 15:44:06	SamToFastq	Processed     8,000,000 records.  Elapsed time: 00:03:04s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 15:44:29	SamToFastq	Processed     9,000,000 records.  Elapsed time: 00:03:27s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 15:44:52	SamToFastq	Processed    10,000,000 records.  Elapsed time: 00:03:50s.  Time for last 1,000,000:   22s.  Last read position: */*
+INFO	2019-01-09 15:45:15	SamToFastq	Processed    11,000,000 records.  Elapsed time: 00:04:14s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 15:45:39	SamToFastq	Processed    12,000,000 records.  Elapsed time: 00:04:38s.  Time for last 1,000,000:   24s.  Last read position: */*
+INFO	2019-01-09 15:46:02	SamToFastq	Processed    13,000,000 records.  Elapsed time: 00:05:01s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 15:46:27	SamToFastq	Processed    14,000,000 records.  Elapsed time: 00:05:25s.  Time for last 1,000,000:   24s.  Last read position: */*
+INFO	2019-01-09 15:46:50	SamToFastq	Processed    15,000,000 records.  Elapsed time: 00:05:48s.  Time for last 1,000,000:   22s.  Last read position: */*
+INFO	2019-01-09 15:47:13	SamToFastq	Processed    16,000,000 records.  Elapsed time: 00:06:11s.  Time for last 1,000,000:   23s.  Last read position: */*
+[Wed Jan 09 15:47:24 CET 2019] picard.sam.SamToFastq done. Elapsed time: 6.38 minutes.
+Runtime.totalMemory()=1503133696
+[Wed Jan 09 15:54:34 CET 2019] picard.sam.SortSam INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/Aligned.out.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.sortedByName.bam SORT_ORDER=queryname    VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 15:54:34 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 2.10.3-SNAPSHOT
+INFO	2019-01-09 15:55:44	SortSam	Read    10,000,000 records.  Elapsed time: 00:01:10s.  Time for last 10,000,000:   70s.  Last read position: 2:94,032,808
+INFO	2019-01-09 15:55:46	SortSam	Finished reading inputs, merging and writing to output now.
+INFO	2019-01-09 15:58:07	SortSam	Wrote    10,000,000 records from a sorting collection.  Elapsed time: 00:03:33s.  Time for last 10,000,000:  141s.  Last read position: 2:94,032,808
+[Wed Jan 09 15:58:08 CET 2019] picard.sam.SortSam done. Elapsed time: 3.57 minutes.
+Runtime.totalMemory()=5717884928
+[Wed Jan 09 15:58:09 CET 2019] picard.sam.MergeBamAlignment UNMAPPED_BAM=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.adapTrimmed.polyATrimmed.bam ALIGNED_BAM=[/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.sortedByName.bam] OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.bam REFERENCE_SEQUENCE=/scratch/el/monthly/bdeplanc/marjan/genomes/mouse/mm_m38r91.fa PAIRED_RUN=false    CLIP_ADAPTERS=true IS_BISULFITE_SEQUENCE=false ALIGNED_READS_ONLY=false MAX_INSERTIONS_OR_DELETIONS=1 ATTRIBUTES_TO_REVERSE=[OQ, U2] ATTRIBUTES_TO_REVERSE_COMPLEMENT=[E2, SQ] READ1_TRIM=0 READ2_TRIM=0 ALIGNER_PROPER_PAIR_FLAGS=false SORT_ORDER=coordinate PRIMARY_ALIGNMENT_STRATEGY=BestMapq CLIP_OVERLAPPING_READS=true INCLUDE_SECONDARY_ALIGNMENTS=true ADD_MATE_CIGAR=true UNMAP_CONTAMINANT_READS=false MIN_UNCLIPPED_BASES=32 MATCHING_DICTIONARY_TAGS=[M5, LN] UNMAPPED_READ_STRATEGY=DO_NOT_CHANGE VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 15:58:09 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 2.10.3-SNAPSHOT
+INFO	2019-01-09 15:58:09	SamAlignmentMerger	Processing SAM file(s): [/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.sortedByName.bam]
+INFO	2019-01-09 15:58:35	AbstractAlignmentMerger	Merged     1,000,000 records.  Elapsed time: 00:00:26s.  Time for last 1,000,000:   26s.  Last read position: MT:11,418
+INFO	2019-01-09 15:59:03	AbstractAlignmentMerger	Merged     2,000,000 records.  Elapsed time: 00:00:54s.  Time for last 1,000,000:   27s.  Last read position: 17:55,865,626
+INFO	2019-01-09 15:59:28	AbstractAlignmentMerger	Merged     3,000,000 records.  Elapsed time: 00:01:19s.  Time for last 1,000,000:   25s.  Last read position: 18:36,796,506
+INFO	2019-01-09 15:59:57	AbstractAlignmentMerger	Merged     4,000,000 records.  Elapsed time: 00:01:48s.  Time for last 1,000,000:   28s.  Last read position: 19:5,801,780
+INFO	2019-01-09 16:00:18	AbstractAlignmentMerger	Merged     5,000,000 records.  Elapsed time: 00:02:09s.  Time for last 1,000,000:   21s.  Last read position: 4:155,074,962
+INFO	2019-01-09 16:00:42	AbstractAlignmentMerger	Merged     6,000,000 records.  Elapsed time: 00:02:33s.  Time for last 1,000,000:   23s.  Last read position: 8:120,674,132
+INFO	2019-01-09 16:01:08	AbstractAlignmentMerger	Merged     7,000,000 records.  Elapsed time: 00:02:59s.  Time for last 1,000,000:   26s.  Last read position: 10:81,346,120
+INFO	2019-01-09 16:01:30	AbstractAlignmentMerger	Merged     8,000,000 records.  Elapsed time: 00:03:21s.  Time for last 1,000,000:   21s.  Last read position: 17:35,963,349
+INFO	2019-01-09 16:01:52	AbstractAlignmentMerger	Merged     9,000,000 records.  Elapsed time: 00:03:43s.  Time for last 1,000,000:   21s.  Last read position: 4:15,918,994
+INFO	2019-01-09 16:02:13	AbstractAlignmentMerger	Merged    10,000,000 records.  Elapsed time: 00:04:04s.  Time for last 1,000,000:   21s.  Last read position: 7:3,706,755
+INFO	2019-01-09 16:05:49	AbstractAlignmentMerger	Written in coordinate order to output    10,000,000 records.  Elapsed time: 00:03:32s.  Time for last 10,000,000:  209s.  Last read position: Y:90,739,187
+INFO	2019-01-09 16:07:15	AbstractAlignmentMerger	Wrote 10003769 alignment records and 6447101 unmapped reads.
+[Wed Jan 09 16:07:15 CET 2019] picard.sam.MergeBamAlignment done. Elapsed time: 9.11 minutes.
+Runtime.totalMemory()=11781275648
+[Wed Jan 09 16:07:17 CET 2019] org.broadinstitute.dropseqrna.metrics.TagReadWithGeneExon INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.GETagged.bam TAG=GE ANNOTATIONS_FILE=/scratch/el/monthly/bdeplanc/marjan/genomes/mouse/gtf/mm_m38r91.gtf    STRAND_TAG=GS FUNCTION_TAG=XF USE_STRAND_INFO=true ALLOW_MULTI_GENE_READS=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 16:07:17 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 16:07:21	GTFParser	read       100,000 GTF records.  Elapsed time: 00:00:04s.  Time for last 100,000:    4s.  Last read position: 1:172,186,296
+INFO	2019-01-09 16:07:25	GTFParser	read       200,000 GTF records.  Elapsed time: 00:00:07s.  Time for last 100,000:    3s.  Last read position: 2:106,699,408
+INFO	2019-01-09 16:07:28	GTFParser	read       300,000 GTF records.  Elapsed time: 00:00:11s.  Time for last 100,000:    3s.  Last read position: X:98,763,705
+INFO	2019-01-09 16:07:32	GTFParser	read       400,000 GTF records.  Elapsed time: 00:00:15s.  Time for last 100,000:    3s.  Last read position: 3:129,804,408
+INFO	2019-01-09 16:07:37	GTFParser	read       500,000 GTF records.  Elapsed time: 00:00:20s.  Time for last 100,000:    5s.  Last read position: 4:141,022,044
+INFO	2019-01-09 16:07:40	GTFParser	read       600,000 GTF records.  Elapsed time: 00:00:23s.  Time for last 100,000:    3s.  Last read position: 5:121,362,441
+INFO	2019-01-09 16:07:44	GTFParser	read       700,000 GTF records.  Elapsed time: 00:00:27s.  Time for last 100,000:    3s.  Last read position: 6:107,194,374
+INFO	2019-01-09 16:07:48	GTFParser	read       800,000 GTF records.  Elapsed time: 00:00:30s.  Time for last 100,000:    3s.  Last read position: 7:46,847,620
+INFO	2019-01-09 16:07:51	GTFParser	read       900,000 GTF records.  Elapsed time: 00:00:33s.  Time for last 100,000:    3s.  Last read position: 10:26,017,505
+INFO	2019-01-09 16:07:55	GTFParser	read     1,000,000 GTF records.  Elapsed time: 00:00:37s.  Time for last 100,000:    3s.  Last read position: 8:46,471,072
+INFO	2019-01-09 16:07:59	GTFParser	read     1,100,000 GTF records.  Elapsed time: 00:00:41s.  Time for last 100,000:    3s.  Last read position: 14:52,163,184
+INFO	2019-01-09 16:08:02	GTFParser	read     1,200,000 GTF records.  Elapsed time: 00:00:45s.  Time for last 100,000:    3s.  Last read position: 9:88,438,668
+INFO	2019-01-09 16:08:08	GTFParser	read     1,300,000 GTF records.  Elapsed time: 00:00:51s.  Time for last 100,000:    6s.  Last read position: 11:74,269,391
+INFO	2019-01-09 16:08:12	GTFParser	read     1,400,000 GTF records.  Elapsed time: 00:00:54s.  Time for last 100,000:    3s.  Last read position: 13:58,400,333
+INFO	2019-01-09 16:08:15	GTFParser	read     1,500,000 GTF records.  Elapsed time: 00:00:57s.  Time for last 100,000:    3s.  Last read position: 15:10,587,838
+INFO	2019-01-09 16:08:20	GTFParser	read     1,600,000 GTF records.  Elapsed time: 00:01:02s.  Time for last 100,000:    4s.  Last read position: 16:93,806,335
+INFO	2019-01-09 16:08:23	GTFParser	read     1,700,000 GTF records.  Elapsed time: 00:01:05s.  Time for last 100,000:    3s.  Last read position: 18:35,718,348
+INFO	2019-01-09 16:08:26	GTFReader	Chromosome disagreement(12, GL456233.1) in GTF file for gene U6 -- skipping
+INFO	2019-01-09 16:08:26	GTFReader	gene GTFRecord(3:30594844-30595733	-	. [1600017P15Rik gene]) != GeneFromGTF(3:30594844-30595757	-	1600017P15Rik) -- skipping
+INFO	2019-01-09 16:08:26	GTFReader	gene GTFRecord(4:132309465-132309600	+	. [Snora16a gene]) != GeneFromGTF(4:132309464-132309600	+	Snora16a) -- skipping
+INFO	2019-01-09 16:08:26	GTFReader	gene GTFRecord(6:69326844-69327170	-	. [Rprl1 gene]) != GeneFromGTF(6:69326844-69327174	-	Rprl1) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(12:110596608-110597106	-	. [Gm35558 gene]) != GeneFromGTF(12:110596608-110601963	-	Gm35558) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(3:88693931-88694057	+	. [Gm25820 gene]) != GeneFromGTF(3:88693930-88694057	+	Gm25820) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(1:166377878-166379918	-	. [Gm15853 gene]) != GeneFromGTF(1:166377878-166380493	-	Gm15853) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(4:56897626-56897757	-	. [Gm25053 gene]) != GeneFromGTF(4:56897625-56897757	-	Gm25053) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(3:124398086-124398331	-	. [4921527H02Rik gene]) != GeneFromGTF(3:124398086-124399758	-	4921527H02Rik) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(2:106809336-106809458	+	. [Gm22813 gene]) != GeneFromGTF(2:106809335-106809458	+	Gm22813) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(5:4985111-4985237	-	. [Gm22897 gene]) != GeneFromGTF(5:4985111-4985238	-	Gm22897) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	Strand disagreement in GTF file for gene Ighv5-8 -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(12:82772321-82772456	-	. [Gm22149 gene]) != GeneFromGTF(12:82772320-82772456	-	Gm22149) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(13:101749720-101751888	-	. [Gm36638 gene]) != GeneFromGTF(13:101749720-101753205	-	Gm36638) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(4:106118968-106119080	-	. [Gm26047 gene]) != GeneFromGTF(4:106118968-106119082	-	Gm26047) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(7:81529855-81529981	+	. [Mir1839 gene]) != GeneFromGTF(7:81529855-81529988	+	Mir1839) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(18:35554492-35554632	+	. [Mir1949 gene]) != GeneFromGTF(18:35554492-35554636	+	Mir1949) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(6:53819974-53822150	+	. [Gm16499 gene]) != GeneFromGTF(6:53818743-53868183	+	Gm16499) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(4:74635219-74635350	+	. [Gm26379 gene]) != GeneFromGTF(4:74635214-74635351	+	Gm26379) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(2:129196086-129197126	-	. [Gm4430 gene]) != GeneFromGTF(2:129196086-129199194	-	Gm4430) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(11:116163910-116164035	-	. [Gm26413 gene]) != GeneFromGTF(11:116163910-116164036	-	Gm26413) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(3:93689841-93690037	+	. [Gm18433 gene]) != GeneFromGTF(3:93689841-93708267	+	Gm18433) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(10:86526299-86536337	-	. [Gm6729 gene]) != GeneFromGTF(10:86526299-86541334	-	Gm6729) -- skipping
+INFO	2019-01-09 16:08:27	GTFReader	gene GTFRecord(8:63522920-63525878	+	. [Gm18645 gene]) != GeneFromGTF(8:63522920-63525881	+	Gm18645) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(1:161037604-161037680	+	. [Snord80 gene]) != GeneFromGTF(1:161037601-161037681	+	Snord80) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(2:158359797-158359928	-	. [Gm23925 gene]) != GeneFromGTF(2:158359797-158359929	-	Gm23925) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(8:45581616-45581747	-	. [Gm23604 gene]) != GeneFromGTF(8:45581615-45581751	-	Gm23604) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(2:33812957-33813326	+	. [Nron gene]) != GeneFromGTF(2:33805816-33813591	+	Nron) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(3:133579627-133579901	-	. [Gm23011 gene]) != GeneFromGTF(3:133579627-133588537	-	Gm23011) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(8:38982904-38983035	-	. [Gm23128 gene]) != GeneFromGTF(8:38982903-38983035	-	Gm23128) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(1:127331813-127331941	+	. [Gm23370 gene]) != GeneFromGTF(1:127331812-127331941	+	Gm23370) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(12:109532442-109532646	+	. [Gm27528 gene]) != GeneFromGTF(12:109530892-109532903	+	Gm27528) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(5:111329738-111330544	-	. [Gm27680 gene]) != GeneFromGTF(5:111329738-111330632	-	Gm27680) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(3:68901830-68902144	+	. [Gm20690 gene]) != GeneFromGTF(3:68901807-68902161	+	Gm20690) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(3:68846079-68847403	+	. [Gm7270 gene]) != GeneFromGTF(3:68846079-68847406	+	Gm7270) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(12:87437679-87437757	-	. [Mir3068 gene]) != GeneFromGTF(12:87437679-87437817	-	Mir3068) -- skipping
+INFO	2019-01-09 16:08:28	GTFReader	gene GTFRecord(6:124138733-124139636	-	. [Vmn2r-ps34 gene]) != GeneFromGTF(6:124138733-124173146	-	Vmn2r-ps34) -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	Chromosome disagreement(JH584293.1, GL456350.1) in GTF file for gene Ccl21c -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	Chromosome disagreement(GL456350.1, 4) in GTF file for gene Ccl21b -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	Chromosome disagreement(JH584294.1, 4) in GTF file for gene Ccl21a -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	gene GTFRecord(3:68333197-68333777	+	. [Gm10292 gene]) != GeneFromGTF(3:68333196-68333780	+	Gm10292) -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	gene GTFRecord(5:16835914-16837658	+	. [Gm28710 gene]) != GeneFromGTF(5:16791810-16882052	+	Gm28710) -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	gene GTFRecord(11:87443237-87443451	+	. [Rnu3b1 gene]) != GeneFromGTF(11:87443237-87443452	+	Rnu3b1) -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	gene GTFRecord(11:87448627-87448841	+	. [Rnu3b3 gene]) != GeneFromGTF(11:87448627-87448842	+	Rnu3b3) -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	gene GTFRecord(11:87471368-87471582	+	. [Rnu3b2 gene]) != GeneFromGTF(11:87471368-87471583	+	Rnu3b2) -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	gene GTFRecord(11:87462286-87462500	+	. [Rnu3b4 gene]) != GeneFromGTF(11:87462286-87462501	+	Rnu3b4) -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	gene GTFRecord(3:13470439-13471829	-	. [Gm2464 gene]) != GeneFromGTF(3:13470439-13474596	-	Gm2464) -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	gene GTFRecord(10:128085289-128085360	+	. [Mir677 gene]) != GeneFromGTF(10:128085286-128085363	+	Mir677) -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	gene GTFRecord(12:114630680-114630973	+	. [Ighv1-13 gene]) != GeneFromGTF(12:114630680-114631111	+	Ighv1-13) -- skipping
+INFO	2019-01-09 16:08:29	GTFReader	gene GTFRecord(7:61704519-61829422	-	. [A230057D06Rik gene]) != GeneFromGTF(7:61704519-61928690	-	A230057D06Rik) -- skipping
+INFO	2019-01-09 16:08:55	TagReadWithGeneExon	Processed     1,000,000 records.  Elapsed time: 00:01:38s.  Time for last 1,000,000:   26s.  Last read position: 10:128,624,560
+INFO	2019-01-09 16:09:20	TagReadWithGeneExon	Processed     2,000,000 records.  Elapsed time: 00:02:03s.  Time for last 1,000,000:   24s.  Last read position: 12:84,756,630
+INFO	2019-01-09 16:09:44	TagReadWithGeneExon	Processed     3,000,000 records.  Elapsed time: 00:02:27s.  Time for last 1,000,000:   24s.  Last read position: 15:76,906,249
+INFO	2019-01-09 16:10:09	TagReadWithGeneExon	Processed     4,000,000 records.  Elapsed time: 00:02:52s.  Time for last 1,000,000:   24s.  Last read position: 17:56,722,068
+INFO	2019-01-09 16:10:33	TagReadWithGeneExon	Processed     5,000,000 records.  Elapsed time: 00:03:16s.  Time for last 1,000,000:   24s.  Last read position: 2:91,264,509
+INFO	2019-01-09 16:10:58	TagReadWithGeneExon	Processed     6,000,000 records.  Elapsed time: 00:03:41s.  Time for last 1,000,000:   24s.  Last read position: 4:62,509,179
+INFO	2019-01-09 16:11:22	TagReadWithGeneExon	Processed     7,000,000 records.  Elapsed time: 00:04:05s.  Time for last 1,000,000:   24s.  Last read position: 5:142,903,886
+INFO	2019-01-09 16:11:47	TagReadWithGeneExon	Processed     8,000,000 records.  Elapsed time: 00:04:30s.  Time for last 1,000,000:   25s.  Last read position: 7:45,126,739
+INFO	2019-01-09 16:12:13	TagReadWithGeneExon	Processed     9,000,000 records.  Elapsed time: 00:04:56s.  Time for last 1,000,000:   25s.  Last read position: 9:14,782,704
+INFO	2019-01-09 16:12:39	TagReadWithGeneExon	Processed    10,000,000 records.  Elapsed time: 00:05:21s.  Time for last 1,000,000:   25s.  Last read position: Y:90,739,187
+INFO	2019-01-09 16:12:55	TagReadWithGeneExon	Processed    11,000,000 records.  Elapsed time: 00:05:38s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 16:13:10	TagReadWithGeneExon	Processed    12,000,000 records.  Elapsed time: 00:05:53s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 16:13:25	TagReadWithGeneExon	Processed    13,000,000 records.  Elapsed time: 00:06:08s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 16:13:40	TagReadWithGeneExon	Processed    14,000,000 records.  Elapsed time: 00:06:23s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 16:13:56	TagReadWithGeneExon	Processed    15,000,000 records.  Elapsed time: 00:06:38s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 16:14:10	TagReadWithGeneExon	Processed    16,000,000 records.  Elapsed time: 00:06:53s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 16:14:18	TagReadWithGeneExon	TOTAL READS [10003769] CORRECT_STRAND [9217465]  WRONG_STRAND [634157] AMBIGUOUS_STRAND_FIXED [429751] AMBIGUOUS REJECTED READS [152147]
+[Wed Jan 09 16:14:18 CET 2019] org.broadinstitute.dropseqrna.metrics.TagReadWithGeneExon done. Elapsed time: 7.01 minutes.
+Runtime.totalMemory()=11815354368
+[Wed Jan 09 16:14:18 CET 2019] org.broadinstitute.dropseqrna.beadsynthesis.DetectBeadSynthesisErrors OUTPUT_STATS=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/synthesis_stats.txt INPUT=[/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.GETagged.bam] SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/synthesis_stats_summary.txt OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.GETagged.cleaned.bam PRIMER_SEQUENCE=AAGCAGTGGTATCAACGCAGAGTAC NUM_BARCODES=2000 CREATE_INDEX=true    EDIT_DISTANCE=0 CELL_BARCODE_TAG=XC MOLECULAR_BARCODE_TAG=XM GENE_EXON_TAG=GE STRAND_TAG=GS READ_MQ=10 MIN_UMIS_PER_CELL=25 MAX_NUM_ERRORS=1 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 16:14:18 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 16:14:18	AbstractDetectBeadSynthesisErrors	Gathering barcodes for the top [2000] cells
+INFO	2019-01-09 16:15:10	BAMTagHistogram	Processed    10,000,000 records.  Elapsed time: 00:00:51s.  Time for last 10,000,000:   51s.  Last read position: Y:90,739,187
+INFO	2019-01-09 16:15:34	BarcodeListRetrieval	Looking for the top 2000 cell barcodes
+INFO	2019-01-09 16:15:34	BarcodeListRetrieval	Selected 2000 core barcodes
+INFO	2019-01-09 16:15:55	UMIIterator	Processed     1,000,000 records.  Elapsed time: 00:00:21s.  Time for last 1,000,000:   21s.  Last read position: 11:50,307,595
+INFO	2019-01-09 16:16:27	UMIIterator	Processed     2,000,000 records.  Elapsed time: 00:00:52s.  Time for last 1,000,000:   31s.  Last read position: 13:58,127,164
+INFO	2019-01-09 16:16:53	UMIIterator	Processed     3,000,000 records.  Elapsed time: 00:01:18s.  Time for last 1,000,000:   25s.  Last read position: 16:91,925,329
+INFO	2019-01-09 16:17:22	UMIIterator	Processed     4,000,000 records.  Elapsed time: 00:01:48s.  Time for last 1,000,000:   29s.  Last read position: 19:45,005,523
+INFO	2019-01-09 16:17:36	UMIIterator	Processed     5,000,000 records.  Elapsed time: 00:02:02s.  Time for last 1,000,000:   13s.  Last read position: 4:46,468,657
+INFO	2019-01-09 16:17:51	UMIIterator	Processed     6,000,000 records.  Elapsed time: 00:02:16s.  Time for last 1,000,000:   14s.  Last read position: 6:11,900,373
+INFO	2019-01-09 16:18:05	UMIIterator	Processed     7,000,000 records.  Elapsed time: 00:02:31s.  Time for last 1,000,000:   14s.  Last read position: 7:137,127,963
+INFO	2019-01-09 16:18:31	UMIIterator	Processed     8,000,000 records.  Elapsed time: 00:02:57s.  Time for last 1,000,000:   26s.  Last read position: 9:102,634,097
+INFO	2019-01-09 16:19:20	UMIIterator	Sorting finished.
+INFO	2019-01-09 16:19:58	DetectBeadSynthesisErrors	Cleaning BAM
+INFO	2019-01-09 16:20:13	DetectBeadSynthesisErrors	Processed     1,000,000 records.  Elapsed time: 00:00:14s.  Time for last 1,000,000:   14s.  Last read position: 10:128,624,560
+INFO	2019-01-09 16:20:27	DetectBeadSynthesisErrors	Processed     2,000,000 records.  Elapsed time: 00:00:28s.  Time for last 1,000,000:   14s.  Last read position: 12:84,756,630
+INFO	2019-01-09 16:20:42	DetectBeadSynthesisErrors	Processed     3,000,000 records.  Elapsed time: 00:00:43s.  Time for last 1,000,000:   14s.  Last read position: 15:76,906,249
+INFO	2019-01-09 16:20:56	DetectBeadSynthesisErrors	Processed     4,000,000 records.  Elapsed time: 00:00:57s.  Time for last 1,000,000:   14s.  Last read position: 17:56,722,068
+INFO	2019-01-09 16:21:11	DetectBeadSynthesisErrors	Processed     5,000,000 records.  Elapsed time: 00:01:12s.  Time for last 1,000,000:   14s.  Last read position: 2:91,264,509
+INFO	2019-01-09 16:21:25	DetectBeadSynthesisErrors	Processed     6,000,000 records.  Elapsed time: 00:01:26s.  Time for last 1,000,000:   14s.  Last read position: 4:62,509,179
+INFO	2019-01-09 16:21:40	DetectBeadSynthesisErrors	Processed     7,000,000 records.  Elapsed time: 00:01:41s.  Time for last 1,000,000:   15s.  Last read position: 5:142,903,886
+INFO	2019-01-09 16:21:55	DetectBeadSynthesisErrors	Processed     8,000,000 records.  Elapsed time: 00:01:55s.  Time for last 1,000,000:   14s.  Last read position: 7:45,126,739
+INFO	2019-01-09 16:22:09	DetectBeadSynthesisErrors	Processed     9,000,000 records.  Elapsed time: 00:02:10s.  Time for last 1,000,000:   14s.  Last read position: 9:14,782,704
+INFO	2019-01-09 16:22:24	DetectBeadSynthesisErrors	Processed    10,000,000 records.  Elapsed time: 00:02:25s.  Time for last 1,000,000:   14s.  Last read position: Y:90,739,187
+INFO	2019-01-09 16:22:40	DetectBeadSynthesisErrors	Processed    11,000,000 records.  Elapsed time: 00:02:41s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 16:22:55	DetectBeadSynthesisErrors	Processed    12,000,000 records.  Elapsed time: 00:02:56s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 16:23:10	DetectBeadSynthesisErrors	Processed    13,000,000 records.  Elapsed time: 00:03:11s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 16:23:26	DetectBeadSynthesisErrors	Processed    14,000,000 records.  Elapsed time: 00:03:27s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 16:23:42	DetectBeadSynthesisErrors	Processed    15,000,000 records.  Elapsed time: 00:03:43s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 16:23:57	DetectBeadSynthesisErrors	Processed    16,000,000 records.  Elapsed time: 00:03:58s.  Time for last 1,000,000:   15s.  Last read position: */*
+[Wed Jan 09 16:24:04 CET 2019] org.broadinstitute.dropseqrna.beadsynthesis.DetectBeadSynthesisErrors done. Elapsed time: 9.76 minutes.
+Runtime.totalMemory()=6971457536
+[Wed Jan 09 16:24:05 CET 2019] org.broadinstitute.dropseqrna.metrics.BAMTagHistogram INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.GETagged.cleaned.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/histogram_reads_cell_barcodes.txt.gz TAG=XC    FILTER_PCR_DUPLICATES=false READ_QUALITY=10 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 16:24:05 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 16:24:57	BAMTagHistogram	Processed    10,000,000 records.  Elapsed time: 00:00:51s.  Time for last 10,000,000:   51s.  Last read position: */*
+[Wed Jan 09 16:25:18 CET 2019] org.broadinstitute.dropseqrna.metrics.BAMTagHistogram done. Elapsed time: 1.21 minutes.
+Runtime.totalMemory()=1528299520
+[Wed Jan 09 16:25:19 CET 2019] org.broadinstitute.dropseqrna.barnyard.DigitalExpression SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/dge_summary.txt OUTPUT=UMI.counts.dge.txt.gz INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.GETagged.cleaned.bam NUM_CORE_BARCODES=1000    OUTPUT_READS_INSTEAD=false CELL_BARCODE_TAG=XC MOLECULAR_BARCODE_TAG=XM GENE_EXON_TAG=GE STRAND_TAG=GS EDIT_DISTANCE=1 READ_MQ=10 MIN_BC_READ_THRESHOLD=0 USE_STRAND_INFO=true RARE_UMI_FILTER_THRESHOLD=0.0 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 16:25:19 CET 2019] Executing as bdeplanc@cpt13.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 16:26:07	BAMTagHistogram	Processed    10,000,000 records.  Elapsed time: 00:00:47s.  Time for last 10,000,000:   47s.  Last read position: */*
+INFO	2019-01-09 16:26:28	BarcodeListRetrieval	Looking for the top 1000 cell barcodes
+INFO	2019-01-09 16:26:28	BarcodeListRetrieval	Selected 1000 core barcodes
+INFO	2019-01-09 16:26:28	DigitalExpression	Calculating digital expression for [1000] cells.
+INFO	2019-01-09 16:26:49	UMIIterator	Processed     1,000,000 records.  Elapsed time: 00:00:20s.  Time for last 1,000,000:   20s.  Last read position: 11:52,122,493
+INFO	2019-01-09 16:27:23	UMIIterator	Processed     2,000,000 records.  Elapsed time: 00:00:54s.  Time for last 1,000,000:   34s.  Last read position: 13:94,842,674
+INFO	2019-01-09 16:27:55	UMIIterator	Processed     3,000,000 records.  Elapsed time: 00:01:26s.  Time for last 1,000,000:   31s.  Last read position: 17:24,700,455
+INFO	2019-01-09 16:28:29	UMIIterator	Processed     4,000,000 records.  Elapsed time: 00:02:00s.  Time for last 1,000,000:   33s.  Last read position: 2:29,844,014
+INFO	2019-01-09 16:28:54	UMIIterator	Processed     5,000,000 records.  Elapsed time: 00:02:25s.  Time for last 1,000,000:   24s.  Last read position: 4:116,699,407
+INFO	2019-01-09 16:29:11	UMIIterator	Processed     6,000,000 records.  Elapsed time: 00:02:42s.  Time for last 1,000,000:   16s.  Last read position: 6:78,428,580
+INFO	2019-01-09 16:29:26	UMIIterator	Processed     7,000,000 records.  Elapsed time: 00:02:57s.  Time for last 1,000,000:   14s.  Last read position: 8:70,535,218
+INFO	2019-01-09 16:29:41	UMIIterator	Processed     8,000,000 records.  Elapsed time: 00:03:12s.  Time for last 1,000,000:   14s.  Last read position: X:7,727,832
+INFO	2019-01-09 16:30:05	UMIIterator	Sorting finished.
+[Wed Jan 09 16:30:42 CET 2019] org.broadinstitute.dropseqrna.barnyard.DigitalExpression done. Elapsed time: 5.39 minutes.
+Runtime.totalMemory()=4566024192
+Started analysis of day_3_o3_S9.fastq.gz
+Approx 5% complete for day_3_o3_S9.fastq.gz
+Approx 10% complete for day_3_o3_S9.fastq.gz
+Approx 15% complete for day_3_o3_S9.fastq.gz
+Approx 20% complete for day_3_o3_S9.fastq.gz
+Approx 25% complete for day_3_o3_S9.fastq.gz
+Approx 30% complete for day_3_o3_S9.fastq.gz
+Approx 35% complete for day_3_o3_S9.fastq.gz
+Approx 40% complete for day_3_o3_S9.fastq.gz
+Approx 45% complete for day_3_o3_S9.fastq.gz
+Approx 50% complete for day_3_o3_S9.fastq.gz
+Approx 55% complete for day_3_o3_S9.fastq.gz
+Approx 60% complete for day_3_o3_S9.fastq.gz
+Approx 65% complete for day_3_o3_S9.fastq.gz
+Approx 70% complete for day_3_o3_S9.fastq.gz
+Approx 75% complete for day_3_o3_S9.fastq.gz
+Approx 80% complete for day_3_o3_S9.fastq.gz
+Approx 85% complete for day_3_o3_S9.fastq.gz
+Approx 90% complete for day_3_o3_S9.fastq.gz
+Approx 95% complete for day_3_o3_S9.fastq.gz
+Started analysis of day_3_o3_S9.bam
+Approx 5% complete for day_3_o3_S9.bam
+Approx 10% complete for day_3_o3_S9.bam
+Approx 15% complete for day_3_o3_S9.bam
+Approx 20% complete for day_3_o3_S9.bam
+Approx 25% complete for day_3_o3_S9.bam
+Approx 30% complete for day_3_o3_S9.bam
+Approx 35% complete for day_3_o3_S9.bam
+Approx 40% complete for day_3_o3_S9.bam
+Approx 45% complete for day_3_o3_S9.bam
+Approx 50% complete for day_3_o3_S9.bam
+Approx 55% complete for day_3_o3_S9.bam
+Approx 60% complete for day_3_o3_S9.bam
+Approx 65% complete for day_3_o3_S9.bam
+Approx 70% complete for day_3_o3_S9.bam
+Approx 75% complete for day_3_o3_S9.bam
+Approx 80% complete for day_3_o3_S9.bam
+Approx 85% complete for day_3_o3_S9.bam
+Approx 90% complete for day_3_o3_S9.bam
+Approx 95% complete for day_3_o3_S9.bam
+[Wed Jan 09 18:57:25 CET 2019] picard.sam.FastqToSam FASTQ=/scratch/el/monthly/bdeplanc/pezoldt/Data/Organoid/2019_Organoid/d3_02/day_3_o3_S9_R1_001.fastq.gz FASTQ2=/scratch/el/monthly/bdeplanc/pezoldt/Data/Organoid/2019_Organoid/d3_02/day_3_o3_S9_R2_001.fastq.gz QUALITY_FORMAT=Standard OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.bam SAMPLE_NAME=day_3_o3_S9    USE_SEQUENTIAL_FASTQS=false READ_GROUP_NAME=A SORT_ORDER=queryname MIN_Q=0 MAX_Q=93 STRIP_UNPAIRED_MATE_NUMBER=false ALLOW_AND_IGNORE_EMPTY_LINES=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 18:57:25 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 2.10.3-SNAPSHOT
+INFO	2019-01-09 18:57:26	FastqToSam	Auto-detected quality format as: Standard.
+INFO	2019-01-09 18:57:33	FastqToSam	Processed     1,000,000 records.  Elapsed time: 00:00:07s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:57:42	FastqToSam	Processed     2,000,000 records.  Elapsed time: 00:00:16s.  Time for last 1,000,000:    8s.  Last read position: */*
+INFO	2019-01-09 18:57:50	FastqToSam	Processed     3,000,000 records.  Elapsed time: 00:00:24s.  Time for last 1,000,000:    8s.  Last read position: */*
+INFO	2019-01-09 18:57:58	FastqToSam	Processed     4,000,000 records.  Elapsed time: 00:00:32s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:58:05	FastqToSam	Processed     5,000,000 records.  Elapsed time: 00:00:39s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:58:13	FastqToSam	Processed     6,000,000 records.  Elapsed time: 00:00:47s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:58:20	FastqToSam	Processed     7,000,000 records.  Elapsed time: 00:00:54s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:58:28	FastqToSam	Processed     8,000,000 records.  Elapsed time: 00:01:02s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:58:35	FastqToSam	Processed     9,000,000 records.  Elapsed time: 00:01:09s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:58:42	FastqToSam	Processed    10,000,000 records.  Elapsed time: 00:01:16s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:58:50	FastqToSam	Processed    11,000,000 records.  Elapsed time: 00:01:24s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:58:57	FastqToSam	Processed    12,000,000 records.  Elapsed time: 00:01:31s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:59:04	FastqToSam	Processed    13,000,000 records.  Elapsed time: 00:01:38s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 18:59:13	FastqToSam	Processed    14,000,000 records.  Elapsed time: 00:01:46s.  Time for last 1,000,000:    8s.  Last read position: */*
+INFO	2019-01-09 18:59:20	FastqToSam	Processed    15,000,000 records.  Elapsed time: 00:01:54s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:59:27	FastqToSam	Processed    16,000,000 records.  Elapsed time: 00:02:01s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:59:34	FastqToSam	Processed    17,000,000 records.  Elapsed time: 00:02:08s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:59:41	FastqToSam	Processed    18,000,000 records.  Elapsed time: 00:02:15s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:59:49	FastqToSam	Processed    19,000,000 records.  Elapsed time: 00:02:23s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 18:59:56	FastqToSam	Processed    20,000,000 records.  Elapsed time: 00:02:30s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 19:00:04	FastqToSam	Processed    21,000,000 records.  Elapsed time: 00:02:38s.  Time for last 1,000,000:    8s.  Last read position: */*
+INFO	2019-01-09 19:00:12	FastqToSam	Processed    22,000,000 records.  Elapsed time: 00:02:46s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 19:00:19	FastqToSam	Processed    23,000,000 records.  Elapsed time: 00:02:53s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 19:00:26	FastqToSam	Processed    24,000,000 records.  Elapsed time: 00:03:00s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 19:00:33	FastqToSam	Processed    25,000,000 records.  Elapsed time: 00:03:07s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 19:00:40	FastqToSam	Processed    26,000,000 records.  Elapsed time: 00:03:14s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 19:00:47	FastqToSam	Processed    27,000,000 records.  Elapsed time: 00:03:21s.  Time for last 1,000,000:    6s.  Last read position: */*
+INFO	2019-01-09 19:00:56	FastqToSam	Processed    28,000,000 records.  Elapsed time: 00:03:30s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:01:04	FastqToSam	Processed    29,000,000 records.  Elapsed time: 00:03:38s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 19:01:11	FastqToSam	Processed    30,000,000 records.  Elapsed time: 00:03:45s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 19:01:19	FastqToSam	Processed    31,000,000 records.  Elapsed time: 00:03:53s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 19:01:27	FastqToSam	Processed    32,000,000 records.  Elapsed time: 00:04:01s.  Time for last 1,000,000:    7s.  Last read position: */*
+INFO	2019-01-09 19:01:35	FastqToSam	Processed 16458666 fastq reads
+[Wed Jan 09 19:06:08 CET 2019] picard.sam.FastqToSam done. Elapsed time: 8.72 minutes.
+Runtime.totalMemory()=11318853632
+[Wed Jan 09 19:06:10 CET 2019] org.broadinstitute.dropseqrna.utils.TagBamWithReadSequenceExtended INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.bam SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/cellular_tag_summary.txt BASE_RANGE=1-12 BARCODED_READ=1 DISCARD_READ=false BASE_QUALITY=10 NUM_BASES_BELOW_QUALITY=1 TAG_NAME=XC    TAG_BARCODED_READ=false HARD_CLIP_BASES=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 19:06:10 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+WARNING: BAM index file /scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.bam.bai is older than BAM /scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.bam
+INFO	2019-01-09 19:06:24	TagBamWithReadSequenceExtended	Processed     1,000,000 records.  Elapsed time: 00:00:13s.  Time for last 1,000,000:   13s.  Last read position: */*
+INFO	2019-01-09 19:06:35	TagBamWithReadSequenceExtended	Processed     2,000,000 records.  Elapsed time: 00:00:24s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:06:47	TagBamWithReadSequenceExtended	Processed     3,000,000 records.  Elapsed time: 00:00:36s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:06:58	TagBamWithReadSequenceExtended	Processed     4,000,000 records.  Elapsed time: 00:00:47s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:07:09	TagBamWithReadSequenceExtended	Processed     5,000,000 records.  Elapsed time: 00:00:58s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:07:21	TagBamWithReadSequenceExtended	Processed     6,000,000 records.  Elapsed time: 00:01:10s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:07:32	TagBamWithReadSequenceExtended	Processed     7,000,000 records.  Elapsed time: 00:01:21s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:07:43	TagBamWithReadSequenceExtended	Processed     8,000,000 records.  Elapsed time: 00:01:32s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:07:54	TagBamWithReadSequenceExtended	Processed     9,000,000 records.  Elapsed time: 00:01:43s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:08:05	TagBamWithReadSequenceExtended	Processed    10,000,000 records.  Elapsed time: 00:01:55s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:08:17	TagBamWithReadSequenceExtended	Processed    11,000,000 records.  Elapsed time: 00:02:06s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:08:27	TagBamWithReadSequenceExtended	Processed    12,000,000 records.  Elapsed time: 00:02:16s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:08:40	TagBamWithReadSequenceExtended	Processed    13,000,000 records.  Elapsed time: 00:02:29s.  Time for last 1,000,000:   12s.  Last read position: */*
+INFO	2019-01-09 19:08:51	TagBamWithReadSequenceExtended	Processed    14,000,000 records.  Elapsed time: 00:02:40s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:09:02	TagBamWithReadSequenceExtended	Processed    15,000,000 records.  Elapsed time: 00:02:51s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:09:13	TagBamWithReadSequenceExtended	Processed    16,000,000 records.  Elapsed time: 00:03:02s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:09:24	TagBamWithReadSequenceExtended	Processed    17,000,000 records.  Elapsed time: 00:03:13s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:09:35	TagBamWithReadSequenceExtended	Processed    18,000,000 records.  Elapsed time: 00:03:24s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:09:46	TagBamWithReadSequenceExtended	Processed    19,000,000 records.  Elapsed time: 00:03:36s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:09:58	TagBamWithReadSequenceExtended	Processed    20,000,000 records.  Elapsed time: 00:03:47s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:10:09	TagBamWithReadSequenceExtended	Processed    21,000,000 records.  Elapsed time: 00:03:58s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:10:20	TagBamWithReadSequenceExtended	Processed    22,000,000 records.  Elapsed time: 00:04:09s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:10:32	TagBamWithReadSequenceExtended	Processed    23,000,000 records.  Elapsed time: 00:04:21s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:10:44	TagBamWithReadSequenceExtended	Processed    24,000,000 records.  Elapsed time: 00:04:33s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:10:55	TagBamWithReadSequenceExtended	Processed    25,000,000 records.  Elapsed time: 00:04:44s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:11:06	TagBamWithReadSequenceExtended	Processed    26,000,000 records.  Elapsed time: 00:04:55s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:11:18	TagBamWithReadSequenceExtended	Processed    27,000,000 records.  Elapsed time: 00:05:07s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:11:28	TagBamWithReadSequenceExtended	Processed    28,000,000 records.  Elapsed time: 00:05:18s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:11:40	TagBamWithReadSequenceExtended	Processed    29,000,000 records.  Elapsed time: 00:05:29s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:11:51	TagBamWithReadSequenceExtended	Processed    30,000,000 records.  Elapsed time: 00:05:40s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:12:01	TagBamWithReadSequenceExtended	Processed    31,000,000 records.  Elapsed time: 00:05:51s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:12:13	TagBamWithReadSequenceExtended	Processed    32,000,000 records.  Elapsed time: 00:06:02s.  Time for last 1,000,000:   11s.  Last read position: */*
+[Wed Jan 09 19:12:23 CET 2019] org.broadinstitute.dropseqrna.utils.TagBamWithReadSequenceExtended done. Elapsed time: 6.21 minutes.
+Runtime.totalMemory()=1508900864
+[Wed Jan 09 19:12:24 CET 2019] org.broadinstitute.dropseqrna.utils.TagBamWithReadSequenceExtended INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.bam SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/molecular_tag_summary.txt BASE_RANGE=13-20 BARCODED_READ=1 DISCARD_READ=true BASE_QUALITY=10 NUM_BASES_BELOW_QUALITY=1 TAG_NAME=XM    TAG_BARCODED_READ=false HARD_CLIP_BASES=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 19:12:24 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 19:12:36	TagBamWithReadSequenceExtended	Processed     1,000,000 records.  Elapsed time: 00:00:12s.  Time for last 1,000,000:   12s.  Last read position: */*
+INFO	2019-01-09 19:12:46	TagBamWithReadSequenceExtended	Processed     2,000,000 records.  Elapsed time: 00:00:21s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:12:55	TagBamWithReadSequenceExtended	Processed     3,000,000 records.  Elapsed time: 00:00:30s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:13:05	TagBamWithReadSequenceExtended	Processed     4,000,000 records.  Elapsed time: 00:00:40s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:13:14	TagBamWithReadSequenceExtended	Processed     5,000,000 records.  Elapsed time: 00:00:49s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:13:24	TagBamWithReadSequenceExtended	Processed     6,000,000 records.  Elapsed time: 00:00:59s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:13:33	TagBamWithReadSequenceExtended	Processed     7,000,000 records.  Elapsed time: 00:01:08s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:13:42	TagBamWithReadSequenceExtended	Processed     8,000,000 records.  Elapsed time: 00:01:17s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:13:51	TagBamWithReadSequenceExtended	Processed     9,000,000 records.  Elapsed time: 00:01:26s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:14:01	TagBamWithReadSequenceExtended	Processed    10,000,000 records.  Elapsed time: 00:01:36s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:14:13	TagBamWithReadSequenceExtended	Processed    11,000,000 records.  Elapsed time: 00:01:48s.  Time for last 1,000,000:   11s.  Last read position: */*
+INFO	2019-01-09 19:14:22	TagBamWithReadSequenceExtended	Processed    12,000,000 records.  Elapsed time: 00:01:57s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:14:33	TagBamWithReadSequenceExtended	Processed    13,000,000 records.  Elapsed time: 00:02:08s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:14:42	TagBamWithReadSequenceExtended	Processed    14,000,000 records.  Elapsed time: 00:02:17s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:14:52	TagBamWithReadSequenceExtended	Processed    15,000,000 records.  Elapsed time: 00:02:27s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:15:02	TagBamWithReadSequenceExtended	Processed    16,000,000 records.  Elapsed time: 00:02:37s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:15:12	TagBamWithReadSequenceExtended	Processed    17,000,000 records.  Elapsed time: 00:02:47s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:15:22	TagBamWithReadSequenceExtended	Processed    18,000,000 records.  Elapsed time: 00:02:57s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:15:32	TagBamWithReadSequenceExtended	Processed    19,000,000 records.  Elapsed time: 00:03:07s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:15:42	TagBamWithReadSequenceExtended	Processed    20,000,000 records.  Elapsed time: 00:03:17s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:15:52	TagBamWithReadSequenceExtended	Processed    21,000,000 records.  Elapsed time: 00:03:27s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:16:02	TagBamWithReadSequenceExtended	Processed    22,000,000 records.  Elapsed time: 00:03:37s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:16:12	TagBamWithReadSequenceExtended	Processed    23,000,000 records.  Elapsed time: 00:03:47s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:16:22	TagBamWithReadSequenceExtended	Processed    24,000,000 records.  Elapsed time: 00:03:57s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:16:31	TagBamWithReadSequenceExtended	Processed    25,000,000 records.  Elapsed time: 00:04:07s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:16:41	TagBamWithReadSequenceExtended	Processed    26,000,000 records.  Elapsed time: 00:04:17s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:16:52	TagBamWithReadSequenceExtended	Processed    27,000,000 records.  Elapsed time: 00:04:27s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:17:03	TagBamWithReadSequenceExtended	Processed    28,000,000 records.  Elapsed time: 00:04:38s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:17:12	TagBamWithReadSequenceExtended	Processed    29,000,000 records.  Elapsed time: 00:04:47s.  Time for last 1,000,000:    9s.  Last read position: */*
+INFO	2019-01-09 19:17:22	TagBamWithReadSequenceExtended	Processed    30,000,000 records.  Elapsed time: 00:04:57s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:17:33	TagBamWithReadSequenceExtended	Processed    31,000,000 records.  Elapsed time: 00:05:08s.  Time for last 1,000,000:   10s.  Last read position: */*
+INFO	2019-01-09 19:17:42	TagBamWithReadSequenceExtended	Processed    32,000,000 records.  Elapsed time: 00:05:17s.  Time for last 1,000,000:    9s.  Last read position: */*
+[Wed Jan 09 19:17:52 CET 2019] org.broadinstitute.dropseqrna.utils.TagBamWithReadSequenceExtended done. Elapsed time: 5.46 minutes.
+Runtime.totalMemory()=1492123648
+[Wed Jan 09 19:17:53 CET 2019] org.broadinstitute.dropseqrna.utils.FilterBAM INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.bam TAG_REJECT=[XQ]    FILTER_PCR_DUPES=false RETAIN_ONLY_PRIMARY_READS=false DROP_REJECTED_REF=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 19:17:53 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 19:18:11	FilterBAM	Processed     1,000,000 records.  Elapsed time: 00:00:17s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:18:29	FilterBAM	Processed     2,000,000 records.  Elapsed time: 00:00:34s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:18:44	FilterBAM	Processed     3,000,000 records.  Elapsed time: 00:00:50s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:19:00	FilterBAM	Processed     4,000,000 records.  Elapsed time: 00:01:06s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:19:15	FilterBAM	Processed     5,000,000 records.  Elapsed time: 00:01:21s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:19:31	FilterBAM	Processed     6,000,000 records.  Elapsed time: 00:01:37s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:19:46	FilterBAM	Processed     7,000,000 records.  Elapsed time: 00:01:52s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:20:03	FilterBAM	Processed     8,000,000 records.  Elapsed time: 00:02:09s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:20:18	FilterBAM	Processed     9,000,000 records.  Elapsed time: 00:02:24s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:20:34	FilterBAM	Processed    10,000,000 records.  Elapsed time: 00:02:40s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:20:49	FilterBAM	Processed    11,000,000 records.  Elapsed time: 00:02:55s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 19:21:04	FilterBAM	Processed    12,000,000 records.  Elapsed time: 00:03:10s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:21:19	FilterBAM	Processed    13,000,000 records.  Elapsed time: 00:03:25s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:21:35	FilterBAM	Processed    14,000,000 records.  Elapsed time: 00:03:41s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:21:50	FilterBAM	Processed    15,000,000 records.  Elapsed time: 00:03:56s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:22:07	FilterBAM	Processed    16,000,000 records.  Elapsed time: 00:04:13s.  Time for last 1,000,000:   16s.  Last read position: */*
+[Wed Jan 09 19:22:14 CET 2019] org.broadinstitute.dropseqrna.utils.FilterBAM done. Elapsed time: 4.34 minutes.
+Runtime.totalMemory()=1683488768
+[Wed Jan 09 19:22:15 CET 2019] org.broadinstitute.dropseqrna.readtrimming.TrimStartingSequence INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.adapTrimmed.bam OUTPUT_SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/adapter_trimming_summary.txt SEQUENCE=AAGCAGTGGTATCAACGCAGAGTGAATGGG MISMATCHES=0 NUM_BASES=5    TRIM_TAG=ZS VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 19:22:15 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 19:22:35	TrimStartingSequence	Processed     1,000,000 records.  Elapsed time: 00:00:20s.  Time for last 1,000,000:   19s.  Last read position: */*
+INFO	2019-01-09 19:22:53	TrimStartingSequence	Processed     2,000,000 records.  Elapsed time: 00:00:37s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:23:09	TrimStartingSequence	Processed     3,000,000 records.  Elapsed time: 00:00:54s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:23:27	TrimStartingSequence	Processed     4,000,000 records.  Elapsed time: 00:01:12s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:23:44	TrimStartingSequence	Processed     5,000,000 records.  Elapsed time: 00:01:28s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:24:00	TrimStartingSequence	Processed     6,000,000 records.  Elapsed time: 00:01:44s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:24:18	TrimStartingSequence	Processed     7,000,000 records.  Elapsed time: 00:02:02s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:24:35	TrimStartingSequence	Processed     8,000,000 records.  Elapsed time: 00:02:19s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:24:52	TrimStartingSequence	Processed     9,000,000 records.  Elapsed time: 00:02:36s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:25:09	TrimStartingSequence	Processed    10,000,000 records.  Elapsed time: 00:02:53s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:25:26	TrimStartingSequence	Processed    11,000,000 records.  Elapsed time: 00:03:10s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:25:42	TrimStartingSequence	Processed    12,000,000 records.  Elapsed time: 00:03:27s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:25:59	TrimStartingSequence	Processed    13,000,000 records.  Elapsed time: 00:03:43s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:26:16	TrimStartingSequence	Processed    14,000,000 records.  Elapsed time: 00:04:01s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:26:33	TrimStartingSequence	Processed    15,000,000 records.  Elapsed time: 00:04:17s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:26:50	TrimStartingSequence	Processed    16,000,000 records.  Elapsed time: 00:04:34s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:26:57	TrimStartingSequence	Number of reads trimmed: 45592 total reads: 16450870
+[Wed Jan 09 19:26:57 CET 2019] org.broadinstitute.dropseqrna.readtrimming.TrimStartingSequence done. Elapsed time: 4.69 minutes.
+Runtime.totalMemory()=1612185600
+[Wed Jan 09 19:26:58 CET 2019] org.broadinstitute.dropseqrna.readtrimming.PolyATrimmer INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.adapTrimmed.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.adapTrimmed.polyATrimmed.bam OUTPUT_SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/polyA_trimming_summary.txt MISMATCHES=0 NUM_BASES=6    USE_NEW_TRIMMER=false TRIM_TAG=ZP ADAPTER=^XM^XCACGTACTCTGCGTTGCTACCACTG MAX_ADAPTER_ERROR_RATE=0.1 MIN_ADAPTER_MATCH=4 MIN_POLY_A_LENGTH=20 MIN_POLY_A_LENGTH_NO_ADAPTER_MATCH=6 DUBIOUS_ADAPTER_MATCH_LENGTH=6 MAX_POLY_A_ERROR_RATE=0.1 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 19:26:58 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 19:27:19	PolyATrimmer	Processed     1,000,000 records.  Elapsed time: 00:00:20s.  Time for last 1,000,000:   19s.  Last read position: */*
+INFO	2019-01-09 19:27:36	PolyATrimmer	Processed     2,000,000 records.  Elapsed time: 00:00:37s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:27:53	PolyATrimmer	Processed     3,000,000 records.  Elapsed time: 00:00:54s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:28:10	PolyATrimmer	Processed     4,000,000 records.  Elapsed time: 00:01:11s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:28:27	PolyATrimmer	Processed     5,000,000 records.  Elapsed time: 00:01:28s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:28:45	PolyATrimmer	Processed     6,000,000 records.  Elapsed time: 00:01:46s.  Time for last 1,000,000:   18s.  Last read position: */*
+INFO	2019-01-09 19:29:01	PolyATrimmer	Processed     7,000,000 records.  Elapsed time: 00:02:02s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:29:17	PolyATrimmer	Processed     8,000,000 records.  Elapsed time: 00:02:18s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:29:34	PolyATrimmer	Processed     9,000,000 records.  Elapsed time: 00:02:35s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:29:51	PolyATrimmer	Processed    10,000,000 records.  Elapsed time: 00:02:52s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:30:07	PolyATrimmer	Processed    11,000,000 records.  Elapsed time: 00:03:08s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 19:30:24	PolyATrimmer	Processed    12,000,000 records.  Elapsed time: 00:03:25s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:30:41	PolyATrimmer	Processed    13,000,000 records.  Elapsed time: 00:03:42s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:30:58	PolyATrimmer	Processed    14,000,000 records.  Elapsed time: 00:03:59s.  Time for last 1,000,000:   17s.  Last read position: */*
+INFO	2019-01-09 19:31:14	PolyATrimmer	Processed    15,000,000 records.  Elapsed time: 00:04:15s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:31:31	PolyATrimmer	Processed    16,000,000 records.  Elapsed time: 00:04:32s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 19:31:39	PolyATrimmer	Number of reads trimmed: 2593199
+INFO	2019-01-09 19:31:39	PolyATrimmer	Number of reads completely trimmed: 68750
+[Wed Jan 09 19:31:39 CET 2019] org.broadinstitute.dropseqrna.readtrimming.PolyATrimmer done. Elapsed time: 4.68 minutes.
+Runtime.totalMemory()=1583349760
+[Wed Jan 09 19:31:41 CET 2019] picard.sam.SamToFastq INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.adapTrimmed.polyATrimmed.bam FASTQ=/scratch/el/monthly/bdeplanc/pezoldt/Data/Organoid/2019_Organoid/d3_02/day_3_o3_S9.fastq.gz    OUTPUT_PER_RG=false RG_TAG=PU RE_REVERSE=true INTERLEAVE=false INCLUDE_NON_PF_READS=false CLIPPING_MIN_LENGTH=0 READ1_TRIM=0 READ2_TRIM=0 INCLUDE_NON_PRIMARY_ALIGNMENTS=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 19:31:41 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 2.10.3-SNAPSHOT
+INFO	2019-01-09 19:32:05	SamToFastq	Processed     1,000,000 records.  Elapsed time: 00:00:23s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 19:32:29	SamToFastq	Processed     2,000,000 records.  Elapsed time: 00:00:47s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 19:32:51	SamToFastq	Processed     3,000,000 records.  Elapsed time: 00:01:10s.  Time for last 1,000,000:   22s.  Last read position: */*
+INFO	2019-01-09 19:33:14	SamToFastq	Processed     4,000,000 records.  Elapsed time: 00:01:33s.  Time for last 1,000,000:   22s.  Last read position: */*
+INFO	2019-01-09 19:33:37	SamToFastq	Processed     5,000,000 records.  Elapsed time: 00:01:56s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 19:34:00	SamToFastq	Processed     6,000,000 records.  Elapsed time: 00:02:18s.  Time for last 1,000,000:   22s.  Last read position: */*
+INFO	2019-01-09 19:34:23	SamToFastq	Processed     7,000,000 records.  Elapsed time: 00:02:41s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 19:34:46	SamToFastq	Processed     8,000,000 records.  Elapsed time: 00:03:04s.  Time for last 1,000,000:   22s.  Last read position: */*
+INFO	2019-01-09 19:35:09	SamToFastq	Processed     9,000,000 records.  Elapsed time: 00:03:28s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 19:35:33	SamToFastq	Processed    10,000,000 records.  Elapsed time: 00:03:51s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 19:35:56	SamToFastq	Processed    11,000,000 records.  Elapsed time: 00:04:15s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 19:36:19	SamToFastq	Processed    12,000,000 records.  Elapsed time: 00:04:38s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 19:36:43	SamToFastq	Processed    13,000,000 records.  Elapsed time: 00:05:01s.  Time for last 1,000,000:   23s.  Last read position: */*
+INFO	2019-01-09 19:37:07	SamToFastq	Processed    14,000,000 records.  Elapsed time: 00:05:25s.  Time for last 1,000,000:   24s.  Last read position: */*
+INFO	2019-01-09 19:37:30	SamToFastq	Processed    15,000,000 records.  Elapsed time: 00:05:48s.  Time for last 1,000,000:   22s.  Last read position: */*
+INFO	2019-01-09 19:37:53	SamToFastq	Processed    16,000,000 records.  Elapsed time: 00:06:12s.  Time for last 1,000,000:   23s.  Last read position: */*
+[Wed Jan 09 19:38:05 CET 2019] picard.sam.SamToFastq done. Elapsed time: 6.41 minutes.
+Runtime.totalMemory()=1510998016
+[Wed Jan 09 19:45:39 CET 2019] picard.sam.SortSam INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/Aligned.out.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.sortedByName.bam SORT_ORDER=queryname    VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 19:45:39 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 2.10.3-SNAPSHOT
+INFO	2019-01-09 19:46:51	SortSam	Read    10,000,000 records.  Elapsed time: 00:01:11s.  Time for last 10,000,000:   71s.  Last read position: 2:94,032,808
+INFO	2019-01-09 19:46:53	SortSam	Finished reading inputs, merging and writing to output now.
+INFO	2019-01-09 19:49:15	SortSam	Wrote    10,000,000 records from a sorting collection.  Elapsed time: 00:03:35s.  Time for last 10,000,000:  142s.  Last read position: 2:94,032,808
+[Wed Jan 09 19:49:15 CET 2019] picard.sam.SortSam done. Elapsed time: 3.60 minutes.
+Runtime.totalMemory()=6150422528
+[Wed Jan 09 19:49:17 CET 2019] picard.sam.MergeBamAlignment UNMAPPED_BAM=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.cTag.mTag.filtered.adapTrimmed.polyATrimmed.bam ALIGNED_BAM=[/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.sortedByName.bam] OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.bam REFERENCE_SEQUENCE=/scratch/el/monthly/bdeplanc/marjan/genomes/mouse/mm_m38r91.fa PAIRED_RUN=false    CLIP_ADAPTERS=true IS_BISULFITE_SEQUENCE=false ALIGNED_READS_ONLY=false MAX_INSERTIONS_OR_DELETIONS=1 ATTRIBUTES_TO_REVERSE=[OQ, U2] ATTRIBUTES_TO_REVERSE_COMPLEMENT=[E2, SQ] READ1_TRIM=0 READ2_TRIM=0 ALIGNER_PROPER_PAIR_FLAGS=false SORT_ORDER=coordinate PRIMARY_ALIGNMENT_STRATEGY=BestMapq CLIP_OVERLAPPING_READS=true INCLUDE_SECONDARY_ALIGNMENTS=true ADD_MATE_CIGAR=true UNMAP_CONTAMINANT_READS=false MIN_UNCLIPPED_BASES=32 MATCHING_DICTIONARY_TAGS=[M5, LN] UNMAPPED_READ_STRATEGY=DO_NOT_CHANGE VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 19:49:17 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 2.10.3-SNAPSHOT
+INFO	2019-01-09 19:49:18	SamAlignmentMerger	Processing SAM file(s): [/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.sortedByName.bam]
+INFO	2019-01-09 19:49:46	AbstractAlignmentMerger	Merged     1,000,000 records.  Elapsed time: 00:00:28s.  Time for last 1,000,000:   28s.  Last read position: MT:11,418
+INFO	2019-01-09 19:50:13	AbstractAlignmentMerger	Merged     2,000,000 records.  Elapsed time: 00:00:55s.  Time for last 1,000,000:   27s.  Last read position: 17:55,865,626
+INFO	2019-01-09 19:50:37	AbstractAlignmentMerger	Merged     3,000,000 records.  Elapsed time: 00:01:19s.  Time for last 1,000,000:   24s.  Last read position: 18:36,796,506
+INFO	2019-01-09 19:51:06	AbstractAlignmentMerger	Merged     4,000,000 records.  Elapsed time: 00:01:49s.  Time for last 1,000,000:   29s.  Last read position: 19:5,801,780
+INFO	2019-01-09 19:51:27	AbstractAlignmentMerger	Merged     5,000,000 records.  Elapsed time: 00:02:10s.  Time for last 1,000,000:   20s.  Last read position: 4:155,074,962
+INFO	2019-01-09 19:51:54	AbstractAlignmentMerger	Merged     6,000,000 records.  Elapsed time: 00:02:36s.  Time for last 1,000,000:   26s.  Last read position: 8:120,674,132
+INFO	2019-01-09 19:52:23	AbstractAlignmentMerger	Merged     7,000,000 records.  Elapsed time: 00:03:05s.  Time for last 1,000,000:   28s.  Last read position: 10:81,346,120
+INFO	2019-01-09 19:52:44	AbstractAlignmentMerger	Merged     8,000,000 records.  Elapsed time: 00:03:26s.  Time for last 1,000,000:   21s.  Last read position: 17:35,963,349
+INFO	2019-01-09 19:53:05	AbstractAlignmentMerger	Merged     9,000,000 records.  Elapsed time: 00:03:47s.  Time for last 1,000,000:   21s.  Last read position: 4:15,918,994
+INFO	2019-01-09 19:53:27	AbstractAlignmentMerger	Merged    10,000,000 records.  Elapsed time: 00:04:09s.  Time for last 1,000,000:   21s.  Last read position: 7:3,706,755
+INFO	2019-01-09 19:57:06	AbstractAlignmentMerger	Written in coordinate order to output    10,000,000 records.  Elapsed time: 00:03:35s.  Time for last 10,000,000:  212s.  Last read position: Y:90,739,187
+INFO	2019-01-09 19:58:31	AbstractAlignmentMerger	Wrote 10003769 alignment records and 6447101 unmapped reads.
+[Wed Jan 09 19:58:31 CET 2019] picard.sam.MergeBamAlignment done. Elapsed time: 9.23 minutes.
+Runtime.totalMemory()=11717312512
+[Wed Jan 09 19:58:32 CET 2019] org.broadinstitute.dropseqrna.metrics.TagReadWithGeneExon INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.GETagged.bam TAG=GE ANNOTATIONS_FILE=/scratch/el/monthly/bdeplanc/marjan/genomes/mouse/gtf/mm_m38r91.gtf    STRAND_TAG=GS FUNCTION_TAG=XF USE_STRAND_INFO=true ALLOW_MULTI_GENE_READS=false VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 19:58:32 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 19:58:38	GTFParser	read       100,000 GTF records.  Elapsed time: 00:00:05s.  Time for last 100,000:    5s.  Last read position: 1:172,186,296
+INFO	2019-01-09 19:58:43	GTFParser	read       200,000 GTF records.  Elapsed time: 00:00:10s.  Time for last 100,000:    4s.  Last read position: 2:106,699,408
+INFO	2019-01-09 19:58:47	GTFParser	read       300,000 GTF records.  Elapsed time: 00:00:13s.  Time for last 100,000:    3s.  Last read position: X:98,763,705
+INFO	2019-01-09 19:58:51	GTFParser	read       400,000 GTF records.  Elapsed time: 00:00:18s.  Time for last 100,000:    4s.  Last read position: 3:129,804,408
+INFO	2019-01-09 19:58:56	GTFParser	read       500,000 GTF records.  Elapsed time: 00:00:23s.  Time for last 100,000:    4s.  Last read position: 4:141,022,044
+INFO	2019-01-09 19:59:00	GTFParser	read       600,000 GTF records.  Elapsed time: 00:00:27s.  Time for last 100,000:    4s.  Last read position: 5:121,362,441
+INFO	2019-01-09 19:59:04	GTFParser	read       700,000 GTF records.  Elapsed time: 00:00:30s.  Time for last 100,000:    3s.  Last read position: 6:107,194,374
+INFO	2019-01-09 19:59:08	GTFParser	read       800,000 GTF records.  Elapsed time: 00:00:34s.  Time for last 100,000:    3s.  Last read position: 7:46,847,620
+INFO	2019-01-09 19:59:11	GTFParser	read       900,000 GTF records.  Elapsed time: 00:00:38s.  Time for last 100,000:    3s.  Last read position: 10:26,017,505
+INFO	2019-01-09 19:59:15	GTFParser	read     1,000,000 GTF records.  Elapsed time: 00:00:42s.  Time for last 100,000:    4s.  Last read position: 8:46,471,072
+INFO	2019-01-09 19:59:19	GTFParser	read     1,100,000 GTF records.  Elapsed time: 00:00:45s.  Time for last 100,000:    3s.  Last read position: 14:52,163,184
+INFO	2019-01-09 19:59:23	GTFParser	read     1,200,000 GTF records.  Elapsed time: 00:00:50s.  Time for last 100,000:    4s.  Last read position: 9:88,438,668
+INFO	2019-01-09 19:59:28	GTFParser	read     1,300,000 GTF records.  Elapsed time: 00:00:54s.  Time for last 100,000:    4s.  Last read position: 11:74,269,391
+INFO	2019-01-09 19:59:31	GTFParser	read     1,400,000 GTF records.  Elapsed time: 00:00:57s.  Time for last 100,000:    2s.  Last read position: 13:58,400,333
+INFO	2019-01-09 19:59:34	GTFParser	read     1,500,000 GTF records.  Elapsed time: 00:01:00s.  Time for last 100,000:    3s.  Last read position: 15:10,587,838
+INFO	2019-01-09 19:59:38	GTFParser	read     1,600,000 GTF records.  Elapsed time: 00:01:05s.  Time for last 100,000:    4s.  Last read position: 16:93,806,335
+INFO	2019-01-09 19:59:42	GTFParser	read     1,700,000 GTF records.  Elapsed time: 00:01:08s.  Time for last 100,000:    3s.  Last read position: 18:35,718,348
+INFO	2019-01-09 19:59:45	GTFReader	Chromosome disagreement(12, GL456233.1) in GTF file for gene U6 -- skipping
+INFO	2019-01-09 19:59:45	GTFReader	gene GTFRecord(3:30594844-30595733	-	. [1600017P15Rik gene]) != GeneFromGTF(3:30594844-30595757	-	1600017P15Rik) -- skipping
+INFO	2019-01-09 19:59:45	GTFReader	gene GTFRecord(4:132309465-132309600	+	. [Snora16a gene]) != GeneFromGTF(4:132309464-132309600	+	Snora16a) -- skipping
+INFO	2019-01-09 19:59:45	GTFReader	gene GTFRecord(6:69326844-69327170	-	. [Rprl1 gene]) != GeneFromGTF(6:69326844-69327174	-	Rprl1) -- skipping
+INFO	2019-01-09 19:59:45	GTFReader	gene GTFRecord(12:110596608-110597106	-	. [Gm35558 gene]) != GeneFromGTF(12:110596608-110601963	-	Gm35558) -- skipping
+INFO	2019-01-09 19:59:45	GTFReader	gene GTFRecord(3:88693931-88694057	+	. [Gm25820 gene]) != GeneFromGTF(3:88693930-88694057	+	Gm25820) -- skipping
+INFO	2019-01-09 19:59:45	GTFReader	gene GTFRecord(1:166377878-166379918	-	. [Gm15853 gene]) != GeneFromGTF(1:166377878-166380493	-	Gm15853) -- skipping
+INFO	2019-01-09 19:59:45	GTFReader	gene GTFRecord(4:56897626-56897757	-	. [Gm25053 gene]) != GeneFromGTF(4:56897625-56897757	-	Gm25053) -- skipping
+INFO	2019-01-09 19:59:45	GTFReader	gene GTFRecord(3:124398086-124398331	-	. [4921527H02Rik gene]) != GeneFromGTF(3:124398086-124399758	-	4921527H02Rik) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(2:106809336-106809458	+	. [Gm22813 gene]) != GeneFromGTF(2:106809335-106809458	+	Gm22813) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(5:4985111-4985237	-	. [Gm22897 gene]) != GeneFromGTF(5:4985111-4985238	-	Gm22897) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	Strand disagreement in GTF file for gene Ighv5-8 -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(12:82772321-82772456	-	. [Gm22149 gene]) != GeneFromGTF(12:82772320-82772456	-	Gm22149) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(13:101749720-101751888	-	. [Gm36638 gene]) != GeneFromGTF(13:101749720-101753205	-	Gm36638) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(4:106118968-106119080	-	. [Gm26047 gene]) != GeneFromGTF(4:106118968-106119082	-	Gm26047) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(7:81529855-81529981	+	. [Mir1839 gene]) != GeneFromGTF(7:81529855-81529988	+	Mir1839) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(18:35554492-35554632	+	. [Mir1949 gene]) != GeneFromGTF(18:35554492-35554636	+	Mir1949) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(6:53819974-53822150	+	. [Gm16499 gene]) != GeneFromGTF(6:53818743-53868183	+	Gm16499) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(4:74635219-74635350	+	. [Gm26379 gene]) != GeneFromGTF(4:74635214-74635351	+	Gm26379) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(2:129196086-129197126	-	. [Gm4430 gene]) != GeneFromGTF(2:129196086-129199194	-	Gm4430) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(11:116163910-116164035	-	. [Gm26413 gene]) != GeneFromGTF(11:116163910-116164036	-	Gm26413) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(3:93689841-93690037	+	. [Gm18433 gene]) != GeneFromGTF(3:93689841-93708267	+	Gm18433) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(10:86526299-86536337	-	. [Gm6729 gene]) != GeneFromGTF(10:86526299-86541334	-	Gm6729) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(8:63522920-63525878	+	. [Gm18645 gene]) != GeneFromGTF(8:63522920-63525881	+	Gm18645) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(1:161037604-161037680	+	. [Snord80 gene]) != GeneFromGTF(1:161037601-161037681	+	Snord80) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(2:158359797-158359928	-	. [Gm23925 gene]) != GeneFromGTF(2:158359797-158359929	-	Gm23925) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(8:45581616-45581747	-	. [Gm23604 gene]) != GeneFromGTF(8:45581615-45581751	-	Gm23604) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(2:33812957-33813326	+	. [Nron gene]) != GeneFromGTF(2:33805816-33813591	+	Nron) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(3:133579627-133579901	-	. [Gm23011 gene]) != GeneFromGTF(3:133579627-133588537	-	Gm23011) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(8:38982904-38983035	-	. [Gm23128 gene]) != GeneFromGTF(8:38982903-38983035	-	Gm23128) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(1:127331813-127331941	+	. [Gm23370 gene]) != GeneFromGTF(1:127331812-127331941	+	Gm23370) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(12:109532442-109532646	+	. [Gm27528 gene]) != GeneFromGTF(12:109530892-109532903	+	Gm27528) -- skipping
+INFO	2019-01-09 19:59:46	GTFReader	gene GTFRecord(5:111329738-111330544	-	. [Gm27680 gene]) != GeneFromGTF(5:111329738-111330632	-	Gm27680) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(3:68901830-68902144	+	. [Gm20690 gene]) != GeneFromGTF(3:68901807-68902161	+	Gm20690) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(3:68846079-68847403	+	. [Gm7270 gene]) != GeneFromGTF(3:68846079-68847406	+	Gm7270) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(12:87437679-87437757	-	. [Mir3068 gene]) != GeneFromGTF(12:87437679-87437817	-	Mir3068) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(6:124138733-124139636	-	. [Vmn2r-ps34 gene]) != GeneFromGTF(6:124138733-124173146	-	Vmn2r-ps34) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	Chromosome disagreement(JH584293.1, GL456350.1) in GTF file for gene Ccl21c -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	Chromosome disagreement(GL456350.1, 4) in GTF file for gene Ccl21b -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	Chromosome disagreement(JH584294.1, 4) in GTF file for gene Ccl21a -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(3:68333197-68333777	+	. [Gm10292 gene]) != GeneFromGTF(3:68333196-68333780	+	Gm10292) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(5:16835914-16837658	+	. [Gm28710 gene]) != GeneFromGTF(5:16791810-16882052	+	Gm28710) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(11:87443237-87443451	+	. [Rnu3b1 gene]) != GeneFromGTF(11:87443237-87443452	+	Rnu3b1) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(11:87448627-87448841	+	. [Rnu3b3 gene]) != GeneFromGTF(11:87448627-87448842	+	Rnu3b3) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(11:87471368-87471582	+	. [Rnu3b2 gene]) != GeneFromGTF(11:87471368-87471583	+	Rnu3b2) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(11:87462286-87462500	+	. [Rnu3b4 gene]) != GeneFromGTF(11:87462286-87462501	+	Rnu3b4) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(3:13470439-13471829	-	. [Gm2464 gene]) != GeneFromGTF(3:13470439-13474596	-	Gm2464) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(10:128085289-128085360	+	. [Mir677 gene]) != GeneFromGTF(10:128085286-128085363	+	Mir677) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(12:114630680-114630973	+	. [Ighv1-13 gene]) != GeneFromGTF(12:114630680-114631111	+	Ighv1-13) -- skipping
+INFO	2019-01-09 19:59:47	GTFReader	gene GTFRecord(7:61704519-61829422	-	. [A230057D06Rik gene]) != GeneFromGTF(7:61704519-61928690	-	A230057D06Rik) -- skipping
+INFO	2019-01-09 20:00:15	TagReadWithGeneExon	Processed     1,000,000 records.  Elapsed time: 00:01:42s.  Time for last 1,000,000:   27s.  Last read position: 10:128,624,560
+INFO	2019-01-09 20:00:40	TagReadWithGeneExon	Processed     2,000,000 records.  Elapsed time: 00:02:07s.  Time for last 1,000,000:   24s.  Last read position: 12:84,756,630
+INFO	2019-01-09 20:01:04	TagReadWithGeneExon	Processed     3,000,000 records.  Elapsed time: 00:02:32s.  Time for last 1,000,000:   24s.  Last read position: 15:76,906,249
+INFO	2019-01-09 20:01:30	TagReadWithGeneExon	Processed     4,000,000 records.  Elapsed time: 00:02:57s.  Time for last 1,000,000:   25s.  Last read position: 17:56,722,068
+INFO	2019-01-09 20:01:55	TagReadWithGeneExon	Processed     5,000,000 records.  Elapsed time: 00:03:22s.  Time for last 1,000,000:   25s.  Last read position: 2:91,264,509
+INFO	2019-01-09 20:02:20	TagReadWithGeneExon	Processed     6,000,000 records.  Elapsed time: 00:03:48s.  Time for last 1,000,000:   25s.  Last read position: 4:62,509,179
+INFO	2019-01-09 20:02:46	TagReadWithGeneExon	Processed     7,000,000 records.  Elapsed time: 00:04:13s.  Time for last 1,000,000:   25s.  Last read position: 5:142,903,886
+INFO	2019-01-09 20:03:12	TagReadWithGeneExon	Processed     8,000,000 records.  Elapsed time: 00:04:39s.  Time for last 1,000,000:   26s.  Last read position: 7:45,126,739
+INFO	2019-01-09 20:03:38	TagReadWithGeneExon	Processed     9,000,000 records.  Elapsed time: 00:05:05s.  Time for last 1,000,000:   26s.  Last read position: 9:14,782,704
+INFO	2019-01-09 20:04:04	TagReadWithGeneExon	Processed    10,000,000 records.  Elapsed time: 00:05:31s.  Time for last 1,000,000:   25s.  Last read position: Y:90,739,187
+INFO	2019-01-09 20:04:20	TagReadWithGeneExon	Processed    11,000,000 records.  Elapsed time: 00:05:47s.  Time for last 1,000,000:   16s.  Last read position: */*
+INFO	2019-01-09 20:04:35	TagReadWithGeneExon	Processed    12,000,000 records.  Elapsed time: 00:06:02s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 20:04:51	TagReadWithGeneExon	Processed    13,000,000 records.  Elapsed time: 00:06:18s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 20:05:06	TagReadWithGeneExon	Processed    14,000,000 records.  Elapsed time: 00:06:33s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 20:05:21	TagReadWithGeneExon	Processed    15,000,000 records.  Elapsed time: 00:06:48s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 20:05:36	TagReadWithGeneExon	Processed    16,000,000 records.  Elapsed time: 00:07:04s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 20:05:44	TagReadWithGeneExon	TOTAL READS [10003769] CORRECT_STRAND [9217465]  WRONG_STRAND [634157] AMBIGUOUS_STRAND_FIXED [429751] AMBIGUOUS REJECTED READS [152147]
+[Wed Jan 09 20:05:44 CET 2019] org.broadinstitute.dropseqrna.metrics.TagReadWithGeneExon done. Elapsed time: 7.20 minutes.
+Runtime.totalMemory()=11807490048
+[Wed Jan 09 20:05:46 CET 2019] org.broadinstitute.dropseqrna.beadsynthesis.DetectBeadSynthesisErrors OUTPUT_STATS=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/synthesis_stats.txt INPUT=[/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.GETagged.bam] SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/synthesis_stats_summary.txt OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.GETagged.cleaned.bam PRIMER_SEQUENCE=AAGCAGTGGTATCAACGCAGAGTAC NUM_BARCODES=2000 CREATE_INDEX=true    EDIT_DISTANCE=0 CELL_BARCODE_TAG=XC MOLECULAR_BARCODE_TAG=XM GENE_EXON_TAG=GE STRAND_TAG=GS READ_MQ=10 MIN_UMIS_PER_CELL=25 MAX_NUM_ERRORS=1 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 20:05:46 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 20:05:46	AbstractDetectBeadSynthesisErrors	Gathering barcodes for the top [2000] cells
+INFO	2019-01-09 20:06:36	BAMTagHistogram	Processed    10,000,000 records.  Elapsed time: 00:00:49s.  Time for last 10,000,000:   49s.  Last read position: Y:90,739,187
+INFO	2019-01-09 20:07:01	BarcodeListRetrieval	Looking for the top 2000 cell barcodes
+INFO	2019-01-09 20:07:02	BarcodeListRetrieval	Selected 2000 core barcodes
+INFO	2019-01-09 20:07:15	UMIIterator	Processed     1,000,000 records.  Elapsed time: 00:00:12s.  Time for last 1,000,000:   12s.  Last read position: 11:50,307,595
+INFO	2019-01-09 20:07:42	UMIIterator	Processed     2,000,000 records.  Elapsed time: 00:00:40s.  Time for last 1,000,000:   27s.  Last read position: 13:58,127,164
+INFO	2019-01-09 20:07:58	UMIIterator	Processed     3,000,000 records.  Elapsed time: 00:00:55s.  Time for last 1,000,000:   15s.  Last read position: 16:91,925,329
+INFO	2019-01-09 20:08:12	UMIIterator	Processed     4,000,000 records.  Elapsed time: 00:01:10s.  Time for last 1,000,000:   14s.  Last read position: 19:45,005,523
+INFO	2019-01-09 20:08:32	UMIIterator	Processed     5,000,000 records.  Elapsed time: 00:01:29s.  Time for last 1,000,000:   19s.  Last read position: 4:46,468,657
+INFO	2019-01-09 20:08:45	UMIIterator	Processed     6,000,000 records.  Elapsed time: 00:01:43s.  Time for last 1,000,000:   13s.  Last read position: 6:11,900,373
+INFO	2019-01-09 20:08:58	UMIIterator	Processed     7,000,000 records.  Elapsed time: 00:01:56s.  Time for last 1,000,000:   13s.  Last read position: 7:137,127,963
+INFO	2019-01-09 20:09:11	UMIIterator	Processed     8,000,000 records.  Elapsed time: 00:02:09s.  Time for last 1,000,000:   12s.  Last read position: 9:102,634,097
+INFO	2019-01-09 20:10:00	UMIIterator	Sorting finished.
+INFO	2019-01-09 20:10:40	DetectBeadSynthesisErrors	Cleaning BAM
+INFO	2019-01-09 20:10:55	DetectBeadSynthesisErrors	Processed     1,000,000 records.  Elapsed time: 00:00:14s.  Time for last 1,000,000:   14s.  Last read position: 10:128,624,560
+INFO	2019-01-09 20:11:09	DetectBeadSynthesisErrors	Processed     2,000,000 records.  Elapsed time: 00:00:28s.  Time for last 1,000,000:   14s.  Last read position: 12:84,756,630
+INFO	2019-01-09 20:11:24	DetectBeadSynthesisErrors	Processed     3,000,000 records.  Elapsed time: 00:00:43s.  Time for last 1,000,000:   14s.  Last read position: 15:76,906,249
+INFO	2019-01-09 20:11:39	DetectBeadSynthesisErrors	Processed     4,000,000 records.  Elapsed time: 00:00:58s.  Time for last 1,000,000:   14s.  Last read position: 17:56,722,068
+INFO	2019-01-09 20:11:52	DetectBeadSynthesisErrors	Processed     5,000,000 records.  Elapsed time: 00:01:12s.  Time for last 1,000,000:   13s.  Last read position: 2:91,264,509
+INFO	2019-01-09 20:12:07	DetectBeadSynthesisErrors	Processed     6,000,000 records.  Elapsed time: 00:01:26s.  Time for last 1,000,000:   14s.  Last read position: 4:62,509,179
+INFO	2019-01-09 20:12:21	DetectBeadSynthesisErrors	Processed     7,000,000 records.  Elapsed time: 00:01:40s.  Time for last 1,000,000:   14s.  Last read position: 5:142,903,886
+INFO	2019-01-09 20:12:36	DetectBeadSynthesisErrors	Processed     8,000,000 records.  Elapsed time: 00:01:55s.  Time for last 1,000,000:   14s.  Last read position: 7:45,126,739
+INFO	2019-01-09 20:12:50	DetectBeadSynthesisErrors	Processed     9,000,000 records.  Elapsed time: 00:02:09s.  Time for last 1,000,000:   14s.  Last read position: 9:14,782,704
+INFO	2019-01-09 20:13:04	DetectBeadSynthesisErrors	Processed    10,000,000 records.  Elapsed time: 00:02:23s.  Time for last 1,000,000:   13s.  Last read position: Y:90,739,187
+INFO	2019-01-09 20:13:19	DetectBeadSynthesisErrors	Processed    11,000,000 records.  Elapsed time: 00:02:38s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 20:13:34	DetectBeadSynthesisErrors	Processed    12,000,000 records.  Elapsed time: 00:02:53s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 20:13:49	DetectBeadSynthesisErrors	Processed    13,000,000 records.  Elapsed time: 00:03:08s.  Time for last 1,000,000:   15s.  Last read position: */*
+INFO	2019-01-09 20:14:04	DetectBeadSynthesisErrors	Processed    14,000,000 records.  Elapsed time: 00:03:23s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 20:14:19	DetectBeadSynthesisErrors	Processed    15,000,000 records.  Elapsed time: 00:03:38s.  Time for last 1,000,000:   14s.  Last read position: */*
+INFO	2019-01-09 20:14:33	DetectBeadSynthesisErrors	Processed    16,000,000 records.  Elapsed time: 00:03:52s.  Time for last 1,000,000:   14s.  Last read position: */*
+[Wed Jan 09 20:14:40 CET 2019] org.broadinstitute.dropseqrna.beadsynthesis.DetectBeadSynthesisErrors done. Elapsed time: 8.90 minutes.
+Runtime.totalMemory()=11597250560
+[Wed Jan 09 20:14:42 CET 2019] org.broadinstitute.dropseqrna.metrics.BAMTagHistogram INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.GETagged.cleaned.bam OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/histogram_reads_cell_barcodes.txt.gz TAG=XC    FILTER_PCR_DUPLICATES=false READ_QUALITY=10 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 20:14:42 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 20:15:36	BAMTagHistogram	Processed    10,000,000 records.  Elapsed time: 00:00:52s.  Time for last 10,000,000:   52s.  Last read position: */*
+[Wed Jan 09 20:15:59 CET 2019] org.broadinstitute.dropseqrna.metrics.BAMTagHistogram done. Elapsed time: 1.28 minutes.
+Runtime.totalMemory()=1912078336
+[Wed Jan 09 20:16:00 CET 2019] org.broadinstitute.dropseqrna.barnyard.DigitalExpression SUMMARY=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/dge_summary.txt OUTPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/Results/UMI.counts.dge.txt.gz INPUT=/scratch/el/monthly/bdeplanc/pezoldt/Analysis/Organoid/2019_Organoid/d3_02/BAM/day_3_o3_S9.merged.GETagged.cleaned.bam NUM_CORE_BARCODES=1000    OUTPUT_READS_INSTEAD=false CELL_BARCODE_TAG=XC MOLECULAR_BARCODE_TAG=XM GENE_EXON_TAG=GE STRAND_TAG=GS EDIT_DISTANCE=1 READ_MQ=10 MIN_BC_READ_THRESHOLD=0 USE_STRAND_INFO=true RARE_UMI_FILTER_THRESHOLD=0.0 VERBOSITY=INFO QUIET=false VALIDATION_STRINGENCY=STRICT COMPRESSION_LEVEL=5 MAX_RECORDS_IN_RAM=500000 CREATE_INDEX=false CREATE_MD5_FILE=false GA4GH_CLIENT_SECRETS=client_secrets.json
+[Wed Jan 09 20:16:00 CET 2019] Executing as bdeplanc@cpt05.el.vital-it.ch on Linux 2.6.32-696.23.1.el6.x86_64 amd64; Java HotSpot(TM) 64-Bit Server VM 1.8.0_112-b15; Picard version: 1.13(7bed8f4_1513008033)
+INFO	2019-01-09 20:16:49	BAMTagHistogram	Processed    10,000,000 records.  Elapsed time: 00:00:47s.  Time for last 10,000,000:   47s.  Last read position: */*
+INFO	2019-01-09 20:17:12	BarcodeListRetrieval	Looking for the top 1000 cell barcodes
+INFO	2019-01-09 20:17:12	BarcodeListRetrieval	Selected 1000 core barcodes
+INFO	2019-01-09 20:17:12	DigitalExpression	Calculating digital expression for [1000] cells.
+INFO	2019-01-09 20:17:36	UMIIterator	Processed     1,000,000 records.  Elapsed time: 00:00:23s.  Time for last 1,000,000:   23s.  Last read position: 11:52,122,493
+INFO	2019-01-09 20:18:08	UMIIterator	Processed     2,000,000 records.  Elapsed time: 00:00:55s.  Time for last 1,000,000:   31s.  Last read position: 13:94,842,674
+INFO	2019-01-09 20:18:33	UMIIterator	Processed     3,000,000 records.  Elapsed time: 00:01:20s.  Time for last 1,000,000:   25s.  Last read position: 17:24,700,455
+INFO	2019-01-09 20:18:52	UMIIterator	Processed     4,000,000 records.  Elapsed time: 00:01:39s.  Time for last 1,000,000:   18s.  Last read position: 2:29,844,014
+INFO	2019-01-09 20:19:13	UMIIterator	Processed     5,000,000 records.  Elapsed time: 00:02:00s.  Time for last 1,000,000:   21s.  Last read position: 4:116,699,407
+INFO	2019-01-09 20:19:38	UMIIterator	Processed     6,000,000 records.  Elapsed time: 00:02:26s.  Time for last 1,000,000:   25s.  Last read position: 6:78,428,580
+INFO	2019-01-09 20:20:04	UMIIterator	Processed     7,000,000 records.  Elapsed time: 00:02:51s.  Time for last 1,000,000:   25s.  Last read position: 8:70,535,218
+INFO	2019-01-09 20:20:21	UMIIterator	Processed     8,000,000 records.  Elapsed time: 00:03:08s.  Time for last 1,000,000:   16s.  Last read position: X:7,727,832
+INFO	2019-01-09 20:20:47	UMIIterator	Sorting finished.
+[Wed Jan 09 20:21:25 CET 2019] org.broadinstitute.dropseqrna.barnyard.DigitalExpression done. Elapsed time: 5.42 minutes.
+Runtime.totalMemory()=6124732416
+Started analysis of day_3_o3_S9.fastq.gz
+Approx 5% complete for day_3_o3_S9.fastq.gz
+Approx 10% complete for day_3_o3_S9.fastq.gz
+Approx 15% complete for day_3_o3_S9.fastq.gz
+Approx 20% complete for day_3_o3_S9.fastq.gz
+Approx 25% complete for day_3_o3_S9.fastq.gz
+Approx 30% complete for day_3_o3_S9.fastq.gz
+Approx 35% complete for day_3_o3_S9.fastq.gz
+Approx 40% complete for day_3_o3_S9.fastq.gz
+Approx 45% complete for day_3_o3_S9.fastq.gz
+Approx 50% complete for day_3_o3_S9.fastq.gz
+Approx 55% complete for day_3_o3_S9.fastq.gz
+Approx 60% complete for day_3_o3_S9.fastq.gz
+Approx 65% complete for day_3_o3_S9.fastq.gz
+Approx 70% complete for day_3_o3_S9.fastq.gz
+Approx 75% complete for day_3_o3_S9.fastq.gz
+Approx 80% complete for day_3_o3_S9.fastq.gz
+Approx 85% complete for day_3_o3_S9.fastq.gz
+Approx 90% complete for day_3_o3_S9.fastq.gz
+Approx 95% complete for day_3_o3_S9.fastq.gz
+Started analysis of day_3_o3_S9.bam
+Approx 5% complete for day_3_o3_S9.bam
+Approx 10% complete for day_3_o3_S9.bam
+Approx 15% complete for day_3_o3_S9.bam
+Approx 20% complete for day_3_o3_S9.bam
+Approx 25% complete for day_3_o3_S9.bam
+Approx 30% complete for day_3_o3_S9.bam
+Approx 35% complete for day_3_o3_S9.bam
+Approx 40% complete for day_3_o3_S9.bam
+Approx 45% complete for day_3_o3_S9.bam
+Approx 50% complete for day_3_o3_S9.bam
+Approx 55% complete for day_3_o3_S9.bam
+Approx 60% complete for day_3_o3_S9.bam
+Approx 65% complete for day_3_o3_S9.bam
+Approx 70% complete for day_3_o3_S9.bam
+Approx 75% complete for day_3_o3_S9.bam
+Approx 80% complete for day_3_o3_S9.bam
+Approx 85% complete for day_3_o3_S9.bam
+Approx 90% complete for day_3_o3_S9.bam
+Approx 95% complete for day_3_o3_S9.bam

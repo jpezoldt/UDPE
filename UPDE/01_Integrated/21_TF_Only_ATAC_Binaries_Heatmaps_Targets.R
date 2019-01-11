@@ -36,18 +36,19 @@ library(ggplot2)
 table_ID <- "SPF_known_homer_compilation_curated.txt"
 sample_ID <- "SPF"
 PATH_input <- paste("/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_FSC_all/Motif/Homer_Output/allHomerResults/size_500bp/", sample_ID, sep = "")
-table_ID <- "SPF_known_homer_compilation_curated.txt"
+
 # RNAseq DESeq2 analysis
 path_RNAseq_DESeq2 <- "/home/pezoldt/NAS2/pezoldt/Data/RNAseq/2017_FSC_LEC_BEC_mLN_pLN_GF_SPF/FSC"
+
 # Note: Input required
-PATH_general <- "/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_FSC_all/Motif/Homer_Output/allHomerResults/size_500bp/SPF/"
+PATH_general <- "/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_FSC_all/Motif/Homer_Output/allHomerResults/size_500bp/SPF/Only_ATAC_Data/"
 PATH_motifs <- "/knownResults/"
 homer_find_conditions <- "si500_v46_bgTSS_noExt_"
 conditions <- c("Closed_mLN_DAR_SPF",
                 "Open_mLN_DAR_SPF")
 PATH_TF_motifs_to_TF_GeneSybmol <- "/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_FSC_all/Motif/Homer_Output/allHomerResults/size_500bp/SPF/SPF_known_homer_compilation_curated.txt" 
 PATH_TF_motifs_in_gene <- "/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_FSC_all/Motif/Regions_by_Motif"
-PATH_output_RDS <- "/home/pezoldt/NAS2/pezoldt/Analysis/01_Integrated/DARs_DEGs"
+PATH_output <- "/home/pezoldt/NAS2/pezoldt/Analysis/ATACseq/ATAC_FSC_all/Motif/Homer_Output/allHomerResults/size_500bp/SPF/Only_ATAC_Data"
 #Global variables
 log2FC_RNA = 1.0
 padj = 0.05
@@ -78,10 +79,10 @@ l_homer_TF <- split(t_homer_TF, t_homer_TF$group)
 l_names <- strsplit(names(l_homer_TF), "noExt_")
 names(l_homer_TF) <- unlist(sapply(l_names, function(x) {x[2]}))
 #Delete global DAR sets
-l_homer_TF <- l_homer_TF[c("Closed_DEG_SPF_lowRNAseq","Open_DEG_SPF_lowRNAseq","No_DAR_DOWN_SPF_lowRNAseq","No_DAR_UP_SPF_lowRNAseq",
-                           "NoDEG_Closed_SPF_lowRNAseq","NoDEG_Open_SPF_lowRNAseq")]
-names(l_homer_TF) <- c("pLN_Open_UP","mLN_Open_UP","pLN_peak_UP","mLN_peak_UP",
-                       "pLN_Open_None","mLN_Open_None")
+l_homer_TF <- l_homer_TF[c("Closed_mLN_DAR_SPF",
+                           "Open_mLN_DAR_SPF")]
+names(l_homer_TF) <- c("Open_pLN_SPF",
+                       "Open_mLN_SPF")
 
 # grab TFs per comparison
 l_motifs_per_group <- lapply(l_homer_TF, function(x){
@@ -92,7 +93,8 @@ l_motifs_per_group <- lapply(l_homer_TF, function(x){
 t_TFs_binary <- as.data.frame.matrix(table(stack(l_motifs_per_group)))
 #Replace 
 t_TFs_binary[t_TFs_binary >= 2] <- 1
-t_TFs_binary <- t_TFs_binary[,c("pLN_Open_UP","mLN_Open_UP","pLN_peak_UP","mLN_peak_UP","pLN_Open_None","mLN_Open_None")]
+t_TFs_binary <- t_TFs_binary[,c("Open_pLN_SPF",
+                                "Open_mLN_SPF")]
 # Plot intersection
 upset(t_TFs_binary, sets = colnames(t_TFs_binary),
       mainbar.y.label = "TFs ATACseq",
@@ -102,15 +104,11 @@ upset(t_TFs_binary, sets = colnames(t_TFs_binary),
 # Grab intersection of interest
 # Note: Only one intersection interesting
 Unique_TFs_NoDEG_Open <- subset(t_TFs_binary, 
-                                pLN_Open_UP == 0 &
-                                  mLN_Open_UP == 0 &
-                                  pLN_peak_UP == 1 &
-                                  mLN_peak_UP == 0 &
-                                  pLN_Open_None == 0 &
-                                  mLN_Open_None == 0)
+                                Open_pLN_SPF == 0 &
+                                  Open_mLN_SPF == 1)
 
 # Write binary table
-write.table(t_TFs_binary, paste(PATH_input,"/",sample_ID,"_existence_matrix_known_homer_compile.txt",sep = "") ,dec=".", sep="\t")
+write.table(t_TFs_binary, paste(PATH_output,"/",sample_ID,"_existence_matrix_known_homer_compile.txt",sep = "") ,dec=".", sep="\t")
 
 #####Make TF binding site heatmap----------------------------------------------
 #Get TF and pValue
@@ -147,7 +145,7 @@ t_homer_TF_pValue_mean <- t_homer_TF_pValue_mean[complete.cases(t_homer_TF_pValu
 #-log10 of pValue for plotting
 t_homer_TF_pValue_mean <- -log10(t_homer_TF_pValue_mean)
 # Replace outlier high pValues with 12
-t_homer_TF_pValue_mean[t_homer_TF_pValue_mean == Inf] <- 4
+#t_homer_TF_pValue_mean[t_homer_TF_pValue_mean == Inf] <- 4
 t_homer_TF_pValue_mean <- t_homer_TF_pValue_mean[order(rownames(t_homer_TF_pValue_mean)), ]
 
 output_pheatmap <- pheatmap(t_homer_TF_pValue_mean, cluster_rows = TRUE, legend = TRUE,
@@ -157,7 +155,7 @@ output_pheatmap <- pheatmap(t_homer_TF_pValue_mean, cluster_rows = TRUE, legend 
                             main = "TF by motif -log10(qValue)",
                             silent = TRUE)
 
-
+plot(t_homer_TF_pValue_mean[,1], t_homer_TF_pValue_mean[,2])
 ####################
 #RNAseq data
 ####################
@@ -370,9 +368,6 @@ concatenateKnownMotifs(PATH_sampleNames,conditions,PATH_general)
 # Explanation Input:
 # Input 1: TXT with the peak identifiers, the start and the stop regions (and TF bindings per peak)
 # Input 2: TXT with altered peak identifier (e.g. preceding BG), offset from peak center and Motif name
-# ToDo's: 
-#     1) Align TFs by Motif and not by name
-#     2) 
 #' pinpointTFMotifstoGenes
 #' generates RDS:
 #' 1) containing a table that counts the incidence number (motif occurences) for each TF within each gene 
@@ -537,7 +532,7 @@ l_TF_binding_freq_cleared <- splitMotifGroups(l_TF_binding_freq)
 #####
 #Plot Binding incidence of TFs---------------------------------------
 #Generate Heatmap of log2 number of TF binding sites per gene
-index = 3
+index = 2
 test_TF <- l_TF_binding_freq_cleared[[index]]
 data_heatmap <- test_TF
 #drops <- c("Seq","GAGA.repeat")
@@ -547,8 +542,50 @@ data_heatmap <- data_heatmap[,24:ncol(data_heatmap)]
 data_heatmap <- as.matrix(data_heatmap)
 #data_heatmap <- log2(data_heatmap)
 data_heatmap[data_heatmap == -Inf] <- 0
-pheatmap(data_heatmap, scale = "none", cluster_cols = FALSE,
+pheatmap(data_heatmap, scale = "column", cluster_cols = FALSE,
          color = colorRampPalette(c("white", "lightgoldenrod1","chartreuse3","chartreuse4"), space="rgb")(128))
+
+#####
+#Get gene list targeted by TFs that are unique or commonly open
+#####
+TFs_mLN_only <- rownames(subset(t_TFs_binary, Open_pLN_SPF == 0 & Open_mLN_SPF == 1))
+TFs_pLN_only <- rownames(subset(t_TFs_binary, Open_pLN_SPF == 1 & Open_mLN_SPF == 0))
+TFs_common <- rownames(subset(t_TFs_binary, Open_pLN_SPF == 1 & Open_mLN_SPF == 1))
+#Get genes that are DARs for pLN for TFs enriched in pLN
+pLN_Open_only <- l_TF_binding_freq_cleared[["Closed_mLN_DAR_SPF"]]
+pLN_Open_TFs_pLN_only <- cbind(pLN_Open_only$`t_TF_binding_freq_i$GeneSymbol`,pLN_Open_only[,colnames(pLN_Open_only) %in% TFs_pLN_only])
+# Eliminate Stat1, Stat2 and Fli1 as they have higly abundant binding motifs
+pLN_Open_TFs_pLN_only <- pLN_Open_TFs_pLN_only[, -which(names(pLN_Open_TFs_pLN_only) %in% c("Stat1","Stat2","Fli1","Stat1.1","Elk4"))]
+# Eliminate Rows with only Zeros
+pLN_Open_TFs_pLN_only <- pLN_Open_TFs_pLN_only[,apply(pLN_Open_TFs_pLN_only,2,function(x) !all(pLN_Open_TFs_pLN_only==0))] 
+pLN_Open_TFs_pLN_only <- pLN_Open_TFs_pLN_only[!!rowSums(abs(pLN_Open_TFs_pLN_only[-c(1)])),]
+# Thresh via number of TF bindings per genes
+pLN_Open_TFs_pLN_only <- pLN_Open_TFs_pLN_only[,2:ncol(pLN_Open_TFs_pLN_only)][apply(pLN_Open_TFs_pLN_only[,2:ncol(pLN_Open_TFs_pLN_only)]>2,1,any),]
+
+#Get genes that are DARs for pLN for TFs enriched in mLN
+mLN_Open_only <- l_TF_binding_freq_cleared[["Open_mLN_DAR_SPF"]]
+mLN_Open_TFs_mLN_only <- cbind(mLN_Open_only$`t_TF_binding_freq_i$GeneSymbol`,mLN_Open_only[,colnames(mLN_Open_only) %in% TFs_mLN_only])
+# Eliminate Rows with only Zeros
+mLN_Open_TFs_mLN_only <- mLN_Open_TFs_mLN_only[,apply(mLN_Open_TFs_mLN_only,2,function(x) !all(mLN_Open_TFs_mLN_only==0))] 
+mLN_Open_TFs_mLN_only <- mLN_Open_TFs_pLN_only[!!rowSums(abs(mLN_Open_TFs_mLN_only[-c(1)])),]
+# Thresh via number of TF bindings per genes
+mLN_Open_TFs_mLN_only <- mLN_Open_TFs_mLN_only[,2:ncol(mLN_Open_TFs_mLN_only)][apply(mLN_Open_TFs_mLN_only[,2:ncol(mLN_Open_TFs_mLN_only)]>2,1,any),]
+mLN_Open_TFs_mLN_only <- na.omit(mLN_Open_TFs_mLN_only)
+
+#Get genes that are DARs for common TFs enriched in mLN
+mLN_Open_only <- l_TF_binding_freq_cleared[["Open_mLN_DAR_SPF"]]
+mLN_Open_TFs_Common <- cbind(mLN_Open_only$`t_TF_binding_freq_i$GeneSymbol`,mLN_Open_only[,colnames(mLN_Open_only) %in% TFs_common])
+# Eliminate Rows with only Zeros
+mLN_Open_TFs_Common <- mLN_Open_TFs_Common[,apply(mLN_Open_TFs_Common,2,function(x) !all(mLN_Open_TFs_Common==0))] 
+mLN_Open_TFs_Common <- mLN_Open_TFs_Common[!!rowSums(abs(mLN_Open_TFs_Common[-c(1)])),]
+
+#Get genes that are DARs for common TFs enriched in mLN
+pLN_Open_only <- l_TF_binding_freq_cleared[["Closed_mLN_DAR_SPF"]]
+pLN_Open_TFs_Common <- cbind(pLN_Open_only$`t_TF_binding_freq_i$GeneSymbol`,pLN_Open_only[,colnames(pLN_Open_only) %in% TFs_common])
+# Eliminate Rows with only Zeros
+pLN_Open_TFs_Common <- pLN_Open_TFs_Common[,apply(pLN_Open_TFs_Common,2,function(x) !all(pLN_Open_TFs_Common==0))] 
+pLN_Open_TFs_Common <- pLN_Open_TFs_Common[!!rowSums(abs(pLN_Open_TFs_Common[-c(1)])),]
+
 
 #Plot binding incidence of TFs that are DEGs (script 55_...)-----------------------
 DEGs_TFs <- rownames(data_heatmap_sig)
